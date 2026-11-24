@@ -81,3 +81,7 @@ input[type=range]{width:100%;accent-color:var(--water)}
 a.card{display:block;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
 a.card:hover{transform:translateY(-2px);border-color:var(--water)}
 a.card p{margin:4px 0 0;font-size:14px}
+
+figure.render{margin:22px 0 8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+figure.render img{display:block;width:100%;height:auto}
+figure.render figcaption{padding:10px 16px;font-size:13.5px;color:var(--mut)}
