@@ -116,6 +116,7 @@
 <tr><td>พื้นที่หลังคารับน้ำฝน</td><td class="n">800 ตร.ม.</td><td class="n">1,064 ตร.ม.</td></tr>
 <tr><td>ฝนออกแบบ · สัมประสิทธิ์การไหลหลังคาเหล็ก</td><td class="n" colspan="2" style="text-align:center">150 มม./ชม. · 0.95</td></tr>
 <tr><td>ท่อระบายรอบอาคาร</td><td class="n" colspan="2" style="text-align:center">6" ลาด 1:200 บ่อพัก CB ทุกจุดรับท่อน้ำฝน</td></tr>
+<tr><td>น้ำล้างย้อนสระ (อาคารวารีบำบัด)</td><td class="n">-</td><td class="n">บ่อหน่วง BW 7.2 ลบ.ม. ลง CB4 ≤ 2.75 ล./วินาที · CB1 ถึงปลาย 13.48 ≤ 14.5</td></tr>
 </tbody></table></div>
 <script>
 (function(){
@@ -123,7 +124,7 @@ const B={he:{roof:'หลังคา 800 ตร.ม.',st:'ถังบำบั
  hy:{roof:'หลังคา 1,064 ตร.ม.',st:'ถังบำบัด WAVE WSA-1405 × 1',ww:'3,640 ล./วัน',n:'อาคารวารีบำบัดมีถังบำบัด 5,000 ล. 1 ใบ เก็บกักน้ำ 1.37 วัน และถังดักไขมัน WGT-400 รับน้ำจากอ่างคาเฟ่ก่อนเข้าท่อ'}};
 const S={all:{h:'น้ำเสียผ่านถังบำบัด น้ำฝนไหลตรงไปบ่อพัก',t:b=>`น้ำเสีย ${B[b].ww} ไหลลงท่อเมน 6" เข้าบ่อพัก MH แล้วเข้าถังบำบัด น้ำที่บำบัดแล้วรวมกับน้ำฝนในบ่อพัก CB ก่อนออกท่อสาธารณะ ${B[b].n}`},
  ww:{h:'เส้นทางน้ำเสีย',t:b=>`ส้วมและอ่างต่อท่อแยก 3" และ 4" เข้าท่อเมน 6" ใต้พื้น ท่อลอดคานคอดินผ่านปลอก 8" ที่คานเพิ่มลึกเฉพาะจุด มีท่ออากาศทุกกลุ่มสุขภัณฑ์กันน้ำในคอห่านถูกดูด ${B[b].n}`},
- rain:{h:'เส้นทางน้ำฝน',t:b=>`น้ำฝนจาก${B[b].roof} ลงรางน้ำ ท่อน้ำฝน RD แต่ละต้นลงบ่อพัก CB ข้างอาคาร ท่อรอบอาคาร 6" รวมน้ำไปปลายท่อทั้งสองด้านต่อเข้าท่อระบายน้ำสาธารณะ`}};
+ rain:{h:'เส้นทางน้ำฝน',t:b=>`น้ำฝนจาก${B[b].roof} ลงรางน้ำ ท่อน้ำฝน RD แต่ละต้นลงบ่อพัก CB ข้างอาคาร ท่อรอบอาคาร 6" รวมน้ำไปปลายท่อทั้งสองด้านต่อเข้าท่อระบายน้ำสาธารณะ${b==='hy'?' น้ำล้างย้อนสระพักในบ่อหน่วง BW แล้วค่อยระบายลง CB4 ไม่เกิน 2.75 ล./วินาที':''}`}};
 let b='he',s='all';const $=i=>document.getElementById(i);
 function draw(){$('roofT').textContent=B[b].roof;$('stT').textContent=B[b].st;
  document.querySelectorAll('#sch .g-ww,#sch .g-ww .flow').forEach(e=>e.classList.toggle('off',s==='rain'));
@@ -133,4 +134,4 @@ document.querySelectorAll('#bld button').forEach(e=>e.onclick=()=>{b=e.dataset.b
 document.querySelectorAll('#show button').forEach(e=>e.onclick=()=>{s=e.dataset.s;document.querySelectorAll('#show button').forEach(x=>x.setAttribute('aria-pressed',x===e));draw()});
 draw()})();
 </script>
-<footer>ข้อมูลตามแบบก่อสร้างชุดล่าสุด 24 พ.ย. 2569: แบบระบบสระ PL r5 · แบบสุขาภิบาล SN r10 (กายภาพ) SN r7 (วารีบำบัด) · แบบโครงสร้าง ST r25 (กายภาพ) r32 (วารีบำบัด) · แบบไฟฟ้า EE r3 r5 และรายการคำนวณที่ใช้คู่กัน ภาพในเว็บไซต์เป็นแผนภาพอธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</footer></main><link rel="stylesheet" href="mobile.css"><link rel="stylesheet" href="theme.css"><script src="mobile.js" defer></script></body></html>
+<footer>ข้อมูลตามแบบก่อสร้างชุดล่าสุด 24 พ.ย. 2569: แบบระบบสระ PL r7 · แบบสุขาภิบาล SN r11 (กายภาพ) SN r9 (วารีบำบัด) · แบบโครงสร้าง ST r25 (กายภาพ) r32 (วารีบำบัด) · แบบไฟฟ้า EE r3 r5 และรายการคำนวณที่ใช้คู่กัน ภาพในเว็บไซต์เป็นแผนภาพอธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</footer></main><link rel="stylesheet" href="mobile.css"><link rel="stylesheet" href="theme.css"><script src="mobile.js" defer></script></body></html>

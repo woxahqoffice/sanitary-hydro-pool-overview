@@ -183,7 +183,7 @@ const SC = {};
 // ===== 1) ถังน้ำใต้ดินและปั๊ม อาคารกายภาพบำบัด =====
 SC.tank = {
   name: 'ถังน้ำใต้ดินและปั๊ม', cam: [[6.2, -9.5, 4.6], [5.6, 0.8, -0.3]],
-  intro: 'ประปาเทศบาลเติมถังผ่านลูกลอย ปั๊มดูดน้ำจากถังส่งเข้าถังแรงดัน สวิตช์แรงดันสั่งปั๊มเดินที่ 1.9 บาร์ หยุดที่ 2.1 บาร์ ปั๊ม 2 ตัวสลับกันเดิน ลูกลอยไฟฟ้าตัดปั๊มเมื่อน้ำในถังต่ำกว่า -1.75',
+  intro: 'ประปาเทศบาลเติมถังผ่านลูกลอย ปั๊มอินเวอร์เตอร์ดูดน้ำจากถังส่งเข้าอาคาร เซนเซอร์แรงดันคุมรอบปั๊มให้แรงดันคงที่ 2.0 บาร์ เปิดก๊อกมากปั๊มเร่งรอบ ปิดก๊อกหมดปั๊มหยุด ถังแรงดัน 24 ล. รับการใช้น้ำเล็กน้อยระหว่างปั๊มหยุด ตู้ PCP สลับปั๊มตามชั่วโมงทำงาน ลูกลอยไฟฟ้าตัดปั๊มเมื่อน้ำในถังต่ำ',
   build() {
     const ZG = -0.10, A = 4.36; this.A = A;
     ground(-4.5, 15, -1.6, 3.2, -2.8, ZG);
@@ -200,9 +200,9 @@ SC.tank = {
     // แท่นปั๊ม ถังแรงดัน ตู้ควบคุม
     box(5.0, 7.4, -0.1, 1.5, ZG, 0.05, M.conc, 0x8a969b);
     this.p1 = pumpY(5.7, 0.5, 0.3); this.p2 = pumpY(6.5, 0.5, 0.3);
-    cyl([7.4, 0.5, 0.08], [7.4, 0.5, 0.62], 0.2, M.pump, 24); this.ptw = level(7.25, 7.55, 0.42, 0.58, 0.1, M.water);
+    cyl([7.4, 0.5, 0.08], [7.4, 0.5, 0.48], 0.15, M.pump, 24); this.ptw = level(7.29, 7.51, 0.44, 0.56, 0.1, M.water);
     box(8.2, 8.4, 1.2, 1.8, 0.8, 1.6, M.cab, 0x666666);                                   // ตู้ PCP ติดผนังอาคาร
-    cyl([7.75, 0.5, 0.85], [7.75, 0.5, 1.05], 0.03, M.dark); sph([7.75, 0.5, 1.08], 0.05, M.white);   // สวิตช์แรงดัน
+    cyl([7.75, 0.5, 0.85], [7.75, 0.5, 1.05], 0.03, M.dark); sph([7.75, 0.5, 1.08], 0.05, M.white);   // เซนเซอร์แรงดัน
     // อาคาร
     box(8.4, 14.5, -1.0, 3.0, -0.15, 0.0, M.floor); box(8.4, 8.55, -1.0, 3.0, 0, 3.0, M.wall); box(8.4, 14.5, 2.9, 3.0, 0, 3.0, M.wall);
     box(8.4, 14.5, -1.0, 3.0, 3.0, 3.06, M.wall);
@@ -215,22 +215,22 @@ SC.tank = {
     this.pD1 = pipe('ท่อส่งปั๊ม 1', [[5.7, 0.5, 0.51], [5.7, 0.5, 0.85]], 0.035, COL.clean, COL.cleanP);
     this.pD2 = pipe('ท่อส่งปั๊ม 2', [[6.5, 0.5, 0.51], [6.5, 0.5, 0.85]], 0.035, COL.clean, COL.cleanP);
     this.pHdr = pipe('ท่อส่งรวม', [[5.7, 0.5, 0.85], [8.75, 0.5, 0.85], [8.75, 0.5, 2.8], [12.5, 0.5, 2.8]], 0.035, COL.clean, COL.cleanP);
-    this.pPT = pipe('ท่อถังแรงดัน', [[7.4, 0.5, 0.85], [7.4, 0.5, 0.63]], 0.03, COL.clean, COL.cleanP);
+    this.pPT = pipe('ท่อถังแรงดัน', [[7.4, 0.5, 0.85], [7.4, 0.5, 0.49]], 0.03, COL.clean, COL.cleanP);
     this.pB1 = pipe('ท่อลงอ่างล้างมือ', [[10.5, 0.5, 2.8], [10.5, 2.55, 2.8], [10.5, 2.55, 0.95]], 0.022, COL.clean, COL.cleanP);
     this.pB2 = pipe('ท่อลงโถส้วม', [[12.5, 0.5, 2.8], [12.5, 2.75, 2.8], [12.5, 2.75, 0.9]], 0.022, COL.clean, COL.cleanP);
     label('city', [-2.2, 0, -0.35], 'ประปาเทศบาล', () => (!this.city ? 'หยุดจ่าย' : this.qc > 0.5 ? 'กำลังเติม ' + this.qc.toFixed(0) + ' ล./นาที' : 'ลูกลอยปิด'), 'ul', 60, 20);
     label('fv', [1.25, 0, -0.9], 'ลูกลอยเติมน้ำ', 'ปิดเองเมื่อถังเต็ม', 'ur', 70, 18);
     label('tk', [2.2, -0.7, -1.4], 'ถังเก็บน้ำใต้ดิน 6,000 ล.', () => 'น้ำในถัง ' + Math.round(this.V).toLocaleString() + ' ล.', 'dl', 70, 20);
     label('fs', [3.55, -0.12, -1.75], 'ลูกลอยไฟฟ้าตัดปั๊ม', 'ระดับตัด -1.75', 'dr', 64, 18);
-    label('pump', [6.1, 0.5, 0.55], 'ปั๊มหอยโข่ง 1.1 kW 1+1', () => (this.lock ? 'ตัดที่น้ำต่ำ' : this.run ? 'ปั๊ม ' + (this.cur + 1) + ' เดิน 131 ล./นาที' : 'หยุด รอแรงดันลดถึง 1.9 บาร์'), 'ul', 90, 20);
-    label('pcp', [8.3, 1.5, 1.6], 'ตู้ควบคุม PCP', 'สวิตช์แรงดัน 1.9 / 2.1 บาร์', 'ur', 70, 20);
-    label('pt', [7.4, 0.5, 0.62], 'ถังแรงดัน 50 ล. ตั้งลม 1.7 บาร์', () => 'น้ำในถัง ' + this.Vp.toFixed(1) + ' ล. · ' + this.p.toFixed(2) + ' บาร์', 'ur', 130, 20);
+    label('pump', [6.1, 0.5, 0.55], 'ปั๊มอินเวอร์เตอร์ 1.1 kW 1+1', () => (this.lock ? 'ตัดที่น้ำต่ำ' : this.run ? 'ปั๊ม ' + (this.cur + 1) + ' รอบ ' + Math.round(this.spd * 100) + ' % · ' + this.Q.toFixed(0) + ' ล./นาที' : 'หยุด รอแรงดันลดถึง 1.85 บาร์'), 'ul', 90, 20);
+    label('pcp', [8.3, 1.5, 1.6], 'ตู้ควบคุม PCP', 'แรงดันคงที่ 2.0 บาร์ สลับปั๊มตามชั่วโมง', 'ur', 70, 20);
+    label('pt', [7.4, 0.5, 0.48], 'ถังแรงดัน 24 ล. ตั้งลม 1.4 บาร์', () => 'น้ำในถัง ' + this.Vp.toFixed(1) + ' ล. · ' + this.p.toFixed(2) + ' บาร์', 'ur', 130, 20);
     label('bld', [12.5, 2.75, 0.9], 'สุขภัณฑ์ในอาคาร', () => (this.ok ? 'ใช้น้ำ ' + this.dem.toFixed(0) + ' ล./นาที' : 'ไม่มีน้ำ'), 'ur', 50, 18);
   },
-  reset() { this.V = 3000; this.Vp = 5; this.run = false; this.cur = 0; this.lead = 0; this.f1 = false; this.city = true; this.mode = 'normal'; this.lock = false; this.p = 1.98; this.qc = 0; this.dem = 0; this.ok = true; this.starts = 0; this.warnC = false; this.sph = 0; },
+  reset() { this.V = 3000; this.Vp = 4.8; this.spd = 0; this.Q = 0; this.hrs = 0; this.lowT = 0; this.run = false; this.cur = 0; this.lead = 0; this.f1 = false; this.city = true; this.mode = 'normal'; this.lock = false; this.p = 1.98; this.qc = 0; this.dem = 0; this.ok = true; this.starts = 0; this.warnC = false; this.sph = 0; },
   scen: [
     ['normal', 'ใช้น้ำปกติ', (s) => { s.mode = 'normal'; return 'กลับมาใช้น้ำปกติ'; }],
-    ['peak', 'ช่วงใช้น้ำมาก', (s) => { s.mode = 'peak'; return 'ช่วงใช้น้ำมาก ปั๊มเดินถี่ขึ้น'; }],
+    ['peak', 'ช่วงใช้น้ำมาก', (s) => { s.mode = 'peak'; return 'ช่วงใช้น้ำมาก อินเวอร์เตอร์เร่งรอบปั๊ม แรงดันยังคงที่'; }],
     ['city', 'ประปาหยุดจ่าย', (s) => { s.city = !s.city; return s.city ? 'ประปาเทศบาลกลับมาจ่าย' : 'ประปาเทศบาลหยุดจ่าย อาคารใช้น้ำสำรองในถัง'; }, (s) => !s.city],
     ['f1', 'ปั๊ม 1 ขัดข้อง', (s) => { s.f1 = !s.f1; if (s.f1 && s.run && s.cur === 0) { s.cur = 1; return 'ปั๊ม 1 ขัดข้องขณะเดิน ตู้ PCP ตัดปั๊ม 1 และสั่งปั๊ม 2 เดินแทนทันที'; } return s.f1 ? 'ปั๊ม 1 ขัดข้อง ระบบใช้ปั๊ม 2 แทน' : 'ปั๊ม 1 กลับมาใช้งาน'; }, (s) => s.f1]
   ],
@@ -240,23 +240,28 @@ SC.tank = {
     const open = this.city ? clamp((5950 - this.V) / 450, 0, 1) : 0; this.qc = 40 * open;
     if (!this.lock && z < -1.75) { this.lock = true; this.run = false; log('น้ำในถังต่ำกว่า -1.75 ลูกลอยไฟฟ้าตัดปั๊มกันปั๊มเดินตัวเปล่า', 'bad'); }
     if (this.lock && z > -1.6) { this.lock = false; log('น้ำในถังกลับถึงระดับใช้งาน ปั๊มพร้อมเดิน', 'ok'); }
-    const pr = (v) => (v < 0.3 ? 1.7 * v / 0.3 : 2.713 / (1 - v / 50) - 1.013);   // กฎของบอยล์ ตั้งลม 1.7 บาร์
+    const pr = (v) => (v < 0.3 ? 1.4 * v / 0.3 : 2.413 / (1 - v / 24) - 1.013);   // กฎของบอยล์ ถัง 24 ล. ตั้งลม 1.4 บาร์
     this.p = pr(this.Vp);
-    if (!this.run && !this.lock && this.p <= 1.9) {
-      let c = this.lead; if (c === 0 && this.f1) c = 1;
-      this.cur = c; this.run = true; this.starts++; this.lead = 1 - this.lead;
-      log('แรงดันลดถึง 1.9 บาร์ ปั๊ม ' + (c + 1) + ' เริ่มเดิน' + (this.f1 && c === 1 ? ' (ปั๊ม 1 ขัดข้อง)' : ''), '');
+    if (!this.run && !this.lock && this.p <= 1.85) {
+      let c = this.lead; if (c === 0 && this.f1) c = 1; if (c === 1 && this.f1 && false) c = 0;
+      this.cur = c; this.run = true; this.starts++; this.lowT = 0;
+      log('แรงดันลดถึง 1.85 บาร์ ปั๊ม ' + (c + 1) + ' ออกตัวแบบค่อย ๆ เร่งรอบ' + (this.f1 && c === 1 ? ' (ปั๊ม 1 ขัดข้อง)' : ''), '');
     }
-    if (this.run && this.p >= 2.1) { this.run = false; log('แรงดันถึง 2.1 บาร์ ปั๊ม ' + (this.cur + 1) + ' หยุด', ''); }
     if (this.run && this.lock) this.run = false;
-    const Q = this.run ? 131 : 0;
+    if (this.run) { this.hrs += dt; if (this.hrs > 3600) { this.hrs = 0; this.lead = 1 - this.lead; if (!(this.lead === 0 && this.f1)) { this.cur = this.lead; log('ครบ 1 ชม. ตู้ PCP สลับเป็นปั๊ม ' + (this.cur + 1), ''); } } }
+    let Q = 0;
+    if (this.run) {
+      if (this.dem < 6) { this.lowT += dt; } else this.lowT = 0;
+      if (this.lowT > 20) { Q = this.dem + 25; if (this.p >= 2.2) { this.run = false; this.lowT = 0; log('ใช้น้ำน้อยมาก ปั๊มอัดถังแรงดันถึง 2.2 บาร์แล้วหยุดพัก', ''); Q = 0; } }
+      else { const Vsp = 24 * (1 - 2.413 / 3.013); Q = clamp(this.dem + (Vsp - this.Vp) * 30, 0, 131); }
+    }
+    this.Q = Q; this.spd = Q > 0 ? clamp(0.45 + 0.55 * Q / 131, 0, 1) : 0;
     const use = this.Vp > 0.05 || Q > 0 ? this.dem : 0; this.ok = use > 0;
-    if (!this.warnC && t > 900 && this.sph > 30) { this.warnC = true; log('ปั๊มออกตัวเกิน 30 ครั้ง/ชม. ถังแรงดัน 50 ล. กับช่วงสวิตช์ 0.2 บาร์เก็บน้ำได้ราว 3 ล. ต่อรอบ', 'warn'); }
-    this.Vp = clamp(this.Vp + (Q - use) * dt / 60, 0, 6.6);
+    this.Vp = clamp(this.Vp + (Q - use) * dt / 60, 0, 7.0);
     this.sph = this.starts / Math.max(t / 3600, 0.25);
     this.V = clamp(this.V + (this.qc - Q) * dt / 60, 0, 6000);
     const zn = -2.05 + this.V / (A * 1000);
-    this.w.set(zn); this.ptw.set(0.1 + 0.5 * this.Vp / 6.6);
+    this.w.set(zn); this.ptw.set(0.1 + 0.36 * this.Vp / 7.0);
     this.ball.position.copy(V(1.25, 0, Math.max(zn, -1.45))); this.arm.visible = true;
     const a = V(0.75, 0, -0.82), b = this.ball.position, d = b.clone().sub(a); this.arm.position.copy(a.clone().add(b).multiplyScalar(0.5));
     this.arm.scale.y = d.length() / 0.5; this.arm.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), d.normalize());
@@ -264,13 +269,13 @@ SC.tank = {
     this.p1.set(this.run && this.cur === 0, this.f1); this.p2.set(this.run && this.cur === 1, false);
     const qn = Q / 131;
     this.pCity.q = this.qc / 40; this.pSuc.q = qn; this.pS1.q = this.run && this.cur === 0 ? qn : 0; this.pS2.q = this.run && this.cur === 1 ? qn : 0;
-    this.pD1.q = this.pS1.q; this.pD2.q = this.pS2.q; this.pHdr.q = use / 60; this.pPT.q = this.Vp >= 6.6 || this.Vp <= 0 ? 0 : (Q - use) / 131;
+    this.pD1.q = this.pS1.q; this.pD2.q = this.pS2.q; this.pHdr.q = use / 60; this.pPT.q = this.Vp >= 7.0 || this.Vp <= 0 ? 0 : (Q - use) / 131;
     this.pB1.q = use / 120; this.pB2.q = use / 120;
   },
   stats() {
     const z = -2.05 + this.V / (this.A * 1000);
     return [['น้ำในถัง', Math.round(this.V).toLocaleString() + ' ล.', z < -1.75 ? 'bad' : ''], ['ระดับน้ำ', z.toFixed(2) + ' ม.', ''],
-      ['แรงดันถังแรงดัน', this.p.toFixed(2) + ' บาร์', this.p < 1.5 ? 'bad' : ''], ['ปั๊ม', this.lock ? 'ตัดที่น้ำต่ำ' : this.run ? 'ปั๊ม ' + (this.cur + 1) + ' เดิน' : 'หยุด', this.lock ? 'bad' : this.run ? 'ok' : ''],
+      ['แรงดันในท่อ', this.p.toFixed(2) + ' บาร์', this.p < 1.5 ? 'bad' : ''], ['ปั๊ม', this.lock ? 'ตัดที่น้ำต่ำ' : this.run ? 'ปั๊ม ' + (this.cur + 1) + ' รอบ ' + Math.round(this.spd * 100) + ' %' : 'หยุด', this.lock ? 'bad' : this.run ? 'ok' : ''],
       ['ประปาเติม', this.qc.toFixed(0) + ' ล./นาที', this.city ? '' : 'warn'], ['อาคารใช้น้ำ', this.ok ? this.dem.toFixed(0) + ' ล./นาที' : 'ไม่มีน้ำ', this.ok ? '' : 'bad'],
       ['ปั๊มออกตัว', this.starts + ' ครั้ง · ' + Math.round(this.sph || 0) + ' ครั้ง/ชม.', (this.sph || 0) > 30 ? 'warn' : '']];
   },
@@ -290,7 +295,7 @@ SC.pool = {
     this.pw = level(0.02, 6.98, 0.02, D - 0.02, -1.57, M.poolW);
     box(7.3, 7.6, 0, D, -0.45, -0.12, M.concT, 0x8a969b); this.gw = level(7.32, 7.58, 0.02, D - 0.02, -0.43, M.poolW);   // รางน้ำล้น
     for (const xp of [0.6, 2.3, 4.0, 5.7]) box(xp - 0.11, xp + 0.11, 0.3, 0.52, -3.0, -1.9, M.concT);
-    box(-1.2, -0.3, 0, D, -0.15, 0, M.floor); box(7.6, 8.7, 0, D, -0.15, 0, M.floor);
+    box(-1.2, -0.3, 0, D, -0.15, 0, M.floor); box(7.6, 8.7, 0, 3.0, -0.15, 0, M.floor); box(7.6, 8.7, 5.4, D, -0.15, 0, M.floor);
     for (const xi of [1.2, 2.9, 4.6]) cyl([xi, 2.0, -1.57], [xi, 2.0, -1.53], 0.07, M.frp);
     for (const xm of [2.3, 5.6]) box(xm - 0.2, xm + 0.2, 0.8, 1.2, -1.57, -1.54, M.dark);
     // ถังพัก BT ภายใน 2.40 × 2.40 ก้น -2.30 ผนังร่วม 0.20 ห้องใต้ดินปั๊ม 4.50 × 2.70
@@ -302,7 +307,8 @@ SC.pool = {
     box(8.7, 17.2, 0, D, 0.0, 0.2, M.concT, 0x8a969b);
     box(8.55, 8.7, 0, D, 0.2, 3.4, M.wall); box(8.7, 17.2, D - 0.1, D, 0.2, 3.4, M.wall);
     this.P1 = pumpY(13.55, 1.5, -1.97); this.P2 = pumpY(14.65, 1.5, -1.97);
-    box(12.15, 12.55, 0.8, 1.2, -1.85, -1.53, M.steel, 0x555555);                                  // ตะแกรงดักผม
+    box(12.15, 12.55, 0.8, 1.2, -2.13, -1.81, M.steel, 0x555555);                                  // ตะแกรงดักผม
+    cyl([10.25, 1.0, -1.97], [10.45, 1.0, -1.97], 0.16, M.steel); box(10.25, 11.35, 0.7, 1.3, -1.79, -1.775, M.steel);   // ข้อลด ø315 หันเข้าถัง + แผ่นกันน้ำวน
     for (let k = 0; k < 8; k++) cyl([11.9, 2.2, -2.3 + k * 0.3], [11.9, 2.6, -2.3 + k * 0.3], 0.015, M.steel);   // บันไดลง
     // ถังกรอง ยูวี ฮีตปั๊ม ชุดเคมี MCC
     this.F = [];
@@ -319,15 +325,21 @@ SC.pool = {
     box(14.17, 14.33, 1.12, 1.28, 0.47, 0.63, M.red);                                               // วาล์วปรับสมดุล
     box(12.5, 13.1, D - 0.3, D - 0.12, 1.1, 1.7, M.cab, 0x666666); box(12.0, 12.35, D - 0.65, D - 0.3, 0.22, 0.8, M.white);
     box(15.6, 16.4, D - 0.5, D - 0.12, 0.22, 2.2, M.cab, 0x666666);
-    box(7.7, 8.3, 3.6, 4.2, -1.2, -0.01, M.concT, 0x8a969b); box(7.68, 8.32, 3.58, 4.22, -0.01, 0.02, M.dark);   // บ่อพัก CB4 เปิดพื้น ฝาตะแกรงระดับพื้น
+    // บ่อหน่วง BW (แบบ PL-4.03) ภายใน 3.00 × 3.00 พื้น -0.45 น้ำสูงสุด +0.35 ฝา +0.70 (ภาพย่อแนวกว้าง)
+    box(7.55, 8.75, 3.0, 5.4, -0.70, -0.45, M.conc, 0x8a969b);
+    box(7.55, 7.65, 3.0, 5.4, -0.45, 0.55, M.concT); box(8.65, 8.75, 3.0, 5.4, -0.45, 0.55, M.concT);
+    box(7.65, 8.65, 3.0, 3.1, -0.45, 0.55, M.concT); box(7.65, 8.65, 5.3, 5.4, -0.45, 0.55, M.concT);
+    box(7.55, 8.75, 3.0, 5.4, 0.55, 0.70, M.concT, 0x8a969b); box(7.8, 8.2, 3.7, 4.1, 0.70, 0.72, M.dark);
+    this.bwm = level(7.66, 8.64, 3.11, 5.29, -0.45, M.poolW);
+    box(7.85, 8.15, 5.8, 6.2, -0.70, -0.01, M.concT, 0x8a969b);   // บ่อพัก CB4
     this.ppl = []; for (let i = 0; i < 10; i++) { const p = person(0.8 + (i % 5) * 1.3, 1.2 + Math.floor(i / 5) * 2.3, -1.57); p.visible = false; this.ppl.push(p); }
     // ท่อ แต่ละระบบใช้แนวลึก (y) และระดับของตัวเอง
     this.pGut = pipe('น้ำล้นราง→BT', [[7.45, 0.5, -0.45], [7.45, 0.5, -0.55], [9.1, 0.5, -0.55]], 0.07, COL.pool, COL.poolP);
     this.pMD = pipe('ช่องดูดก้นสระ→BT', [[2.3, 1.0, -1.57], [2.3, 1.0, -1.74], [9.1, 1.0, -1.74]], 0.07, COL.pool, COL.poolP);
     this.pMD2 = pipe('ช่องดูดก้นสระ 2', [[5.6, 1.0, -1.57], [5.6, 1.0, -1.74]], 0.06, COL.pool, COL.poolP);
-    this.pSuc = pipe('ท่อดูด BT→ปั๊ม ø200', [[10.8, 1.0, -2.14], [10.8, 1.0, -1.69], [14.65, 1.0, -1.69]], 0.10, COL.pool, COL.poolP);
-    this.pS1 = pipe('ท่อดูดลงปั๊ม P-1', [[13.55, 1.0, -1.69], [13.55, 1.0, -1.97], [13.55, 1.38, -1.97]], 0.08, COL.pool, COL.poolP);
-    this.pS2 = pipe('ท่อดูดลงปั๊ม P-2', [[14.65, 1.0, -1.69], [14.65, 1.0, -1.97], [14.65, 1.38, -1.97]], 0.08, COL.pool, COL.poolP);
+    this.pSuc = pipe('ท่อดูด BT→ปั๊ม ø200 แกน -1.97', [[10.45, 1.0, -1.97], [14.65, 1.0, -1.97]], 0.10, COL.pool, COL.poolP);
+    this.pS1 = pipe('ท่อดูดเข้าปั๊ม P-1', [[13.55, 1.0, -1.97], [13.55, 1.38, -1.97]], 0.08, COL.pool, COL.poolP);
+    this.pS2 = pipe('ท่อดูดเข้าปั๊ม P-2', [[14.65, 1.0, -1.97], [14.65, 1.38, -1.97]], 0.08, COL.pool, COL.poolP);
     this.pD1 = pipe('ท่อส่งปั๊ม P-1', [[13.55, 1.5, -1.75], [13.55, 1.5, -1.2]], 0.07, COL.pool, COL.poolP);
     this.pD2 = pipe('ท่อส่งปั๊ม P-2', [[14.65, 1.5, -1.75], [14.65, 1.5, -1.2]], 0.07, COL.pool, COL.poolP);
     this.pRise = pipe('ท่อเมน ø160 ขึ้นห้องเครื่อง', [[13.55, 1.5, -1.2], [15.7, 1.5, -1.2], [15.7, 1.5, 1.35], [9.9, 1.5, 1.35]], 0.08, COL.pool, COL.poolP);
@@ -342,13 +354,13 @@ SC.pool = {
     this.pHr1 = pipe('ท่อออกฮีตปั๊ม HP-1', [[14.6, 2.9, 1.1], [14.75, 2.9, 1.1]], 0.04, COL.heat, COL.heatP);
     this.pRet = pipe('ท่อคืนน้ำเข้าสระ ø160', [[15.2, 0.6, 0.55], [8.1, 0.6, 0.55], [8.1, 2.0, 0.55], [8.1, 2.0, -1.78], [1.2, 2.0, -1.78]], 0.08, COL.ret, COL.retP);
     this.pRI = [1.2, 2.9, 4.6].map((x, i) => pipe('หัวจ่ายพื้น ' + (i + 1), [[x, 2.0, -1.78], [x, 2.0, -1.57]], 0.04, COL.ret, COL.retP));
-    this.pBW = pipe('ท่อล้างย้อน→บ่อพัก CB4', [[9.9, 3.42, 1.5], [9.9, 3.9, 1.5], [8.0, 3.9, 1.5], [8.0, 3.9, 0.27]], 0.07, COL.drain, COL.drainP);
-    this.pCB = pipe('ท่อออกบ่อพัก CB4 ø150', [[8.0, 4.2, -1.0], [8.0, 6.2, -1.05]], 0.075, COL.drain, COL.drainP);
+    this.pBW = pipe('ท่อล้างย้อน→บ่อหน่วง BW', [[9.9, 3.42, 1.5], [9.9, 3.9, 1.5], [8.0, 3.9, 1.5], [8.0, 3.9, 1.05]], 0.07, COL.drain, COL.drainP);
+    this.pCB = pipe('ท่อออก BW PVC 6" → CB4', [[8.0, 5.2, -0.38], [8.0, 6.0, -0.42]], 0.075, COL.drain, COL.drainP);
     this.pBW2 = pipe('ท่อล้างย้อน F-2', [[11.8, 3.42, 1.5], [11.8, 3.9, 1.5], [9.9, 3.9, 1.5]], 0.07, COL.drain, COL.drainP);
     this.pMU = pipe('น้ำประปาเติม BT', [[17.2, 5.4, 2.0], [9.02, 5.4, 2.0], [9.02, 2.4, 2.0], [9.02, 2.4, -0.5]], 0.03, COL.clean, COL.cleanP);
     this.pCh = pipe('ท่อเติมคลอรีน', [[12.8, 5.7, 1.1], [12.8, 5.2, 1.1], [15.0, 5.2, 1.1], [15.0, 1.2, 1.1], [15.0, 1.2, 0.63]], 0.015, COL.chem, COL.chemP);
     label('pump', [14.1, 1.5, -2.2], 'ปั๊ม P-1 / P-2 7.5 kW (1+1)', () => (this.run ? 'P-' + (this.cur + 1) + ' ' + this.Q.toFixed(0) + ' ลบ.ม./ชม. · VSD ' + Math.min(50, Math.round(50 * this.Q / 98)) + ' Hz' : 'หยุด'), 'dr', 60, 20);
-    label('cb4', [8.0, 3.9, -0.1], 'บ่อพัก CB4', 'ปลายท่อเหนือฝาตะแกรง', 'dl', 50, 20);
+    label('cb4', [8.0, 4.2, 0.7], 'บ่อหน่วง BW 7.2 ลบ.ม.', () => 'น้ำ ' + this.Vbw.toFixed(2) + ' ลบ.ม. · ออก ' + this.qbw.toFixed(2) + ' ล./วินาที ลง CB4', 'dl', 50, 20);
     label('pool', [3.0, 0, -0.6], 'สระวารีบำบัด 146 ลบ.ม. ลึก 1.55 ม.', () => 'น้ำ ' + this.T.toFixed(1) + ' °C · คนในสระ ' + this.n, 'ul', 60, 30);
     label('gut', [7.45, 0, -0.3], 'รางน้ำล้น', () => this.qg.toFixed(0) + ' ลบ.ม./ชม.', 'ul', 120, 20);
     label('md', [2.3, 0.8, -1.57], 'ช่องดูดก้นสระ 2 จุด', () => this.qmd.toFixed(0) + ' ลบ.ม./ชม.', 'dl', 70, 20);
@@ -361,7 +373,7 @@ SC.pool = {
   },
   reset() {
     this.Vb = 5.8; this.h = 3.4; this.run = true; this.cur = 0; this.f1 = false; this.Q = 98; this.n = 0; this.tn = 0; this.T = 33.2; this.hp = false;
-    this.dp = 0.35; this.bw = 0; this.ph = ''; this.lead = 0; this.hrs = 0; this.lsh = false; this.uvOn = true; this.hpRun = false; this.mu = 0; this.lock = false; this.qg = 68; this.qmd = 30; this.tBW = 0; this.vsd = false; this.zb = -1.45;
+    this.dp = 0.35; this.bw = 0; this.ph = ''; this.lead = 0; this.hrs = 0; this.lsh = false; this.uvOn = true; this.hpRun = false; this.mu = 0; this.lock = false; this.qg = 68; this.qmd = 30; this.tBW = 0; this.vsd = false; this.zb = -1.45; this.Vbw = 0; this.qbw = 0;
   },
   scen: [
     ['in', 'คนลงสระ 10 คน', (s) => { s.tn = 10; return 'ผู้ใช้ 10 คนลงสระ น้ำถูกแทนที่ล้นรางลงถังพัก'; }],
@@ -377,10 +389,16 @@ SC.pool = {
     const zb = -2.30 + this.Vb / Ab; this.zb = zb;
     if (this.ph === 'fill' && zb < -0.70 && !this.fillSkip) { const need = (-0.69 - zb) * Ab; this.fillSkip = true; this.Vb += need; log('เติมน้ำประปา 1" (4 ลบ.ม./ชม.) ' + need.toFixed(1) + ' ลบ.ม. ใช้เวลา ' + Math.round(need / 4 * 60) + ' นาที แบบจำลองข้ามช่วงนี้', ''); }
     if (this.ph !== 'fill') this.fillSkip = false;
-    if (this.ph === 'fill' && this.Vb / Ab - 2.30 >= -0.70) { this.ph = 'bw'; this.tBW = 0; log('BT ถึง HWL ขั้นที่ 2 ล้างย้อนถัง F-1 100 ลบ.ม./ชม. 4 นาที ทิ้งลงบ่อพัก CB4', 'warn'); }
+    if (this.ph === 'fill' && this.Vb / Ab - 2.30 >= -0.70) { this.ph = 'bw'; this.tBW = 0; log('BT ถึง HWL ขั้นที่ 2 ล้างย้อนถัง F-1 100 ลบ.ม./ชม. 4 นาที ทิ้งลงบ่อหน่วง BW', 'warn'); }
     if (this.ph === 'bw') { this.tBW += dt; if (this.tBW > 240) { this.ph = 'rec'; this.dp = 0.32; log('ล้างย้อนเสร็จ ขั้นที่ 3 VSD ลดอัตราไหลจนน้ำในสระคืนระดับ', 'ok'); } }
     if (this.ph === 'rec' && this.h >= 2.5) { this.ph = ''; log('น้ำในสระคืนระดับขอบราง กลับเดินกรองปกติ 98 ลบ.ม./ชม.', 'ok'); }
     this.bw = this.ph === 'bw';
+    // บ่อหน่วง BW: รับ 27.9 ล./วินาที ระบายผ่านรู ø38 Q = 0.62·A·√(2gh)
+    const hbw = this.Vbw / 9 - 0.019; this.qbw = hbw > 0 ? 0.62 * 1.134e-3 * Math.sqrt(19.62 * hbw) * 1000 : 0;
+    const vPrev = this.Vbw; this.Vbw = clamp(this.Vbw + ((this.bw ? 27.9 : 0) - this.qbw) / 1000 * dt, 0, 7.2);
+    if (vPrev > 0.05 && this.Vbw <= 0.05 && !this.bw) log('บ่อหน่วง BW ระบายหมด พร้อมรับการล้างย้อนครั้งถัดไป', 'ok');
+    if (this.ph === 'rec' && !this.bwLog) { this.bwLog = true; log('น้ำในบ่อ BW ' + this.Vbw.toFixed(2) + ' ลบ.ม. ระบายลง CB4 ไม่เกิน 2.75 ล./วินาที ล้างถังที่สองได้หลังจากนี้ 50 นาที', ''); }
+    if (!this.ph) this.bwLog = false;
     // ปั๊ม
     if (!this.lock && zb < -1.65) { this.lock = true; log('BT ต่ำกว่า LWL -1.65 หยุดปั๊มกันดูดอากาศ', 'bad'); }
     if (this.lock && zb > -1.50) { this.lock = false; log('BT กลับเหนือ -1.50 ปั๊มเดินต่อ', 'ok'); }
@@ -410,15 +428,15 @@ SC.pool = {
     this.pw.set(-0.02 + Math.min(this.h, 6) / 1000 + (this.n ? 0.012 * Math.sin(t * 3) : 0));
     this.gw.set(-0.43 + clamp(this.qg / 160, 0.02, 0.25));
     if (this.bw) this.F[0].material.color.setHex((Math.floor(t * 4) % 2) ? 0xc4aa74 : 0xd8c08a); else this.F[0].material.color.setHex(0xd8c08a);
-    this.btm.set(-2.30 + this.Vb / Ab);
+    this.btm.set(-2.30 + this.Vb / Ab); this.bwm.set(-0.45 + this.Vbw / 9);
     this.ppl.forEach((p, i) => { p.visible = i < this.n; });
     this.P1.set(this.run && this.cur === 0, this.f1); this.P2.set(this.run && this.cur === 1, false);
     this.uvOn = this.run && !this.bw; this.uvl.intensity = this.uvOn ? 2.2 : 0;
     const q = this.Q / 98;
     this.pGut.q = this.qg / 98; this.pMD.q = this.qmd / 98; this.pMD2.q = this.qmd / 196; this.pSuc.q = q;
     this.pS1.q = this.run && this.cur === 0 ? q : 0; this.pS2.q = this.run && this.cur === 1 ? q : 0; this.pD1.q = this.pS1.q; this.pD2.q = this.pS2.q; this.pRise.q = q;
-    if (this.bw) { this.pFi[0].q = 0; this.pFi[1].q = 0; this.pVN.q = q; this.pC1.q = -q; this.pFo[0].q = -q; this.pFo[1].q = 0; this.pC2.q = 0; this.pBW.q = q; this.pBW2.q = 0; this.pRet.q = 0; this.pCB.q = q; }
-    else { this.pFi[0].q = q / 2; this.pFi[1].q = q / 2; this.pVN.q = 0; this.pFo[0].q = q / 2; this.pFo[1].q = q / 2; this.pC1.q = q / 2; this.pC2.q = q; this.pBW.q = 0; this.pBW2.q = 0; this.pRet.q = q; this.pCB.q = 0; }
+    if (this.bw) { this.pFi[0].q = 0; this.pFi[1].q = 0; this.pVN.q = q; this.pC1.q = -q; this.pFo[0].q = -q; this.pFo[1].q = 0; this.pC2.q = 0; this.pBW.q = q; this.pBW2.q = 0; this.pRet.q = 0; this.pCB.q = this.qbw / 27.9; }
+    else { this.pFi[0].q = q / 2; this.pFi[1].q = q / 2; this.pVN.q = 0; this.pFo[0].q = q / 2; this.pFo[1].q = q / 2; this.pC1.q = q / 2; this.pC2.q = q; this.pBW.q = 0; this.pBW2.q = 0; this.pRet.q = q; this.pCB.q = this.qbw / 27.9; }
     this.pRI.forEach((p) => { p.q = this.pRet.q / 3; });
     this.hpRun = this.hp && this.run && !this.bw;
     this.pHs.q = this.hpRun ? 0.18 : 0; this.pHs1.q = this.pHs.q / 2; this.pHr.q = this.pHs.q; this.pHr1.q = this.pHs1.q; this.pMU.q = this.mu / 15; this.pCh.q = this.uvOn ? 0.3 : 0;
@@ -427,7 +445,7 @@ SC.pool = {
     return [['อัตราไหลปั๊ม', this.Q.toFixed(0) + ' ลบ.ม./ชม.', this.run ? 'ok' : 'bad'], ['ปั๊มที่เดิน', this.run ? 'P-' + (this.cur + 1) : 'หยุด', this.f1 ? 'warn' : ''],
       ['ระดับ BT', this.zb.toFixed(2) + ' ม.', this.zb < -1.65 || this.zb > -0.65 ? 'bad' : this.zb < -1.40 ? 'warn' : ''], ['น้ำใน BT', this.Vb.toFixed(1) + ' ลบ.ม.', ''],
       ['น้ำล้นราง', this.qg.toFixed(0) + ' ลบ.ม./ชม.', ''], ['อุณหภูมิสระ', this.T.toFixed(2) + ' °C', ''],
-      ['ความดันตกถังกรอง', this.dp.toFixed(2) + ' บาร์', this.dp > 0.7 ? 'warn' : ''], ['ขั้นตอน', { fill: 'เติม BT', bw: 'ล้างย้อน F-1', rec: 'คืนระดับ', '': 'กรองปกติ' }[this.ph], this.ph ? 'warn' : 'ok']];
+      ['ความดันตกถังกรอง', this.dp.toFixed(2) + ' บาร์', this.dp > 0.7 ? 'warn' : ''], ['บ่อหน่วง BW', this.Vbw.toFixed(2) + ' ลบ.ม. · ' + this.qbw.toFixed(2) + ' ล./วินาที', this.Vbw > 6.9 ? 'bad' : ''], ['ขั้นตอน', { fill: 'เติม BT', bw: 'ล้างย้อน F-1', rec: 'คืนระดับ', '': 'กรองปกติ' }[this.ph], this.ph ? 'warn' : 'ok']];
   },
   recSpeed: 60, recSec: 52, recZoom: 0.74, rec: [[0, ''], [4, 'in'], [13, 'out'], [21, 'bw']]
 };
@@ -574,9 +592,9 @@ SC.over = {
       rH: pipe('น้ำฝนหลังคากายภาพ', [[12.8, 4.5, 3.3], [12.8, 4.5, -0.3], [12.8, -3.0, -1.32]], 0.045, COL.rain, COL.rainP, 's'),
       gut: pipe('น้ำล้นราง→BT', [[29.45, 1.0, -0.45], [29.45, 1.0, -0.55], [29.9, 1.0, -0.55]], 0.06, COL.pool, COL.poolP, 'p'),
       md: pipe('ช่องดูดก้นสระ→BT', [[27.5, 1.6, -1.5], [27.5, 1.6, -1.62], [29.9, 1.6, -1.62]], 0.06, COL.pool, COL.poolP, 'p'),
-      sY: pipe('ท่อดูดสระ', [[31.3, 1.2, -2.05], [31.3, 1.2, -1.69], [33.0, 1.2, -1.69]], 0.07, COL.pool, COL.poolP, 'p'),
-      sY1: pipe('ดูดปั๊ม P-1', [[32.2, 1.2, -1.69], [32.2, 1.2, -1.97], [32.2, 1.4, -1.97]], 0.055, COL.pool, COL.poolP, 'p'),
-      sY2: pipe('ดูดปั๊ม P-2', [[33.0, 1.2, -1.69], [33.0, 1.2, -1.97], [33.0, 1.4, -1.97]], 0.055, COL.pool, COL.poolP, 'p'),
+      sY: pipe('ท่อดูดสระ', [[31.0, 1.2, -1.97], [33.0, 1.2, -1.97]], 0.07, COL.pool, COL.poolP, 'p'),
+      sY1: pipe('ดูดปั๊ม P-1', [[32.2, 1.2, -1.97], [32.2, 1.4, -1.97]], 0.055, COL.pool, COL.poolP, 'p'),
+      sY2: pipe('ดูดปั๊ม P-2', [[33.0, 1.2, -1.97], [33.0, 1.4, -1.97]], 0.055, COL.pool, COL.poolP, 'p'),
       dY2: pipe('ส่งปั๊ม P-2', [[33.0, 1.5, -1.8], [33.0, 1.5, -1.2]], 0.06, COL.pool, COL.poolP, 'p'),
       dY: pipe('ส่งขึ้นห้องเครื่อง', [[32.2, 1.5, -1.8], [32.2, 1.5, -1.2], [33.4, 1.5, -1.2], [33.4, 1.5, 1.3], [33.4, 3.0, 1.3], [30.6, 3.0, 1.3], [30.6, 3.35, 1.3]], 0.06, COL.pool, COL.poolP, 'p'),
       fi2: pipe('เข้าถังกรอง 2', [[32.4, 3.0, 1.3], [32.4, 3.35, 1.3]], 0.05, COL.pool, COL.poolP, 'p'),
