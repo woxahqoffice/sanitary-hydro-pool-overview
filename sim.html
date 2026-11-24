@@ -50,6 +50,7 @@ body.rec #rot{display:none}
 .clash.ok{color:var(--ok)} .clash.ok:not(.dbg){display:none} .clash.bad{color:var(--bad)}
 .tb{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
 .tb .sp{flex:1}
+.tb .seg{display:inline-flex}.tb .seg button{border-radius:0}.tb .seg button:first-child{border-radius:999px 0 0 999px}.tb .seg button:last-child{border-radius:0 999px 999px 0;margin-left:-1px}
 .leg{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:13px;color:var(--mut)}
 .leg i{display:inline-block;width:18px;height:6px;border-radius:3px;margin-right:6px;vertical-align:middle}
 .side{display:flex;flex-direction:column;gap:12px}
@@ -76,7 +77,7 @@ body.rec #reccap b{font:600 17px var(--disp)} body.rec #clash{display:none} .vid
 </style>
 <main class="sim">
 <h1>จำลองการทำงาน 3 มิติ</h1>
-<p class="lead">ดูน้ำไหลจริงตามแนวท่อในแบบ ระดับน้ำขึ้นลง ปั๊มเดินและหยุด<span class="nw">ตามลอจิก</span>ควบคุม กดปุ่มสถานการณ์เพื่อดูว่าระบบตอบสนองอย่างไร คอมพิวเตอร์: ลากเพื่อหมุนภาพ เลื่อนล้อเมาส์เพื่อซูม · มือถือ: กดปุ่มแตะเพื่อหมุนภาพ แล้วใช้นิ้วเดียวหมุน สองนิ้วซูม</p>
+<p class="lead">ดูน้ำไหลจริงตามแนวท่อในแบบ ระดับน้ำขึ้นลง ปั๊มเดินและหยุด<span class="nw">ตามลอจิก</span>ควบคุม กดปุ่มสถานการณ์เพื่อดูว่าระบบตอบสนองอย่างไร คอมพิวเตอร์: ชี้เมาส์ที่จุดที่สนใจแล้วเลื่อนล้อเมาส์ ภาพจะซูมเข้าหาจุดนั้น ลากเพื่อหมุน คลิกขวาลากหรือ Shift + ลากเพื่อเลื่อนภาพ · มือถือ: กดปุ่มแตะเพื่อหมุนภาพ แล้วนิ้วเดียวหมุน สองนิ้วซูมและเลื่อน</p>
 <div class="tabs"><button data-scene="tank">ถังน้ำใต้ดินและปั๊ม</button><button data-scene="pool">ระบบสระวารีบำบัด</button><button data-scene="san">น้ำเสียและ<span class="nw">ถังบำบัด</span></button><button data-scene="over">ภาพรวมทั้งโครงการ</button></div>
 <div class="grid">
 <div>

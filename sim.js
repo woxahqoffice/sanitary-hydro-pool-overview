@@ -651,7 +651,7 @@ function init() {
   renderer = new T.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1)); view.prepend(renderer.domElement);
   camera = new T.PerspectiveCamera(34, 16 / 9, 0.1, 400);
-  controls = new T.OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.enablePan = false; controls.touches = { ONE: T.TOUCH.ROTATE, TWO: T.TOUCH.DOLLY_ROTATE }; controls.maxPolarAngle = Math.PI * 0.62;
+  controls = new T.OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.enablePan = true; controls.screenSpacePanning = true; controls.panSpeed = 0.9; controls.mouseButtons = { LEFT: T.MOUSE.ROTATE, MIDDLE: T.MOUSE.DOLLY, RIGHT: T.MOUSE.PAN }; controls.touches = { ONE: T.TOUCH.ROTATE, TWO: T.TOUCH.DOLLY_PAN }; controls.maxPolarAngle = Math.PI * 0.62;
   scene = new T.Scene();
   scene.add(new T.HemisphereLight(0xffffff, 0xb8a888, 0.85));
   const sun = new T.DirectionalLight(0xffffff, 0.75); sun.position.set(-8, 20, 14); scene.add(sun);
@@ -664,6 +664,33 @@ function init() {
   document.querySelectorAll('[data-scene]').forEach((b) => b.addEventListener('click', () => load(b.dataset.scene)));
   $('#play').onclick = () => { playing = !playing; $('#play').textContent = playing ? 'หยุดชั่วคราว' : 'เล่นต่อ'; };
   document.querySelectorAll('[data-speed]').forEach((b) => b.addEventListener('click', () => { speed = +b.dataset.speed; document.querySelectorAll('[data-speed]').forEach((x) => x.classList.toggle('on', x === b)); }));
+  // ซูมเข้าหาจุดที่เมาส์ชี้: ล้อเมาส์/ทัชแพด ซูมเข้าออกโดยจุดใต้เมาส์อยู่กับที่ (คลิกขวาลาก หรือ Shift + ลาก เพื่อเลื่อนภาพ)
+  const ray = new T.Raycaster(), ndc = new T.Vector2();
+  const pickAt = (cx, cy) => {
+    const r = renderer.domElement.getBoundingClientRect(); ndc.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const hit = ray.intersectObjects(G.children, true).find((h) => h.object.visible && h.object.isMesh);
+    if (hit) return hit.point.clone();
+    const n = camera.getWorldDirection(new T.Vector3()), pl = new T.Plane().setFromNormalAndCoplanarPoint(n, controls.target);
+    return ray.ray.intersectPlane(pl, new T.Vector3()) || controls.target.clone();
+  };
+  const zoomAt = (P, f) => {
+    const d = camera.position.distanceTo(P) * f; if (d < 0.6 || d > 140) return;
+    camera.position.sub(P).multiplyScalar(f).add(P); controls.target.sub(P).multiplyScalar(f).add(P); controls.update();
+  };
+  view.addEventListener('wheel', (ev) => {
+    if (!controls.enabled || ev.target !== renderer.domElement) return;
+    ev.preventDefault(); ev.stopPropagation();
+    const dy = ev.deltaMode === 1 ? ev.deltaY * 16 : ev.deltaY;
+    zoomAt(pickAt(ev.clientX, ev.clientY), Math.exp(Math.max(-60, Math.min(60, dy)) * 0.0022));
+  }, { capture: true, passive: false });
+  renderer.domElement.addEventListener('contextmenu', (ev) => ev.preventDefault());
+  renderer.domElement.style.cursor = 'grab';
+  // กันมุมมองหลุดออกนอกแบบจำลอง
+  controls.addEventListener('change', () => {
+    if (!G) return; const bx = new T.Box3().setFromObject(G).expandByScalar(2), t = controls.target, c = bx.clampPoint(t, new T.Vector3());
+    if (!c.equals(t)) { const d = c.clone().sub(t); t.add(d); camera.position.add(d); }
+  });
   $('#home').onclick = () => setCam(); $('#labt').onclick = () => { showLab = !showLab; $('#labt').classList.toggle('on', showLab); };
   const q = new URLSearchParams(location.search); load(q.get('s') && SC[q.get('s')] ? q.get('s') : 'tank');
   if (q.has('rec')) window.REC = true;
