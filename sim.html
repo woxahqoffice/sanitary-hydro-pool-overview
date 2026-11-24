@@ -1,0 +1,96 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>จำลองการทำงาน 3 มิติ</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"><link rel="stylesheet" href="common.css"><script>try{var t=localStorage.getItem('w2b-theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><meta property="og:title" content="ระบบน้ำ 2 อาคาร เทศบาลนครตรัง"><meta property="og:description" content="ระบบประปา สระวารีบำบัด น้ำเสีย พร้อมภาพตัด 3 มิติและการจำลองการทำงาน"><meta property="og:type" content="website"><meta property="og:image" content="https://woxahqoffice.github.io/sanitary-hydro-pool-overview/og-cover.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="ระบบน้ำตรัง"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png" type="image/png"></head><body><style>
+.snav{--nv-bg:#ffffff;--nv-ink:#132a33;--nv-mut:#58707a;--nv-line:#d3dfe3;--nv-acc:#1677a8;--nv-hov:#eef4f6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}}
+:root[data-theme="dark"] .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}
+.snav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nv-bg);border-bottom:1px solid var(--nv-line);
+ padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-family:"IBM Plex Sans Thai",system-ui,sans-serif}
+.snav .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+.snav .brand{font:600 14px "Chakra Petch","IBM Plex Sans Thai",sans-serif;white-space:nowrap;margin-right:10px;color:var(--nv-ink);text-decoration:none;display:flex;gap:8px;align-items:center}
+.snav .brand i{width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--nv-acc);display:inline-block}
+.snav a.l{white-space:nowrap;font-size:13.5px;line-height:1.4;text-decoration:none;color:var(--nv-mut);padding:5px 11px;border-radius:8px}
+.snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
+.snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
+.snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l on" href="sim.html" aria-current="page">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav>
+<style>
+main.sim{max-width:1240px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px)) 40px}
+.sim h1{font:600 clamp(22px,3vw,30px) var(--disp);margin:6px 0 4px;color:var(--ink)}
+.sim .lead{color:var(--mut);margin:0 0 14px;font-size:15px;max-width:860px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button,.tb button,.sb{font:500 14px var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sb.on,.tb button.on{background:var(--water);color:#fff;border-color:var(--water)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+#rot{display:none;position:absolute;right:10px;bottom:10px;z-index:3;font:600 13.5px var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:9px 14px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+#rot.on{background:var(--water);color:#fff;border-color:var(--water)}
+@media (pointer:coarse){#rot{display:block}}
+body.rec #rot{display:none}
+#view{position:relative;aspect-ratio:16/9;min-height:300px;width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+ background:linear-gradient(180deg,#f6f9fa 0%,#e7eef0 100%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #view{background:linear-gradient(180deg,#16262d,#0e1a1f)}}
+:root[data-theme="dark"] #view{background:linear-gradient(180deg,#16262d,#0e1a1f)}
+#view canvas{display:block;touch-action:none}
+#lab{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#lab .ld{fill:none;stroke:var(--ink);stroke-width:1.6}
+#lab .dt{fill:var(--paper);stroke:var(--ink);stroke-width:1.8}
+#lab text{paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+#lab .lt{fill:var(--ink)} #lab .ls{fill:var(--mut)} #lab .lb{fill:var(--paper);opacity:.82}
+#clock{position:absolute;left:12px;top:10px;font:500 12.5px var(--mono);color:var(--mut);background:color-mix(in srgb,var(--paper) 80%,transparent);padding:3px 8px;border-radius:8px}
+.clash{position:absolute;right:12px;top:10px;font:500 12.5px var(--body);padding:3px 9px;border-radius:8px;background:var(--paper)}
+.clash.ok{color:var(--ok)} .clash.bad{color:var(--bad)}
+.tb{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.tb .sp{flex:1}
+.leg{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:13px;color:var(--mut)}
+.leg i{display:inline-block;width:18px;height:6px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.side{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.card h3{font:600 14px var(--body);margin:0 0 8px;color:var(--ink)}
+#scen{display:flex;flex-wrap:wrap;gap:6px}
+#stats{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.st{border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.st span{display:block;font-size:11.5px;color:var(--mut)} .st b{font:600 14px var(--mono);color:var(--ink)}
+.st.ok b{color:var(--ok)} .st.warn b{color:var(--warn)} .st.bad b{color:var(--bad)}
+#log{list-style:none;margin:0;padding:0;font-size:13px;display:flex;flex-direction:column;gap:5px;min-height:60px}
+#log li b{font:600 11.5px var(--mono);color:var(--mut);margin-right:6px}
+#log li.bad{color:var(--bad)} #log li.ok{color:var(--ok)} #log li.warn{color:var(--warn)}
+#intro{font-size:14px;color:var(--ink);line-height:1.6;margin:0}
+.note{font-size:12.5px;color:var(--mut);margin-top:12px}
+video.clip{width:100%;border-radius:14px;border:1px solid var(--line);background:#000}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:10px}
+.vids figure{margin:0}
+body.rec .snav,body.rec .sim>h1,body.rec .lead,body.rec .tabs,body.rec .side,body.rec .tb,body.rec .leg,body.rec .note{display:none}
+@media (max-width:600px){#view{aspect-ratio:4/5;min-height:0;width:100%}.tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}.tabs button{white-space:nowrap;flex:none}#stats{grid-template-columns:1fr 1fr}.sim .lead{font-size:14px}}
+body.rec #view{position:fixed;inset:0;width:100vw;height:100vh;aspect-ratio:auto;border:0;border-radius:0;z-index:99}
+#reccap{display:none} body.rec #reccap{display:flex;flex-direction:column;gap:2px;position:absolute;left:16px;bottom:14px;max-width:70%;background:color-mix(in srgb,var(--paper) 88%,transparent);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px;color:var(--ink)}
+body.rec #reccap b{font:600 17px var(--disp)} body.rec #clash{display:none} .vids figcaption{font-size:13px;color:var(--mut);padding:6px 2px}
+</style>
+<main class="sim">
+<h1>จำลองการทำงาน 3 มิติ</h1>
+<p class="lead">ดูน้ำไหลจริงตามแนวท่อในแบบ ระดับน้ำขึ้นลง ปั๊มเดินและหยุดตามลอจิกควบคุม กดปุ่มสถานการณ์เพื่อดูว่าระบบตอบสนองอย่างไร คอมพิวเตอร์: ลากเพื่อหมุนภาพ เลื่อนล้อเมาส์เพื่อซูม · มือถือ: กดปุ่มแตะเพื่อหมุนภาพ แล้วใช้นิ้วเดียวหมุน สองนิ้วซูม</p>
+<div class="tabs"><button data-scene="tank">ถังน้ำใต้ดินและปั๊ม</button><button data-scene="pool">ระบบสระวารีบำบัด</button><button data-scene="san">น้ำเสียและถังบำบัด</button><button data-scene="over">ภาพรวมทั้งโครงการ</button></div>
+<div class="grid">
+<div>
+<div id="view"><svg id="lab"></svg><div id="clock"></div><div id="clash" class="clash"></div><div id="reccap"></div><button id="rot" type="button">แตะเพื่อหมุนภาพ</button></div>
+<div class="tb"><button id="play">หยุดชั่วคราว</button><button data-speed="1">1×</button><button data-speed="10" class="on">10×</button><button data-speed="60">60×</button><span class="sp"></span><button id="labt" class="on">ป้าย</button><button id="home">มุมเริ่มต้น</button></div>
+<div class="leg"><span><i style="background:#2a9fd8"></i>น้ำประปา</span><span><i style="background:#2bb3c9"></i>น้ำสระก่อนกรอง</span><span><i style="background:#e0782f"></i>น้ำสระกรองแล้ว คืนสระ</span><span><i style="background:#d9692b"></i>ฮีตปั๊ม</span><span><i style="background:#8a6a3c"></i>น้ำเสีย</span><span><i style="background:#5aa58a"></i>น้ำผ่านการบำบัด</span><span><i style="background:#4d7f6b"></i>น้ำฝน</span><span><i style="background:#7d8a90"></i>น้ำล้างย้อน</span><span><i style="background:#b04fc0"></i>คลอรีน</span></div>
+</div>
+<div class="side">
+<div class="card"><h3>การทำงาน</h3><p id="intro"></p></div>
+<div class="card"><h3>ลองสถานการณ์</h3><div id="scen"></div></div>
+<div class="card"><h3>ค่าขณะนี้</h3><div id="stats"></div></div>
+<div class="card"><h3>เหตุการณ์ล่าสุด</h3><ul id="log"></ul></div>
+</div>
+</div>
+<h2 style="font:600 20px var(--disp);margin:26px 0 4px">วิดีโอการทำงาน</h2>
+<p class="lead" style="margin-bottom:6px">อัดจากแบบจำลองเดียวกัน ใช้เปิดนำเสนอได้โดยไม่ต้องกดปุ่ม</p>
+<div class="vids">
+<figure><video class="clip" src="sim_tank.mp4" controls preload="metadata" playsinline muted></video><figcaption>ถังน้ำใต้ดินและปั๊ม ประปาหยุดจ่าย ลูกลอยไฟฟ้าตัดปั๊ม ปั๊มสำรองรับงาน</figcaption></figure>
+<figure><video class="clip" src="sim_pool.mp4" controls preload="metadata" playsinline muted></video><figcaption>ระบบสระ คนลงสระ น้ำล้นลงถังพัก และขั้นตอนล้างย้อนถังกรอง</figcaption></figure>
+<figure><video class="clip" src="sim_san.mp4" controls preload="metadata" playsinline muted></video><figcaption>น้ำเสียผ่านถังบำบัด 3 ห้อง น้ำฝนแยกลงบ่อพัก เครื่องเติมอากาศหยุด</figcaption></figure>
+<figure><video class="clip" src="sim_over.mp4" controls preload="metadata" playsinline muted></video><figcaption>ภาพรวมทั้งโครงการ ทุกระบบทำงานพร้อมกัน</figcaption></figure>
+</div>
+<p class="note">แบบจำลองนี้ใช้ขนาด ระดับ และอัตราไหลจากแบบก่อสร้าง SN, PL และสเปคอุปกรณ์ของโครงการ เพื่ออธิบายการทำงาน ความยาวภาพตามแนวลึกของสระและอาคารย่อให้เห็นทั้งระบบในภาพเดียว ไม่ใช่แบบก่อสร้าง</p>
+</main>
+<script src="three.min.js"></script><script src="OrbitControls.js"></script><script src="sim.js"></script>
+<link rel="stylesheet" href="mobile.css"><link rel="stylesheet" href="theme.css"><script src="mobile.js" defer></script></body></html>

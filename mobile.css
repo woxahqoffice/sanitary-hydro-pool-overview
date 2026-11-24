@@ -1,0 +1,21 @@
+/* ปรับหน้าเว็บสำหรับมือถือ iPhone และ Android */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:clip}
+.wrap{grid-template-columns:minmax(0,1fr)}
+img,video,svg{max-width:100%}
+.mtw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mhint{display:none;align-items:center;gap:6px;font-size:12.5px;color:var(--mut,#58707a);margin:6px 2px 4px}
+.mhint::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px;box-shadow:6px -4px 0 -1px transparent}
+.hdlink{display:inline-flex;align-items:center;min-height:44px;margin:0 16px 4px;font-size:13.5px;font-weight:600;color:var(--k-brand,#ec6100);text-decoration:none}
+@media (max-width:760px){
+  .snav .in{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent);padding-right:28px}
+  .snav .l,.snav .brand{min-height:40px;display:inline-flex;align-items:center;scroll-snap-align:start;white-space:nowrap}
+  .snav .l{padding:8px 12px}
+  .mhint{display:flex}
+  .mtw table,.tw table{min-width:560px}
+  .mtw th:first-child,.mtw td:first-child,.tw th:first-child,.tw td:first-child{position:sticky;left:0;z-index:1;background:var(--paper,#fff);min-width:118px}
+  button,.btn,[role="button"],select{min-height:40px}
+  input,select,textarea{font-size:16px}
+  figure.render figcaption{font-size:12.5px}
+}
+@media (hover:none){a,button{-webkit-tap-highlight-color:rgba(236,97,0,.15)}}

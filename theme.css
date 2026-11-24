@@ -1,0 +1,123 @@
+/* ระบบดีไซน์ตาม THE29 UI-UX Kit (Project Control Dashboard)
+   หลัก: ดำ / ส้ม / ขาว พื้นเทาอมน้ำตาลเล็กน้อย ส้มเป็นสีเน้นสีเดียว เขียว เหลือง แดง ใช้เฉพาะสถานะ
+   สีของระบบน้ำในแผนภาพ (น้ำประปา น้ำสระ น้ำเสีย ความร้อน) เป็นสีข้อมูล คงไว้ตามเดิม
+   ไฟล์นี้โหลดท้ายสุดทุกหน้า ใช้ :root:not(#_k) เพื่อให้ชนะโทเคนของแต่ละหน้า */
+:root:not(#_k){
+  --k-bg:#f7f6f4; --k-surface:#ffffff; --k-subtle:#f1eeeb; --k-hover:#f8ece2;
+  --k-text:#1d1a18; --k-muted:#6a645f; --k-line:#e3dfdb; --k-input:#d6d1cc;
+  --k-brand:#ec6100; --k-brand-ink:#ffffff; --k-brand-soft:#fdebdd;
+  --k-ok:#1d8a5a; --k-wait:#a8710f; --k-danger:#c42f32;
+  --k-r-control:6px; --k-r-card:10px; --k-shadow:0 1px 3px rgb(40 30 20 / .08);
+  --k-font:"IBM Plex Sans Thai","IBM Plex Sans",system-ui,sans-serif; --k-mono:"IBM Plex Mono",ui-monospace,monospace;
+  /* ผูกกับโทเคนเดิมของแต่ละหน้า */
+  --bg:var(--k-bg); --paper:var(--k-surface); --surface:var(--k-surface); --card:var(--k-surface);
+  --ink:var(--k-text); --mut:var(--k-muted); --muted:var(--k-muted); --line:var(--k-line); --chip:var(--k-subtle); --grid:var(--k-line);
+  --acc:var(--k-brand); --ok:var(--k-ok); --warn:var(--k-wait); --bad:var(--k-danger);
+  --disp:var(--k-font); --body:var(--k-font); --f-text:var(--k-font); --mono:var(--k-mono); --f-mono:var(--k-mono);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not(#_k){
+  --k-bg:#0d0c0b; --k-surface:#161413; --k-subtle:#211f1d; --k-hover:#2b2521;
+  --k-text:#f3f1f0; --k-muted:#a29d99; --k-line:#2a2725; --k-input:#3a3633;
+  --k-brand:#fb7b28; --k-brand-ink:#0a0908; --k-brand-soft:#33210f;
+  --k-ok:#34d399; --k-wait:#fbbf24; --k-danger:#ea3c3f; --k-shadow:0 1px 3px rgb(0 0 0 / .35); color-scheme:dark}}
+:root[data-theme="dark"]:not(#_k){
+  --k-bg:#0d0c0b; --k-surface:#161413; --k-subtle:#211f1d; --k-hover:#2b2521;
+  --k-text:#f3f1f0; --k-muted:#a29d99; --k-line:#2a2725; --k-input:#3a3633;
+  --k-brand:#fb7b28; --k-brand-ink:#0a0908; --k-brand-soft:#33210f;
+  --k-ok:#34d399; --k-wait:#fbbf24; --k-danger:#ea3c3f; --k-shadow:0 1px 3px rgb(0 0 0 / .35); color-scheme:dark}
+
+html body{background:var(--k-bg);color:var(--k-text);font-family:var(--k-font);-webkit-font-smoothing:antialiased}
+body ::selection{background:color-mix(in srgb,var(--k-brand) 32%,transparent)}
+body :focus-visible{outline:2px solid var(--k-brand);outline-offset:2px}
+body h1,body h2,body h3{font-family:var(--k-font);font-weight:600;letter-spacing:0;line-height:1.3;text-wrap:balance}
+body h1{line-height:1.25}
+body a{color:var(--k-brand)}
+body .eb,body .tag,body .eyebrow{color:var(--k-muted)!important;letter-spacing:0!important;font:500 13px/1.5 var(--k-font)!important;text-transform:none!important}
+body .nw{white-space:nowrap}
+body h1{font-size:clamp(26px,3.4vw,40px)!important;margin:4px 0 12px}
+
+/* แถบนำทาง: เมนูที่เลือกขีดเส้นใต้ส้ม */
+.snav.snav.snav.snav{--nv-bg:var(--k-surface);--nv-ink:var(--k-text);--nv-mut:var(--k-muted);--nv-line:var(--k-line);--nv-acc:var(--k-brand);--nv-hov:var(--k-hover)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--k-surface)}
+.snav .brand i{border-radius:6px!important;transform:none!important;background:var(--k-brand)!important;position:relative}
+.snav .brand i::after{content:"";position:absolute;inset:4px 5px 3px;background:#fff;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;clip-path:polygon(50% 0,100% 62%,100% 100%,0 100%,0 62%)}
+.snav.snav a.l.on{background:transparent;color:var(--k-text);font-weight:600;box-shadow:inset 0 -2px 0 var(--k-brand);border-radius:0}
+.snav.snav a.l:hover{background:var(--k-hover);color:var(--k-text)}
+
+/* พื้นผิว การ์ด */
+body .panel,body .card:not(a),body figure.render,body .diagram,body .kpis,body .state,body ol.steps li,body .st{border-color:var(--k-line)}
+body .panel,body figure.render,body .diagram{border-radius:var(--k-r-card);box-shadow:var(--k-shadow)}
+body .kpis{border-radius:var(--k-r-card)}
+body .kpis b,body .st b,body .hero .stat b,body .num{font-family:var(--k-font)!important;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0}
+body .kpis b,body .hero .stat b{white-space:nowrap;font-size:clamp(18px,4.6vw,24px)!important}
+body #stats .st{min-width:0} body #stats .st b{white-space:normal;overflow-wrap:anywhere;font-size:14px}
+body .state{border-left-color:var(--k-brand)}
+body ol.steps li::before{background:var(--k-text);color:var(--k-bg)}
+body a.card:hover{border-color:var(--k-brand)}
+
+/* ปุ่มและตัวเลือก: เลือกอยู่ = พื้นส้มอ่อน ขอบส้ม (ส้มทึบใช้กับปุ่มหลักปุ่มเดียว) */
+body .seg button,body .sb,body .tb button,body .tabs button,body .mode-btn,body button.chip{border-radius:999px;border-color:var(--k-input);background:var(--k-surface);color:var(--k-text);transition:background .15s ease-out,border-color .15s ease-out}
+body .seg button:hover,body .sb:hover,body .tb button:hover,body .tabs button:hover{background:var(--k-hover)}
+body .seg button[aria-pressed="true"],body .sb.on,body .tb button.on,body .tabs button.on,body button[aria-pressed="true"],body button[aria-selected="true"]{background:var(--k-brand-soft)!important;border-color:var(--k-brand)!important;color:var(--k-text)!important}
+body .cta,body a.cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:var(--k-r-control);background:var(--k-brand);color:var(--k-brand-ink)!important;font-weight:600;text-decoration:none;box-shadow:var(--k-shadow)}
+body .cta:hover{filter:brightness(1.05)}
+
+/* หน้าสระ: ส่วนหัวเป็นพื้นเรียบ ไม่ไล่สี */
+body .hero{background:var(--k-surface)!important;border:1px solid var(--k-line);box-shadow:var(--k-shadow);color:var(--k-text)}
+body .hero::before,body .hero::after{display:none!important}
+body .hero h1{color:var(--k-text)!important} body .hero p{color:var(--k-muted)!important} body .hero .tag{color:var(--k-brand)!important}
+body .hero .stat{background:var(--k-subtle)!important;border:1px solid var(--k-line)!important;color:var(--k-text)!important}
+body .hero .stat *{color:inherit}
+body .hero .stat small,body .hero .stat span{color:var(--k-muted)!important}
+
+/* หน้าจำลอง 3 มิติ */
+body #view{background:linear-gradient(180deg,var(--k-surface),var(--k-subtle))!important;border-color:var(--k-line);border-radius:var(--k-r-card)}
+body #rot.on{background:var(--k-brand);border-color:var(--k-brand);color:var(--k-brand-ink)}
+body .st.ok b{color:var(--k-ok)} body .st.warn b{color:var(--k-wait)} body .st.bad b{color:var(--k-danger)}
+body .clash.ok{color:var(--k-ok)} body .clash.bad{color:var(--k-danger)}
+body #log li.bad{color:var(--k-danger)} body #log li.ok{color:var(--k-ok)} body #log li.warn{color:var(--k-wait)}
+
+/* ตาราง */
+body table th{color:var(--k-muted)}
+body table td,body table th{border-color:var(--k-line)}
+
+/* แถบเมนูล่างบนมือถือ (ตาม Kit: 4 ทางลัด + เมนู) */
+.bnav,.bsheet{display:none}
+@media (max-width:760px){
+  .snav .in>a.l{display:none}
+  .snav .in{justify-content:space-between;-webkit-mask-image:none;mask-image:none;padding-right:0}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--k-surface);border-top:1px solid var(--k-line);
+    padding:4px max(8px,env(safe-area-inset-left,0px)) calc(4px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-right,0px))}
+  .bnav a,.bnav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;font:500 11.5px var(--k-font);color:var(--k-muted);text-decoration:none;background:none;border:0;border-radius:8px;cursor:pointer}
+  .bnav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .bnav .on{color:var(--k-brand);font-weight:600}
+  .bsheet{position:fixed;inset:0;z-index:80;background:rgb(0 0 0 / .45)}
+  .bsheet[data-open="1"]{display:block}
+  .bsheet .pan{position:absolute;left:0;right:0;bottom:0;background:var(--k-surface);border-radius:16px 16px 0 0;border-top:1px solid var(--k-line);
+    padding:16px max(16px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px))}
+  .bsheet h3{margin:0 0 12px;font-size:15px}
+  .bsheet .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .bsheet .g a{display:flex;align-items:center;min-height:48px;padding:0 12px;border:1px solid var(--k-line);border-radius:var(--k-r-control);color:var(--k-text);text-decoration:none;font-size:14px}
+  .bsheet .g a.on{border-color:var(--k-brand);background:var(--k-brand-soft);font-weight:600}
+  #rot{bottom:calc(10px + 0px)}
+}
+@media (prefers-reduced-motion:reduce){body *{transition:none!important}}
+
+/* ปุ่มโหมดแสง */
+.tsw{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--k-line);border-radius:999px;background:var(--k-subtle);flex:none}
+.tsw.top{margin-left:auto}
+.tsw button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:var(--k-muted);font:500 12.5px var(--k-font);cursor:pointer}
+.tsw button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tsw button[aria-pressed="true"]{background:var(--k-surface)!important;color:var(--k-text)!important;box-shadow:var(--k-shadow);border:0!important}
+.tsw.top button span{display:none}
+.tsw.sheet{display:flex;width:100%} .tsw.sheet button{flex:1;justify-content:center;height:44px}
+@media (max-width:760px){.tsw.top button{height:36px;padding:0 9px}}
+
+/* โหมดมืด: ลดความสว่างภาพเรนเดอร์พื้นขาวไม่ให้แสบตา */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) figure img,:root:not([data-theme="light"]) .clip{filter:brightness(.86)}}
+:root[data-theme="dark"] figure img,:root[data-theme="dark"] .clip{filter:brightness(.86)}
+@media (max-width:760px){
+  .tsw.top button{height:44px;min-width:44px;padding:0 10px;justify-content:center}
+  body .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);padding-right:24px}
+}

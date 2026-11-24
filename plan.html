@@ -1,4 +1,4 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>แปลนระบบน้ำ 2 อาคาร · Sanitary and Hydro Pool system overview</title></head><body><style>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>แปลนระบบน้ำ 2 อาคาร · Sanitary and Hydro Pool system overview</title><script>try{var t=localStorage.getItem('w2b-theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><meta property="og:title" content="ระบบน้ำ 2 อาคาร เทศบาลนครตรัง"><meta property="og:description" content="ระบบประปา สระวารีบำบัด น้ำเสีย พร้อมภาพตัด 3 มิติและการจำลองการทำงาน"><meta property="og:type" content="website"><meta property="og:image" content="https://woxahqoffice.github.io/sanitary-hydro-pool-overview/og-cover.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="ระบบน้ำตรัง"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png" type="image/png"></head><body><style>
 .snav{--nv-bg:#ffffff;--nv-ink:#132a33;--nv-mut:#58707a;--nv-line:#d3dfe3;--nv-acc:#1677a8;--nv-hov:#eef4f6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}}
 :root[data-theme="dark"] .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}
@@ -11,7 +11,7 @@
 .snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
 .snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
 .snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
-</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l on" href="plan.html" aria-current="page">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav>
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l on" href="plan.html" aria-current="page">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
@@ -33,7 +33,8 @@
   --chem:#ac8ae6; --bw:#d6a35a; --sel:#f29152; --chip:#18272a; --floor:#162225; --floorj:#1f2e31; --apron:#1a2427; --coping:#2a3538; --copingE:#4a585c; --grate:#3a474b; --grate2:#25302f; --w1:#0f4d68; --w2:#1b6d90; --w3:#3c9cc4; --poolE:#5bbbe0; --dome1:#d3dde2; --dome2:#8a9ca5; --dome3:#4e6068; --tank1:#4c6170; --tank2:#24343e; --tankE:#7d98a8; --metal1:#a9b4b9; --metal2:#5d686d; --metalE:#8a979c; --volute:#4f86d6; --fanbg:#0c1214; --uv:#a68cff; --chemT:#2a2440; --panelbox:#3b4549; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:14px;line-height:1.55;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
+  margin:0}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
 .wrap{max-width:none;margin:0 auto;display:grid;gap:14px}
 h1{margin:0;font-size:clamp(22px,3vw,30px);line-height:1.25;text-wrap:balance}
 .sub{color:var(--muted);margin:4px 0 0;max-width:90ch}
@@ -409,4 +410,4 @@ apply();
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches)BLADES.forEach(b=>b.animate([{transform:'rotate(0)'},{transform:'rotate(360deg)'}],{duration:1400,iterations:Infinity}));
 })();
 </script>
-</body></html>
+<link rel="stylesheet" href="mobile.css"><link rel="stylesheet" href="theme.css"><script src="mobile.js" defer></script></body></html>
