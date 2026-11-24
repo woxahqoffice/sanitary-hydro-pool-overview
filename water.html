@@ -11,7 +11,7 @@
 .snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
 .snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
 .snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
-</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l on" href="water.html" aria-current="page">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav><main class="wrap"><div class="eb">ระบบน้ำประปา · 2 อาคาร</div>
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l on" href="water.html" aria-current="page">น้ำประปา</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html"><span class="nw">อุปกรณ์</span></a></div></nav><main class="wrap"><div class="eb">ระบบน้ำประปา · 2 อาคาร</div>
 <h1>ระบบน้ำประปาของอาคารทั้งสองหลัง</h1>
 <p class="lead">น้ำประปาจากท่อเมนเทศบาลไหลลงถังเก็บน้ำใต้ดิน ชุดปั๊มหอยโข่ง 2 ตัวบนฐานข้างถังดูดน้ำขึ้นมาอัดเข้าท่อ แล้วส่งขึ้นท่อเหนือฝ้าไปจ่ายสุขภัณฑ์ทุกจุด ตู้ควบคุม PCP สั่งปั๊มเดินและหยุดตามแรงดันในท่อ ทั้งสองอาคารใช้ระบบเดียวกัน ต่างกันที่ขนาดปั๊มและค่าแรงดัน</p><figure class="render"><img src="render_tank.jpg" alt="ภาพตัดสามมิติ ถังเก็บน้ำใต้ดินผ่าครึ่ง ลูกลอย ฟุตวาล์ว ชุดปั๊มสองตัว ถังแรงดัน ตู้ควบคุม และท่อส่งเข้าอาคาร" loading="lazy" width="1280" height="720"><figcaption>ภาพตัดจำลองสามมิติจากขนาดและระดับในแบบก่อสร้าง ใช้อธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</figcaption></figure>
 
@@ -79,7 +79,7 @@
   <rect id="lvl" clip-path="url(#tc)" x="150" y="350" width="290" height="108" fill="url(#wg)" opacity=".9"/>
   <line x1="160" y1="430" x2="430" y2="430" stroke="var(--bad)" stroke-dasharray="6 5"/>
   <text x="166" y="446" class="sm" id="lwlT">ระดับตัดปั๊ม -1.75</text>
-  <text x="295" y="384" text-anchor="middle" font-weight="600" id="tkT">ถัง WAVE WWU-1406 · 6,000 ล.</text>
+  <text x="262" y="386" text-anchor="middle" font-weight="600" id="tkT"><tspan x="262">ถัง WAVE WWU-1406</tspan><tspan x="262" dy="18">6,000 ล.</tspan></text>
   <circle cx="220" cy="344" r="7" fill="var(--paper)" stroke="var(--ink)"/><text x="232" y="340" class="sm">ลูกลอยเติมน้ำ</text>
   <g id="fs"><line x1="400" y1="320" x2="400" y2="424" stroke="var(--ink)"/><circle cx="400" cy="424" r="6" fill="var(--warn)"/></g>
   <text x="300" y="490" class="sm">สวิตช์ลูกลอยตัดปั๊มเมื่อน้ำต่ำ</text>
@@ -114,8 +114,8 @@
 <div class="state" id="st"><div><b id="stH"></b><div id="stP" class="mut"></div></div></div>
 
 <h2>แรงดันในท่อขึ้นลงอย่างไร</h2>
-<p class="mut">สวิตช์แรงดันสั่งปั๊มเดินเมื่อแรงดันลดถึงค่าตั้ง และสั่งหยุดเมื่อถึงค่าหยุด ระหว่างปั๊มหยุด ถังแรงดันจ่ายน้ำให้ก๊อกที่เปิดอยู่ ช่วยให้ปั๊มไม่ต้องเดินหยุดถี่ ตู้ PCP สลับปั๊มตัวที่เดินทุกรอบเพื่อให้ปั๊มสึกหรอเท่ากัน</p>
-<div class="panel"><svg viewBox="0 0 900 230" id="pc" role="img" aria-label="กราฟแรงดันในท่อกับเวลา"></svg></div>
+<p class="mut">สวิตช์แรงดันสั่งปั๊มเดินเมื่อแรงดันลดถึงค่าตั้ง และสั่งหยุดเมื่อถึงค่าหยุด ระหว่างปั๊มหยุด <span class="nw">ถังแรงดัน</span>จ่ายน้ำให้ก๊อกที่เปิดอยู่ ช่วยให้ปั๊มไม่ต้องเดินหยุดถี่ ตู้ PCP สลับปั๊มตัวที่เดินทุกรอบเพื่อให้ปั๊มสึกหรอเท่ากัน</p>
+<div class="panel"><svg viewBox="0 0 900 230" style="width:100%;height:auto;display:block" id="pc" role="img" aria-label="กราฟแรงดันในท่อกับเวลา"></svg></div>
 
 <h2>ลำดับการทำงานของตู้ควบคุม</h2>
 <ol class="steps" id="seq"></ol>
@@ -130,7 +130,7 @@
 <tr><td>น้ำสำรองเทียบการใช้ 1 วัน</td><td class="n">1.36 วัน</td><td class="n">1.32 วัน</td></tr>
 <tr><td>หน่วยสุขภัณฑ์รวม (FU)</td><td class="n">69</td><td class="n">125</td></tr>
 <tr><td>อัตราไหลออกแบบ</td><td class="n">131 ล./นาที</td><td class="n">186 ล./นาที</td></tr>
-<tr><td>เฮดที่ต้องการ (สูงยก + เสียดทาน + แรงดันปลายทาง 10 ม.)</td><td class="n">18.5 ม.</td><td class="n">16.9 ม.</td></tr>
+<tr><td>เฮดที่ต้องการ (สูงยก + <span class="nw">เสียดทาน</span> + แรงดันปลายทาง 10 ม.)</td><td class="n">18.5 ม.</td><td class="n">16.9 ม.</td></tr>
 <tr><td>ปั๊มที่เลือก (1 เดิน 1 สำรอง)</td><td class="n">เฮด 20 ม. 1.1 kW</td><td class="n">เฮด 20 ม. 1.5 kW</td></tr>
 <tr><td>สวิตช์แรงดัน เดิน / หยุด · อัดลมถัง</td><td class="n">1.9 / 2.1 · 1.7 บาร์</td><td class="n">1.8 / 2.0 · 1.6 บาร์</td></tr>
 <tr><td>ระยะดูดยกจากระดับตัดปั๊มถึงศูนย์ปั๊ม</td><td class="n">1.97 ม.</td><td class="n">1.97 ม.</td></tr>
@@ -145,7 +145,7 @@ const B={he:{name:'อาคารกายภาพบำบัด-แพทย
          hy:{name:'อาคารวารีบำบัด',q:186,h:20,kw:1.5,on:1.8,off:2.0,pre:1.6,qd:4550,fu:125,sup:'2-1/2"',dis:'2-1/2"'}};
 const M={run1:{p:[1,0],city:0,fix:1,pt:0,lvl:.62,g:'up',h:'ปั๊ม P-1 เดิน จ่ายน้ำและอัดน้ำเข้าถังแรงดัน',t:b=>`แรงดันลดถึง ${b.on} บาร์ สวิตช์แรงดันสั่ง P-1 เดิน ปั๊มดูดน้ำจากถังใต้ดินผ่านฟุตวาล์ว ส่ง ${b.q} ล./นาที ขึ้นท่อเหนือฝ้า น้ำส่วนเกินอัดเข้าถังแรงดันจนแรงดันถึง ${b.off} บาร์ แล้วปั๊มหยุด`},
  idle:{p:[0,0],city:0,fix:1,pt:1,lvl:.62,g:'down',h:'ปั๊มหยุด ถังแรงดันจ่ายน้ำแทน',t:b=>`เปิดก๊อกเล็กน้อย เช่น ล้างมือ ถังแรงดันดันน้ำที่เก็บไว้ออกไปจ่าย แรงดันค่อย ๆ ลดจาก ${b.off} ลงหา ${b.on} บาร์ ปั๊มไม่ต้องเดินทุกครั้งที่เปิดก๊อก`},
- run2:{p:[0,1],city:0,fix:1,pt:0,lvl:.55,g:'up',h:'รอบถัดไป ตู้ PCP สลับให้ P-2 เดิน',t:b=>`ตู้ควบคุมสลับปั๊มทุกรอบการเดิน ถ้าตัวที่ถึงคิวขัดข้อง ตัวอีกตัวเดินแทนทันทีและไฟเตือนที่หน้าตู้ ปั๊มทั้งสองตัวรุ่นเดียวกัน เฮด ${b.h} ม. ${b.kw} kW`},
+ run2:{p:[0,1],city:0,fix:1,pt:0,lvl:.55,g:'up',h:'รอบถัดไป ตู้ PCP สลับให้ P-2 เดิน',t:b=>`ตู้ควบคุมสลับปั๊มทุกรอบการเดิน ถ้าตัวที่ถึงคิวขัดข้อง อีกตัวเดินแทนทันทีและไฟเตือนที่หน้าตู้ ปั๊มทั้งสองตัวรุ่นเดียวกัน เฮด ${b.h} ม. ${b.kw} kW`},
  fill:{p:[1,0],city:1,fix:1,pt:0,lvl:.4,g:'up',h:'ระดับน้ำในถังลด ลูกลอยเปิดรับน้ำประปา',t:b=>`ลูกลอยในถังเปิดให้น้ำประปาเติมเข้าถังตลอดเวลาที่ระดับต่ำกว่าเต็ม ปั๊มยังทำงานตามแรงดันได้ตามปกติ ถังขนาด 6,000 ล. เก็บน้ำได้มากกว่าการใช้ 1 วัน (${b.qd.toLocaleString()} ล.)`},
  low:{p:[0,0],city:1,fix:0,pt:0,lvl:.08,g:'zero',h:'น้ำในถังต่ำถึงระดับตัด ปั๊มถูกล็อกไม่ให้เดิน',t:b=>`สวิตช์ลูกลอยตัดปั๊มที่ 0.30 ม. เหนือก้นถัง กันปั๊มเดินตัวเปล่าจนซีลและใบพัดเสียหาย เมื่อประปาเติมน้ำกลับถึงระดับใช้งาน ตู้ PCP ปลดล็อกให้ปั๊มเดินได้เอง`}};
 let b='he',m='run1';const $=id=>document.getElementById(id);
@@ -171,16 +171,18 @@ function draw(){
  pcurve(d);
 }
 function pcurve(d){
- const W=900,Hh=230,x0=60,x1=880,y0=190,y1=30,pmin=d.on-0.4,pmax=d.off+0.25,Y=v=>y0-(v-pmin)/(pmax-pmin)*(y0-y1);
+ const pcEl=document.getElementById('pc'),W=Math.round(Math.max(340,Math.min(900,pcEl.parentNode.clientWidth||900))),Hh=230,x0=W<600?40:60,x1=W-(W<600?10:20),y0=190,y1=30,sc=(x1-x0)/820,pmin=d.on-0.4,pmax=d.off+0.25,Y=v=>y0-(v-pmin)/(pmax-pmin)*(y0-y1);
  let s=`<g class="sm"><line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y0}" stroke="var(--line)"/>`;
  for(const v of [d.on,d.off]){s+=`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-dasharray="5 5"/><text x="${x0-8}" y="${Y(v)+4}" text-anchor="end" class="mn">${v.toFixed(1)}</text>`}
  s+=`<text x="${x0}" y="18" class="sm">แรงดันในท่อ (บาร์)</text><text x="${x1}" y="${y0+30}" class="sm" text-anchor="end">เวลา →</text></g>`;
  const seg=[['on',60],['off',150],['on',50],['off',110],['on',70],['off',170],['on',55],['off',115]];let x=x0,pts=[`${x},${Y(d.on)}`],k=0;
- for(const [t,w] of seg){const nx=Math.min(x1,x+w);if(t==='on'){s+=`<rect x="${x}" y="${y0+4}" width="${nx-x}" height="10" rx="3" fill="${k%2?'var(--heat)':'var(--water)'}"/><text x="${(x+nx)/2}" y="${y0+26}" text-anchor="middle" class="mn" style="font-size:11px">P-${k%2+1}</text>`;k++;pts.push(`${nx},${Y(d.off)}`)}else pts.push(`${nx},${Y(d.on)}`);x=nx}
+ pcEl.setAttribute('viewBox',`0 0 ${W} ${Hh}`);
+ for(const [t,w0] of seg){const w=w0*sc,nx=Math.min(x1,x+w);if(t==='on'){s+=`<rect x="${x}" y="${y0+4}" width="${nx-x}" height="10" rx="3" fill="${k%2?'var(--k-muted)':'var(--water)'}"/><text x="${(x+nx)/2}" y="${y0+26}" text-anchor="middle" class="mn" style="font-size:11px">P-${k%2+1}</text>`;k++;pts.push(`${nx},${Y(d.off)}`)}else pts.push(`${nx},${Y(d.on)}`);x=nx}
  s+=`<polyline points="${pts.join(' ')}" fill="none" stroke="var(--clean)" stroke-width="2.5"/>`;
  s+=`<text x="${x1}" y="${Y(d.off)-8}" text-anchor="end" class="sm">ปั๊มหยุดที่ ${d.off} บาร์</text><text x="${x1}" y="${Y(d.on)+18}" text-anchor="end" class="sm">ปั๊มเดินที่ ${d.on} บาร์</text>`;
  $('pc').innerHTML=s;
 }
+let _pw=0;addEventListener('resize',()=>{const w=document.getElementById('pc').parentNode.clientWidth;if(Math.abs(w-_pw)>20){_pw=w;draw();}});
 document.querySelectorAll('#bld button').forEach(e=>e.onclick=()=>{b=e.dataset.b;document.querySelectorAll('#bld button').forEach(x=>x.setAttribute('aria-pressed',x===e));draw()});
 document.querySelectorAll('#mode button').forEach(e=>e.onclick=()=>{m=e.dataset.m;document.querySelectorAll('#mode button').forEach(x=>x.setAttribute('aria-pressed',x===e));draw()});
 draw();

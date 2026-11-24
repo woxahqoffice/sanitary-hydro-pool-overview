@@ -121,3 +121,14 @@ body table td,body table th{border-color:var(--k-line)}
   .tsw.top button{height:44px;min-width:44px;padding:0 10px;justify-content:center}
   body .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);padding-right:24px}
 }
+
+/* รอบตรวจ l1 */
+.bsheet .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.bsheet .ph h3{margin:0}
+.bsheet .cls{min-height:44px;min-width:64px;border:1px solid var(--k-line);border-radius:var(--k-r-control);background:var(--k-surface);color:var(--k-text);font:500 14px var(--k-font)}
+body h2{font-size:clamp(20px,2.6vw,24px)}
+body .step{border-radius:var(--k-r-card)!important}
+body .step .k{color:var(--k-muted)!important;font:600 13px/1.4 var(--k-font)!important;letter-spacing:0!important}
+body .step .fig,body td.n,body .kpi b,body .kpis b{font-family:var(--k-font)!important;font-variant-numeric:tabular-nums}
+body .ctl input[type=range]{accent-color:var(--k-brand)}
+body .hero .tag{color:var(--k-muted)!important}
+body .hero{border-radius:var(--k-r-card)!important}

@@ -41,14 +41,15 @@
     var fav = [['index.html', 'home', 'หน้าแรก'], ['water.html', 'drop', 'น้ำประปา'], ['ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html', 'wave', 'สระ'], ['sim.html', 'box', 'จำลอง 3D']];
     var b = document.createElement('nav'); b.className = 'bnav'; b.setAttribute('aria-label', 'เมนูหลักบนมือถือ');
     b.innerHTML = fav.map(function (f) { return '<a href="' + f[0] + '"' + (here === f[0] ? ' class="on" aria-current="page"' : '') + '>' + ic(f[1]) + '<span>' + f[2] + '</span></a>'; }).join('') +
-      '<button type="button" data-open-sheet>' + ic('menu') + '<span>เมนู</span></button>';
+      '<button type="button" data-open-sheet' + (fav.some(function (f) { return f[0] === here; }) ? '' : ' class="on"') + '>' + ic('menu') + '<span>เมนู</span></button>';
     document.body.appendChild(b);
     var sh = document.createElement('div'); sh.className = 'bsheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-label', 'เมนูทั้งหมด');
-    sh.innerHTML = '<div class="pan"><h3>ทุกหน้าในเว็บไซต์</h3><div class="g">' + links.map(function (l) { return '<a href="' + l[0] + '"' + (here === l[0] ? ' class="on"' : '') + '>' + l[1] + '</a>'; }).join('') +
+    sh.innerHTML = '<div class="pan"><div class="ph"><h3>ทุกหน้าในเว็บไซต์</h3><button type="button" class="cls" data-close-sheet aria-label="ปิดเมนู">ปิด</button></div><div class="g">' + links.map(function (l) { return '<a href="' + l[0] + '"' + (here === l[0] ? ' class="on"' : '') + '>' + l[1] + '</a>'; }).join('') +
       '</div><h3 style="margin-top:16px">โหมดแสง</h3>' + themeSwitch('sheet') + '</div>';
     document.body.appendChild(sh);
     b.querySelector('[data-open-sheet]').onclick = function () { sh.dataset.open = '1'; };
-    sh.addEventListener('click', function (e) { if (e.target === sh) sh.dataset.open = '0'; });
+    sh.addEventListener('click', function (e) { if (e.target === sh || (e.target.closest && e.target.closest('[data-close-sheet]'))) sh.dataset.open = '0'; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') sh.dataset.open = '0'; });
     document.addEventListener('click', function (e) { var t = e.target.closest && e.target.closest('[data-tbtn]'); if (t) setT(t.dataset.tbtn); });
     applyT(getT());
   }

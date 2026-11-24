@@ -11,7 +11,7 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 // ---------- สีและวัสดุ ----------
 const COL = {
-  clean: 0x2a9fd8, cleanP: 0x7fd8ff, pool: 0x2bb3c9, poolP: 0x9ff3ff, ret: 0xe0782f, retP: 0xffc07a,
+  clean: 0x2a9fd8, cleanP: 0x7fd8ff, pool: 0x2bb3c9, poolP: 0x9ff3ff, ret: 0x3b6fd6, retP: 0xa8c4ff,
   waste: 0x8a6a3c, wasteP: 0xd9a25a, eff: 0x5aa58a, effP: 0x9ff0c8, rain: 0x4d7f6b, rainP: 0x9fe0c0,
   air: 0xb8c4c9, airP: 0xffffff, drain: 0x7d8a90, drainP: 0xd0dde2, chem: 0xb04fc0, chemP: 0xf0a8ff, heat: 0xd9692b, heatP: 0xffb08a
 };
@@ -375,7 +375,9 @@ SC.pool = {
     if (this.n !== this.tn) { this.acc = (this.acc || 0) + dt; if (this.acc > 3) { this.acc = 0; const dn = Math.sign(this.tn - this.n); this.n += dn; this.h += dn * 0.075 / Ap * 1000; } }
     // ขั้นตอนล้างย้อน
     const zb = -2.30 + this.Vb / Ab; this.zb = zb;
-    if (this.ph === 'fill' && zb >= -0.70) { this.ph = 'bw'; this.tBW = 0; log('BT ถึง HWL ขั้นที่ 2 ล้างย้อนถัง F-1 100 ลบ.ม./ชม. 4 นาที ทิ้งลงบ่อพัก CB4', 'warn'); }
+    if (this.ph === 'fill' && zb < -0.70 && !this.fillSkip) { const need = (-0.69 - zb) * Ab; this.fillSkip = true; this.Vb += need; log('เติมน้ำประปา 1" (4 ลบ.ม./ชม.) ' + need.toFixed(1) + ' ลบ.ม. ใช้เวลา ' + Math.round(need / 4 * 60) + ' นาที แบบจำลองข้ามช่วงนี้', ''); }
+    if (this.ph !== 'fill') this.fillSkip = false;
+    if (this.ph === 'fill' && this.Vb / Ab - 2.30 >= -0.70) { this.ph = 'bw'; this.tBW = 0; log('BT ถึง HWL ขั้นที่ 2 ล้างย้อนถัง F-1 100 ลบ.ม./ชม. 4 นาที ทิ้งลงบ่อพัก CB4', 'warn'); }
     if (this.ph === 'bw') { this.tBW += dt; if (this.tBW > 240) { this.ph = 'rec'; this.dp = 0.32; log('ล้างย้อนเสร็จ ขั้นที่ 3 VSD ลดอัตราไหลจนน้ำในสระคืนระดับ', 'ok'); } }
     if (this.ph === 'rec' && this.h >= 2.5) { this.ph = ''; log('น้ำในสระคืนระดับขอบราง กลับเดินกรองปกติ 98 ลบ.ม./ชม.', 'ok'); }
     this.bw = this.ph === 'bw';
@@ -392,7 +394,7 @@ SC.pool = {
     this.qg = Math.max(0, 20 * this.h);
     // น้ำเติม
     const fillTo = this.ph === 'fill' ? -0.68 : -1.30;
-    if (this.mu === 0 && (zb < -1.40 || this.ph === 'fill' || this.ph === 'rec')) { this.mu = 15; if (!this.ph) log('BT ต่ำกว่า LSM -1.40 เปิดน้ำประปาเติม', ''); }
+    if (this.mu === 0 && (zb < -1.40 || this.ph === 'fill' || this.ph === 'rec')) { this.mu = 4; if (!this.ph) log('BT ต่ำกว่า LSM -1.40 เปิดน้ำประปาเติม', ''); }
     if (this.mu > 0 && zb > fillTo && this.ph !== 'rec' && this.ph !== 'fill') { this.mu = 0; log('BT ถึง ' + zb.toFixed(2) + ' ปิดน้ำเติม', ''); }
     if (!this.lsh && zb > -0.65) { this.lsh = true; this.mu = 0; log('BT ถึง LSH -0.65 แจ้งเตือนระดับสูง ปิดน้ำเติม น้ำส่วนเกินออกท่อน้ำล้น -0.62', 'warn'); }
     if (this.lsh && zb < -0.75) this.lsh = false;
@@ -593,7 +595,7 @@ SC.over = {
     label('city', [3, -2.2, -0.75], 'ท่อประปาเทศบาล', 'จ่ายทั้ง 2 อาคารและเติมสระ', 'dr', 40, 20);
     label('hb', [6, 4.5, 5.0], 'อาคารกายภาพบำบัด', 'น้ำใช้ 4,400 ล./วัน', 'ur', 70, 20);
     label('tkH', [15.4, -0.7, -1.4], 'ถังน้ำ 6,000 ล. ปั๊ม 1+1 ตู้ PCP', 'กายภาพบำบัด', 'dr', 90, 20);
-    label('stH', [8.2, -1.4, -1.2], 'ถังบำบัด WSA-1203', 'กายภาพบำบัด', 'dl', 90, 20);
+    label('stH', [8.2, -1.4, -1.2], 'ถังบำบัด WSA-1203 × 2', 'กายภาพบำบัด', 'dl', 90, 20);
     label('yb', [27, 4.5, 6.0], 'อาคารวารีบำบัด', 'สระ 146 ลบ.ม. น้ำใช้ 4,550 ล./วัน', 'ur', 60, 20);
     label('pool', [25.5, 0, -0.6], 'สระหมุนเวียน 98 ลบ.ม./ชม.', '', 'ul', 60, 20);
     label('bt', [30.6, 0.5, -1.6], 'ถังพัก BT และห้องปั๊ม', '', 'dr', 120, 20);
@@ -672,7 +674,7 @@ function load(k) {
   paintScen();
   window.__clashes = clashes(); window.__scene = k;
   $('#clash').textContent = window.__clashes.length ? 'ท่อชนกัน ' + window.__clashes.length + ' จุด' : (view.clientWidth < 640 ? 'ท่อไม่ทับกัน' : 'ตรวจแนวท่อแล้ว ไม่มีท่อทับกัน');
-  $('#clash').className = 'clash ' + (window.__clashes.length ? 'bad' : 'ok');
+  $('#clash').className = 'clash ' + (window.__clashes.length ? 'bad' : 'ok') + (/[?&]debug/.test(location.search) ? ' dbg' : '');
   try { history.replaceState(null, '', '?s=' + k); } catch (e) {}
   resize();
 }
@@ -721,9 +723,12 @@ function drawLabels() {
     return true;
   };
   let s = '';
-  for (const L of LABELS) {
-    const p = L.p.clone().project(camera); if (p.z > 1) continue;
-    const x = (p.x + 1) / 2 * w, y = (1 - p.y) / 2 * h;
+  const AN = LABELS.map((L) => { const p = L.p.clone().project(camera); return p.z > 1 ? null : [(p.x + 1) / 2 * w, (1 - p.y) / 2 * h]; });
+  const okA = (g, me) => { for (let i = 0; i < AN.length; i++) { const a = AN[i]; if (!a || i === me) continue; if (a[0] > g.r[0] - 8 && a[0] < g.r[2] + 8 && a[1] > g.r[1] - 8 && a[1] < g.r[3] + 8) return false; for (const sg of g.s) if (segRect(sg[0], sg[1], [a[0] - 5, a[1] - 5, a[0] + 5, a[1] + 5])) return false; } return true; };
+  for (let li = 0; li < LABELS.length; li++) {
+    const L = LABELS[li];
+    if (!AN[li]) continue;
+    const x = AN[li][0], y = AN[li][1];
     if (x < 0 || x > w || y < 0 || y > h) continue;
     const sub = sm ? '' : (typeof L.sub === 'function' ? L.sub() : L.sub);
     const twd = Math.max(tw(L.title, fT), sub ? tw(sub, fS) : 0), nl = sub ? 2 : 1, hl = L.h * k;
@@ -731,8 +736,8 @@ function drawLabels() {
     if (L.pick) cands.push(L.pick);
     for (const m of [1, 1.6, 2.3, 0.6]) for (const dr of [L.dir].concat(DIRS.filter((q) => q !== L.dir))) cands.push([dr, m]);
     let g = null, pick = null, useSub = !!sub;
-    for (const c of cands) { const t = geo(x, y, c[0], L.d * k * c[1], hl, twd, nl); if (ok(t)) { g = t; pick = c; break; } }
-    if (!g && sub) { const tw1 = tw(L.title, fT); for (const c of cands) { const t = geo(x, y, c[0], L.d * k * c[1], hl, tw1, 1); if (ok(t)) { g = t; pick = null; useSub = false; break; } } }
+    for (const c of cands) { const t = geo(x, y, c[0], L.d * k * c[1], hl, twd, nl); if (ok(t) && okA(t, li)) { g = t; pick = c; break; } }
+    if (!g && sub) { const tw1 = tw(L.title, fT); for (const c of cands) { const t = geo(x, y, c[0], L.d * k * c[1], hl, tw1, 1); if (ok(t) && okA(t, li)) { g = t; pick = null; useSub = false; break; } } }
     if (!g) { L.pick = null; continue; }
     L.pick = useSub ? pick : null; placed.push(g);
     s += '<polyline points="' + x + ',' + y + ' ' + g.ex + ',' + g.ey + ' ' + g.fx + ',' + g.ey + '" class="ld"/><circle cx="' + x + '" cy="' + y + '" r="' + (sm ? 3 : 4) + '" class="dt"/>';

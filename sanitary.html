@@ -11,9 +11,9 @@
 .snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
 .snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
 .snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
-</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l on" href="sanitary.html" aria-current="page">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav><main class="wrap"><div class="eb">น้ำเสีย · การบำบัด · น้ำฝน</div>
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html">สระวารีบำบัด</a><a class="l on" href="sanitary.html" aria-current="page">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html"><span class="nw">อุปกรณ์</span></a></div></nav><main class="wrap"><div class="eb">น้ำเสีย · การบำบัด · น้ำฝน</div>
 <h1>น้ำเสีย การบำบัด และน้ำฝน</h1>
-<p class="lead">น้ำจากสุขภัณฑ์ไหลด้วยแรงโน้มถ่วงลงท่อเมน 6 นิ้วใต้พื้น ผ่านบ่อพักเข้าถังบำบัดแบบเติมอากาศ น้ำที่บำบัดแล้วออกสู่บ่อพักรอบอาคารรวมกับน้ำฝน แล้วไหลไปท่อระบายน้ำสาธารณะ น้ำฝนจากหลังคาไม่ผ่านถังบำบัด</p><figure class="render"><img src="render_san.jpg" alt="ภาพตัดสามมิติ ท่อน้ำเสียจากห้องน้ำ ปลอกผ่านคานคอดิน บ่อพัก ถังบำบัดเติมอากาศผ่าครึ่ง เครื่องเติมอากาศ บ่อพักน้ำฝน และท่อสาธารณะ" loading="lazy" width="1280" height="720"><figcaption>ภาพตัดจำลองสามมิติจากขนาดและระดับในแบบก่อสร้าง ใช้อธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</figcaption></figure>
+<p class="lead">น้ำจากสุขภัณฑ์ไหลด้วยแรงโน้มถ่วงลงท่อเมน 6 นิ้วใต้พื้น ผ่านบ่อพักเข้า<span class="nw">ถังบำบัด</span>แบบเติมอากาศ น้ำที่บำบัดแล้วออกสู่บ่อพักรอบอาคารรวมกับน้ำฝน แล้วไหลไปท่อระบายน้ำสาธารณะ น้ำฝนจากหลังคาไม่ผ่าน<span class="nw">ถังบำบัด</span></p><figure class="render"><img src="render_san.jpg" alt="ภาพตัดสามมิติ ท่อน้ำเสียจากห้องน้ำ ปลอกผ่านคานคอดิน บ่อพัก ถังบำบัดเติมอากาศผ่าครึ่ง เครื่องเติมอากาศ บ่อพักน้ำฝน และท่อสาธารณะ" loading="lazy" width="1280" height="720"><figcaption>ภาพตัดจำลองสามมิติจากขนาดและระดับในแบบก่อสร้าง ใช้อธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</figcaption></figure>
 
 <div class="seg" role="group" aria-label="เลือกอาคาร" id="bld">
   <button type="button" data-b="he" aria-pressed="true">อาคารกายภาพบำบัด-แพทย์แผนไทย</button>
@@ -47,10 +47,14 @@
   <text x="190" y="170" text-anchor="middle" class="sm">ส้วม อ่างล้างมือ ฝักบัว ท่อระบายพื้น</text>
   <!-- ท่อน้ำฝน -->
   <g class="g-rain">
-    <path d="M350 122 V280 H640" stroke="var(--line)" stroke-width="7" fill="none"/>
-    <path class="flow" d="M350 122 V280 H640" stroke="var(--rain)" stroke-width="4"/>
-    <path d="M30 122 V300 H640" stroke="var(--line)" stroke-width="7" fill="none"/>
-    <path class="flow" d="M30 122 V300 H640" stroke="var(--rain)" stroke-width="4"/>
+    <path d="M350 122 V281 H362 M396 276 H880" stroke="var(--line)" stroke-width="7" fill="none"/>
+    <path class="flow" d="M350 122 V281 H362" stroke="var(--rain)" stroke-width="4"/>
+    <path class="flow" d="M396 276 H880" stroke="var(--rain)" stroke-width="4"/>
+    <rect x="362" y="262" width="34" height="40" fill="var(--paper)" stroke="var(--ink)"/><text x="379" y="296" class="mn" text-anchor="middle">CB</text>
+    <path d="M30 122 V266" stroke="var(--line)" stroke-width="7" fill="none"/>
+    <path class="flow" d="M30 122 V266" stroke="var(--rain)" stroke-width="4"/>
+    <rect x="13" y="266" width="34" height="40" fill="var(--paper)" stroke="var(--ink)"/><text x="30" y="300" class="mn" text-anchor="middle">CB</text>
+    <text x="14" y="440" class="sm">CB ซ้าย ต่อท่อรอบอาคารลงท่อสาธารณะปลายอีกด้าน</text>
     <text x="356" y="150" class="sm">ท่อน้ำฝน RD</text>
   </g>
   <!-- น้ำเสีย -->
@@ -63,7 +67,7 @@
     <rect x="255" y="248" width="40" height="52" fill="var(--conc)" stroke="var(--ink)"/><circle cx="275" cy="330" r="15" fill="none" stroke="var(--ink)" stroke-dasharray="3 3"/>
     <text x="275" y="392" class="sm" text-anchor="middle">ปลอก 8" ผ่านคานคอดินช่วงเพิ่มลึก</text>
     <!-- บ่อพัก MH -->
-    <rect x="420" y="262" width="40" height="90" fill="var(--paper)" stroke="var(--ink)"/><text x="440" y="250" class="mn" text-anchor="middle">MH</text>
+    <rect x="420" y="290" width="40" height="62" fill="var(--paper)" stroke="var(--ink)"/><text x="440" y="372" class="mn" text-anchor="middle">MH</text>
     <path d="M460 335 H500" stroke="var(--line)" stroke-width="9"/><path class="flow" d="M460 335 H500" stroke="var(--waste)" stroke-width="5"/>
     <!-- ถังบำบัด -->
     <rect x="500" y="290" width="300" height="150" rx="40" fill="url(#tankg)" stroke="var(--ink)" stroke-width="1.5" filter="url(#sh)"/>
@@ -75,15 +79,13 @@
     <g fill="var(--paper)" stroke="var(--water)">
       <circle class="bub" cx="630" cy="425" r="4"/><circle class="bub" cx="650" cy="428" r="3" style="animation-delay:.6s"/><circle class="bub" cx="668" cy="424" r="4" style="animation-delay:1.2s"/><circle class="bub" cx="642" cy="426" r="3" style="animation-delay:1.8s"/>
     </g>
-    <path d="M650 250 V420" stroke="var(--mut)" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M650 240 V266 M650 287 V420" stroke="var(--mut)" stroke-width="2" stroke-dasharray="4 3"/>
     <rect x="626" y="214" width="48" height="26" rx="5" fill="var(--paper)" stroke="var(--ink)"/><text x="650" y="232" text-anchor="middle" class="mn">BLW</text>
     <text x="650" y="462" text-anchor="middle" font-weight="600" id="stT">ถังบำบัด WSA-1203 × 2</text>
     <path d="M800 330 H880" stroke="var(--line)" stroke-width="9"/><path class="flow" d="M800 330 H880" stroke="var(--water)" stroke-width="5"/>
     <text x="840" y="320" text-anchor="middle" class="sm">น้ำบำบัดแล้ว</text>
   </g>
   <!-- บ่อพักและท่อสาธารณะ -->
-  <rect x="640" y="262" width="34" height="46" fill="var(--paper)" stroke="var(--ink)"/><text x="657" y="257" class="mn" text-anchor="middle">CB</text>
-  <path d="M674 290 H880" stroke="var(--line)" stroke-width="7" class="g-rain"/><path class="flow g-rain" d="M674 290 H880" stroke="var(--rain)" stroke-width="4"/>
   <rect x="880" y="262" width="34" height="90" fill="var(--paper)" stroke="var(--ink)"/><text x="897" y="257" class="mn" text-anchor="middle">CB</text>
   <path d="M914 320 H1080" stroke="var(--line)" stroke-width="9"/><path class="flow" d="M914 320 H1080" stroke="var(--rain)" stroke-width="5"/>
   <text x="1080" y="346" text-anchor="end" font-weight="600">ท่อระบายน้ำสาธารณะ</text>
@@ -92,9 +94,9 @@
 </div>
 <div class="state" id="st"><div><b id="stH"></b><div class="mut" id="stP"></div></div></div>
 
-<h2>ถังบำบัดน้ำเสียแบบเติมอากาศทำงานอย่างไร</h2>
+<h2><span class="nw">ถังบำบัด</span>น้ำเสียแบบเติมอากาศทำงานอย่างไร</h2>
 <ol class="steps">
-<li><b>ห้องตกตะกอนและย่อยไร้อากาศ</b> ของแข็งตกลงก้นถัง จุลินทรีย์ที่ไม่ใช้ออกซิเจนย่อยสลายเป็นก๊าซและน้ำ ไขมันลอยตัวค้างอยู่ด้านบน</li>
+<li><b>ห้องตกตะกอนและย่อยไร้อากาศ</b> ของแข็งตกลงก้นถัง จุลินทรีย์ที่ไม่ใช้ออกซิเจนย่อยสลายเป็นก๊าซและน้ำ <span class="nw">ไขมัน</span>ลอยตัวค้างอยู่ด้านบน</li>
 <li><b>ห้องเติมอากาศ</b> เครื่องเติมอากาศบนดินอัดลมลงหัวกระจายฟองที่ก้นถัง จุลินทรีย์ที่ใช้ออกซิเจนย่อยสารอินทรีย์ที่ละลายน้ำ ฟองอากาศช่วยกวนให้น้ำผสมทั่วห้อง</li>
 <li><b>ห้องตกตะกอนใส</b> ตะกอนจุลินทรีย์ตกลงก้นห้อง น้ำใสส่วนบนไหลล้นออกจากถังไปบ่อพัก</li>
 <li><b>สูบตะกอน</b> ตะกอนสะสมที่ก้นถังต้องให้รถสูบตามรอบบำรุงรักษา ตอนถังว่างระหว่างสูบ แผ่นฐานคอนกรีตและดินที่ถมทับกันถังลอยขึ้นจากน้ำใต้ดิน</li>
@@ -105,10 +107,10 @@
 <thead><tr><th>รายการ</th><th style="text-align:right">กายภาพบำบัด-แพทย์แผนไทย</th><th style="text-align:right">วารีบำบัด</th></tr></thead>
 <tbody>
 <tr><td>น้ำเสียต่อวัน (80% ของน้ำใช้)</td><td class="n">3,520 ล.</td><td class="n">3,640 ล.</td></tr>
-<tr><td>ถังบำบัดเติมอากาศ</td><td class="n">WAVE WSA-1203 3,000 ล. × 2</td><td class="n">WAVE WSA-1405 5,000 ล. × 1</td></tr>
+<tr><td><span class="nw">ถังบำบัด</span>เติมอากาศ</td><td class="n">WAVE WSA-1203 3,000 ล. × 2</td><td class="n">WAVE WSA-1405 5,000 ล. × 1</td></tr>
 <tr><td>เวลาเก็บกักน้ำในถัง</td><td class="n">1.64 · 1.78 วัน</td><td class="n">1.37 วัน</td></tr>
 <tr><td>เครื่องเติมอากาศ</td><td class="n">NITTO LA-80B 80 ล./นาที 86 W</td><td class="n">NITTO LA-100A 100 ล./นาที 100 W</td></tr>
-<tr><td>ถังดักไขมัน</td><td class="n">ไม่มีครัว</td><td class="n">WGT-400 รับอ่างคาเฟ่</td></tr>
+<tr><td>ถังดัก<span class="nw">ไขมัน</span></td><td class="n">ไม่มีครัว</td><td class="n">WGT-400 รับอ่างคาเฟ่</td></tr>
 <tr><td>ท่อเมนน้ำเสีย</td><td class="n">PVC 8.5 ขนาด 6" ลาด 1:100</td><td class="n">PVC 8.5 ขนาด 6" ลาด 1:100</td></tr>
 <tr><td>ปลอกท่อผ่านคานคอดิน</td><td class="n" colspan="2" style="text-align:center">ปลอก 8" คานคอดินเพิ่มลึกเป็น 0.90 ม. ยาว 1.00 ม. เฉพาะจุดที่ท่อผ่าน</td></tr>
 <tr><td>พื้นที่หลังคารับน้ำฝน</td><td class="n">800 ตร.ม.</td><td class="n">1,064 ตร.ม.</td></tr>
@@ -121,7 +123,7 @@ const B={he:{roof:'หลังคา 800 ตร.ม.',st:'ถังบำบั
  hy:{roof:'หลังคา 1,064 ตร.ม.',st:'ถังบำบัด WAVE WSA-1405 × 1',ww:'3,640 ล./วัน',n:'อาคารวารีบำบัดมีถังบำบัด 5,000 ล. 1 ใบ เก็บกักน้ำ 1.37 วัน และถังดักไขมัน WGT-400 รับน้ำจากอ่างคาเฟ่ก่อนเข้าท่อ'}};
 const S={all:{h:'น้ำเสียผ่านถังบำบัด น้ำฝนไหลตรงไปบ่อพัก',t:b=>`น้ำเสีย ${B[b].ww} ไหลลงท่อเมน 6" เข้าบ่อพัก MH แล้วเข้าถังบำบัด น้ำที่บำบัดแล้วรวมกับน้ำฝนในบ่อพัก CB ก่อนออกท่อสาธารณะ ${B[b].n}`},
  ww:{h:'เส้นทางน้ำเสีย',t:b=>`ส้วมและอ่างต่อท่อแยก 3" และ 4" เข้าท่อเมน 6" ใต้พื้น ท่อลอดคานคอดินผ่านปลอก 8" ที่คานเพิ่มลึกเฉพาะจุด มีท่ออากาศทุกกลุ่มสุขภัณฑ์กันน้ำในคอห่านถูกดูด ${B[b].n}`},
- rain:{h:'เส้นทางน้ำฝน',t:b=>`น้ำฝนจาก${B[b].roof}ลงรางน้ำ ท่อน้ำฝน RD แต่ละต้นลงบ่อพัก CB ข้างอาคาร ท่อรอบอาคาร 6" รวบน้ำไปปลายท่อทั้งสองด้านต่อเข้าท่อระบายน้ำสาธารณะ`}};
+ rain:{h:'เส้นทางน้ำฝน',t:b=>`น้ำฝนจาก${B[b].roof} ลงรางน้ำ ท่อน้ำฝน RD แต่ละต้นลงบ่อพัก CB ข้างอาคาร ท่อรอบอาคาร 6" รวมน้ำไปปลายท่อทั้งสองด้านต่อเข้าท่อระบายน้ำสาธารณะ`}};
 let b='he',s='all';const $=i=>document.getElementById(i);
 function draw(){$('roofT').textContent=B[b].roof;$('stT').textContent=B[b].st;
  document.querySelectorAll('#sch .g-ww,#sch .g-ww .flow').forEach(e=>e.classList.toggle('off',s==='rain'));

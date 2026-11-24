@@ -11,7 +11,7 @@
 .snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
 .snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
 .snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
-</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l on" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html" aria-current="page">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav>
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l on" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html" aria-current="page">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="sim.html">จำลอง 3 มิติ</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html"><span class="nw">อุปกรณ์</span></a></div></nav>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
@@ -133,13 +133,13 @@ h2{font-size:21px;margin:0 0 4px}
 <header class="hero">
   <div class="tag">ตามแบบระบบสระ PL r5 (24 พ.ย. 2569) · อาคารวารีบำบัด เทศบาลนครตรัง</div>
   <h1>ระบบหมุนเวียน กรอง <span class="nw">ฆ่าเชื้อ</span> และอุ่นน้ำ <span class="nw">สระวารีบำบัด</span></h1>
-  <p>สระ 7.00 × 13.50 ม. น้ำลึก 1.55 ม. รางน้ำล้นรอบสระ น้ำหมุนเวียนต่อเนื่องผ่านถังกรอง ยูวี และปั๊มความร้อน เลือกโหมดในแผนผังเพื่อดูทิศการไหลของแต่ละสถานการณ์</p>
+  <p>สระ 7.00 × 13.50 ม. น้ำลึก 1.55 ม. รางน้ำล้นรอบสระ น้ำหมุนเวียนต่อเนื่องผ่านถังกรอง ยูวี และ<span class="nw">ฮีตปั๊ม</span> เลือกโหมดในแผนผังเพื่อดูทิศการไหลของแต่ละสถานการณ์</p>
   <div class="stats">
     <div class="stat"><b>146 ลบ.ม.</b><span>ปริมาตรน้ำในสระ</span></div>
     <div class="stat"><b>1.5 ชม.</b><span>หมุนเวียนครบ 1 รอบ</span></div>
-    <div class="stat"><b>98 ลบ.ม./ชม.</b><span>อัตราหมุนเวียน</span></div>
+    <div class="stat"><b>98 <span class="nw">ลบ.ม./ชม.</span></b><span>อัตราหมุนเวียน</span></div>
     <div class="stat"><b>33.5 °C</b><span>อุณหภูมิน้ำออกแบบ</span></div>
-    <div class="stat"><b>2 × 21 kW</b><span>ปั๊มความร้อน</span></div>
+    <div class="stat"><b>2 × 21 kW</b><span><span class="nw">ฮีตปั๊ม</span></span></div>
   </div>
 </header><figure style="margin:16px auto 6px;max-width:1240px;padding:0 max(16px,env(safe-area-inset-left,0px));box-sizing:border-box"><img src="render_pool.jpg" alt="ภาพตัดสามมิติ สระวารีบำบัดบนเสาเข็ม ถังพัก ห้องใต้ดินปั๊ม ถังกรองทราย ยูวี และฮีตปั๊ม" loading="lazy" width="1280" height="720" style="display:block;width:100%;height:auto;border-radius:14px;border:1px solid rgba(120,140,150,.35)"><figcaption style="font-size:13.5px;opacity:.75;padding:8px 2px">ภาพตัดจำลองสามมิติจากขนาดและระดับในแบบก่อสร้าง ใช้อธิบายการทำงาน ไม่ใช่แบบก่อสร้าง</figcaption></figure>
 
@@ -195,7 +195,7 @@ h2{font-size:21px;margin:0 0 4px}
       <path id="p-byp" class="pipe" d="M1080 350 H1186 V286"/>
       <path id="p-ret" class="pipe" d="M1170 286 H1186 V40 H20 V480 H352 M92 480 V420 M202 480 V420 M242 480 V420 M352 480 V420"/>
       <path id="p-mk" class="pipe thin" d="M520 70 V160 M520 182 V390"/>
-      <path id="p-bw" class="pipe thin" d="M820 382 V600 H1040 M912 382 V600"/>
+      <path id="p-bw" class="pipe thin" d="M760 560 V600 H820 V382 M790 200 V176 H700 V196"/>
       <path id="p-cd" class="pipe thin" d="M1132 150 V118 H1186"/>
     </g>
 
@@ -218,10 +218,9 @@ h2{font-size:21px;margin:0 0 4px}
       <path class="flow" data-k="ret" data-t="33.69" d="M92 480 V420"/><path class="flow" data-k="ret" data-t="33.69" d="M202 480 V420"/>
       <path class="flow" data-k="ret" data-t="33.69" d="M242 480 V420"/><path class="flow" data-k="ret" data-t="33.69" d="M352 480 V420"/>
       <path class="flow" data-k="mk" data-c="var(--cool)" d="M520 70 V160 M520 182 V390"/>
-      <path class="flow" data-k="bwd" data-c="var(--waste)" d="M820 218 V200 M912 218 V200"/>
-      <path class="flow" data-k="bw" data-c="var(--waste)" d="M820 382 V600 H1040"/>
-      <path class="flow" data-k="bw" data-c="var(--waste)" d="M912 382 V600"/>
-      <path class="flow" data-k="bwin" data-t="33.3" d="M736 445 H760 V200 H820"/>
+      <path class="flow" data-k="bwd" data-c="var(--waste)" d="M820 376 V226"/>
+      <path class="flow" data-k="bw" data-c="var(--waste)" d="M820 218 V200 H790 V176 H700 V196"/>
+            <path class="flow" data-k="bwin" data-t="33.3" d="M736 445 H760 V600 H820 V382"/>
       <path class="flow" data-k="cd" data-c="var(--chem)" d="M1132 150 V118 H1186"/>
     </g>
 
@@ -237,8 +236,8 @@ h2{font-size:21px;margin:0 0 4px}
     <!-- ประปาเติม -->
     <g>
       <rect x="480" y="16" width="80" height="54" class="box" rx="6"/>
-      <text class="lbl" x="520" y="40" text-anchor="middle">ถังน้ำประปา</text>
-      <text class="num" x="520" y="58" text-anchor="middle">1" ลูกลอย</text>
+      <text class="lbl" x="520" y="40" text-anchor="middle">น้ำประปา</text>
+      <text class="num" x="520" y="58" text-anchor="middle">1" วาล์วไฟฟ้า</text>
       <line x1="508" y1="171" x2="532" y2="171" stroke="var(--muted)"/><text class="num" x="540" y="175">ช่องว่างอากาศ</text>
     </g>
     <!-- ห้องใต้ดินปั๊ม -->
@@ -259,7 +258,7 @@ h2{font-size:21px;margin:0 0 4px}
       <rect x="796" y="300" width="48" height="70" rx="6" fill="var(--chip)"/><rect x="888" y="300" width="48" height="70" rx="6" fill="var(--chip)"/>
       <text class="lbl" x="820" y="262" text-anchor="middle">F-1</text><text class="lbl" x="912" y="262" text-anchor="middle">F-2</text>
       <text class="num" x="820" y="340" text-anchor="middle">ทราย</text><text class="num" x="912" y="340" text-anchor="middle">ทราย</text>
-      <text class="sub" x="866" y="190" text-anchor="middle">ถังกรองทราย Waterco SMD1600 · 24.4 ม./ชม.</text>
+      <text class="sub" x="900" y="160" text-anchor="middle">ถังกรองทราย Waterco SMD1600 · 24.4 ม./ชม.</text>
     </g>
     <!-- UV -->
     <g><rect x="990" y="350" width="72" height="44" rx="8" class="box"/><text class="lbl" x="1026" y="377" text-anchor="middle">UV</text>
@@ -270,15 +269,15 @@ h2{font-size:21px;margin:0 0 4px}
       <rect x="1095" y="258" width="75" height="56" rx="8" class="box"/>
       <text class="lbl" x="1132" y="284" text-anchor="middle">HP-1 HP-2</text>
       <text class="num" x="1132" y="301" text-anchor="middle">2 × 21 kW</text>
-      <text class="sub" x="1132" y="334" text-anchor="middle">ปั๊มความร้อน</text>
+      <text class="sub" x="1132" y="334" text-anchor="middle">ฮีตปั๊ม</text>
     </g>
-    <text class="sub" x="1133" y="368" text-anchor="middle">บายพาส</text>
+    <text class="num" x="1133" y="368" text-anchor="middle">บายพาส</text><text class="num" x="1133" y="383" text-anchor="middle">80 ลบ.ม./ชม.</text>
     <text id="hpOff" class="lbl" x="1132" y="246" text-anchor="middle" style="fill:var(--muted);opacity:0;transition:opacity .4s">ปิดเครื่อง</text>
     <!-- CD -->
     <g><rect x="1095" y="150" width="75" height="44" rx="8" class="box" style="stroke:var(--chem)"/><text class="lbl" x="1132" y="170" text-anchor="middle">CD</text>
       <text class="num" x="1132" y="186" text-anchor="middle">Cl + pH</text></g>
     <!-- ระบายล้างย้อน -->
-    <g><rect x="1040" y="584" width="96" height="32" rx="6" fill="var(--surface)" stroke="var(--waste)"/><text class="sub" x="1088" y="604" text-anchor="middle">บ่อพักน้ำเสีย</text></g>
+    <g><rect x="636" y="196" width="104" height="32" rx="6" fill="var(--surface)" stroke="var(--waste)"/><text class="sub" x="688" y="216" text-anchor="middle">บ่อพัก CB4</text></g>
     <text class="num" x="600" y="62">ท่อคืนน้ำ ø160 ไปหัวจ่ายพื้นสระ RI 8 จุด</text>
 
     <!-- อุณหภูมิ -->
@@ -288,7 +287,7 @@ h2{font-size:21px;margin:0 0 4px}
   <div class="caption">
     <div class="now"><h3 id="mTitle"></h3><p id="mText"></p></div>
     <div style="display:grid;gap:8px">
-      <div class="scale">33.2 °C <span class="bar"></span> 33.8 °C</div>
+      <div class="scale">33.3 °C <span class="bar"></span> 33.7 °C ขึ้นไป</div>
       <div class="legend"><span><i style="background:var(--cool)"></i>น้ำออกจากสระ</span><span><i style="background:var(--warm)"></i>น้ำอุ่นกลับสระ</span><span><i style="background:var(--chem)"></i>สารเคมี</span><span><i style="background:var(--waste)"></i>น้ำล้างย้อน</span></div>
     </div>
   </div>
@@ -296,44 +295,44 @@ h2{font-size:21px;margin:0 0 4px}
 
 <section>
   <h2>น้ำเดินทางอย่างไรใน 1 รอบ</h2>
-  <p class="lead">ทุก 1.5 ชั่วโมง น้ำทั้งสระ 146 ลบ.ม. ผ่านเส้นทางนี้ครบ 1 รอบ ด้วยอัตรา 98 ลบ.ม./ชม. (27 ล./วินาที)</p>
+  <p class="lead">ทุก 1.5 ชั่วโมง น้ำทั้งสระ 146 ลบ.ม. ผ่านเส้นทางนี้ครบ 1 รอบ ด้วยอัตรา 98 <span class="nw">ลบ.ม./ชม.</span> (27 ล./วินาที)</p>
   <div class="steps">
-    <div class="step"><span class="k">ออกจากสระ</span><h4>รางน้ำล้นและช่องดูดก้นสระ</h4><p>ผิวน้ำที่มีไขมันและฝุ่นไหลข้ามขอบลงรางรอบสระ ส่วนน้ำก้นสระถูกดูดผ่าน MD 2 จุด ทั้งหมดไหลด้วยแรงโน้มถ่วงลงถังพัก</p><span class="fig">ราง 2 × 4" · MD 2 × 4"</span></div>
+    <div class="step"><span class="k">ออกจากสระ</span><h4>รางน้ำล้นและช่องดูดก้นสระ</h4><p>ผิวน้ำที่มี<span class="nw">ไขมัน</span>และฝุ่นไหลข้ามขอบลงรางรอบสระ ส่วนน้ำก้นสระถูกดูดผ่าน MD 2 จุด ทั้งหมดไหลด้วยแรงโน้มถ่วงลงถังพัก</p><span class="fig">ราง 2 × 4" · MD 2 × 4"</span></div>
     <div class="step"><span class="k">พักน้ำ</span><h4>ถังพักน้ำล้น BT</h4><p>รับน้ำที่ล้นเมื่อมีคนลงสระ และเป็นจุดเติมน้ำประปา ระดับน้ำในถังขึ้นลงตามจำนวนผู้ใช้</p><span class="fig">9.2 ลบ.ม. · รับคนลงสระพร้อมกัน 20 คน</span></div>
     <div class="step"><span class="k">ดูดและส่ง</span><h4>ห้องใต้ดินปั๊ม ตะแกรงดักผมและปั๊ม 1+1</h4><p>ปั๊มหอยโข่ง LEO XST65-125/75 7.5 kW ตั้งในห้องใต้ดินปั๊ม 4.50 × 2.70 ม. พื้น -2.30 ใต้ห้องเครื่อง ใช้ผนังร่วมกับถังพัก แกนปั๊ม -1.97 ต่ำกว่าระดับน้ำต่ำสุดในถังพัก (-1.65) 0.32 ม. น้ำจึงไหลเข้าปั๊มเองโดยไม่ต้องล่อน้ำ ช่างลงด้วยบันไดเหล็กชัน มีที่ยืนซ่อม 0.78 ถึง 1.30 ม. รอบปั๊ม ยกปั๊มออกด้วยรางรอก ตะแกรงดักผมกันเศษเข้าปั๊ม ปั๊มทำงานสลับ 1 ตัว สำรอง 1 ตัว VSD ABB ACQ580 ปรับรอบและตัดเมื่อทำงานแห้ง</p><span class="fig">ดูด ø200 1.3 ม./วินาที · ส่ง ø160 2.0 ม./วินาที</span></div>
     <div class="step"><span class="k">กรอง</span><h4>ถังกรองทราย F-1 F-2</h4><p>น้ำไหลจากบนลงล่างผ่านชั้นทราย ตะกอนติดค้างในทราย เมื่อแรงดันตกคร่อมสูงขึ้นให้ล้างย้อน</p><span class="fig">พื้นที่กรอง 4.02 ตร.ม. · 24.4 ม./ชม. (ไม่เกิน 30)</span></div>
     <div class="step"><span class="k">ฆ่าเชื้อ</span><h4>ยูวีและคลอรีน + ปรับ pH</h4><p>ยูวีฆ่าเชื้อในท่อ ส่วนชุด CD วัดค่าคลอรีนและ pH ในน้ำ แล้วเติมสารอัตโนมัติเพื่อคงคลอรีนคงเหลือในสระ</p><span class="fig">วัด Cl pH ORP · เติมเข้าท่อคืนน้ำ</span></div>
-    <div class="step"><span class="k">อุ่นและคืนน้ำ</span><h4>ปั๊มความร้อนและหัวจ่ายพื้นสระ</h4><p>ปั๊มความร้อนเติมพลังงานชดเชยความร้อนที่สระเสียให้อากาศ น้ำอุ่นกลับเข้าทางพื้นสระ 8 จุด ผสมทั่วสระจากล่างขึ้นบน</p><span class="fig">2 × 21 kW · น้ำออกอุ่นขึ้น 0.37 °C</span></div>
+    <div class="step"><span class="k">อุ่นและคืนน้ำ</span><h4><span class="nw">ฮีตปั๊ม</span>และหัวจ่ายพื้นสระ</h4><p><span class="nw">ฮีตปั๊ม</span>เติมพลังงานชดเชย<span class="nw">ความร้อน</span>ที่สระเสียให้อากาศ น้ำอุ่นกลับเข้าทางพื้นสระ 8 จุด ผสมทั่วสระจากล่างขึ้นบน</p><span class="fig">2 × 21 kW · ผ่านเครื่อง 18 <span class="nw">ลบ.ม./ชม.</span> อุ่นขึ้น 2.0 °C · ผสมกลับสระ +0.37 °C</span></div>
   </div>
   <div class="panel" style="margin-top:14px">
     <strong style="font-size:15px">อุณหภูมิน้ำตามเส้นทาง (ช่วงทำงานปกติ อากาศห้องสระ 28 °C)</strong>
     <div class="track" id="track"></div>
     <div class="tline" id="tline"></div>
-    <p class="note">น้ำเย็นลงเล็กน้อยที่รางล้นและถังพักเพราะสัมผัสอากาศ ผ่านปั๊มและถังกรองแทบไม่เปลี่ยน แล้วอุ่นขึ้นที่ปั๊มความร้อน ความต่างอุณหภูมิในท่อมีเพียงไม่ถึง 0.5 °C เพราะน้ำไหลเร็ว 27 ล./วินาที ระบบรักษาอุณหภูมิด้วยการหมุนเวียนต่อเนื่อง ไม่ได้ต้มน้ำให้ร้อนจัด</p>
+    <p class="note">น้ำเย็นลงเล็กน้อยที่รางล้นและถังพักเพราะสัมผัสอากาศ ผ่านปั๊มและถังกรองแทบไม่เปลี่ยน แล้วอุ่นขึ้นที่<span class="nw">ฮีตปั๊ม</span> ความต่างอุณหภูมิในท่อหลักไม่ถึง 0.5 °C ท่อแยกที่ผ่าน<span class="nw">ฮีตปั๊ม</span>อุ่นขึ้นราว 2 °C เพราะน้ำไหลเร็ว 27 ล./วินาที ระบบรักษาอุณหภูมิด้วยการหมุนเวียนต่อเนื่อง ไม่ได้ต้มน้ำให้ร้อนจัด</p>
   </div>
 </section>
 
 <section class="panel">
   <h2>การอุ่นน้ำและการเปลี่ยนแปลงอุณหภูมิ</h2>
-  <p class="lead">หลังเติมน้ำใหม่ น้ำประปาเย็นกว่าที่ต้องการ ปั๊มความร้อนใช้เวลาหลายวันอุ่นทั้งสระ เมื่อถึง 33.5 °C เทอร์โมสตัทตัดและเปิดสลับเพื่อชดเชยความร้อนที่เสียไป ปรับค่าด้านขวาเพื่อดูผล</p>
+  <p class="lead">หลังเติมน้ำใหม่ น้ำประปาเย็นกว่าที่ต้องการ <span class="nw">ฮีตปั๊ม</span>ใช้เวลาหลายวันอุ่นทั้งสระ เมื่อถึง 33.5 °C เทอร์โมสตัทตัดและเปิดสลับเพื่อชดเชย<span class="nw">ความร้อน</span>ที่เสียไป ปรับค่าด้านขวาเพื่อดูผล</p>
   <div class="chartgrid">
-    <div style="min-width:0;overflow-x:auto"><svg id="chart" viewBox="0 0 640 320" style="width:100%;min-width:460px;height:auto" role="img" aria-label="กราฟอุณหภูมิน้ำสระ"></svg></div>
+    <div style="min-width:0;overflow-x:auto"><svg id="chart" viewBox="0 0 640 320" style="width:100%;height:auto;display:block" role="img" aria-label="กราฟอุณหภูมิน้ำสระ"></svg></div>
     <div class="ctl">
       <label for="tFill">อุณหภูมิน้ำประปาที่เติม <output id="oFill"></output></label>
       <input id="tFill" type="range" min="24" max="31" step="0.5" value="28">
       <label for="tAir">อุณหภูมิอากาศห้องสระ <output id="oAir"></output></label>
-      <input id="tAir" type="range" min="24" max="32" step="0.5" value="28">
-      <label for="nHp">ปั๊มความร้อนที่ทำงาน <output id="oHp"></output></label>
+      <input id="tAir" type="range" min="24" max="32" step="0.5" value="27">
+      <label for="nHp"><span class="nw">ฮีตปั๊ม</span>ที่ทำงาน <output id="oHp"></output></label>
       <input id="nHp" type="range" min="1" max="2" step="1" value="2">
       <div class="kpis">
         <div class="kpi"><b id="kTime">–</b><span>เวลาอุ่นถึง 33.5 °C</span></div>
-        <div class="kpi"><b id="kLoss">–</b><span>ความร้อนที่สระเสีย</span></div>
-        <div class="kpi"><b id="kDuty">–</b><span>ปั๊มความร้อนเดิน</span></div>
-        <div class="kpi"><b id="kRise">–</b><span>น้ำอุ่นขึ้นต่อรอบที่ HP</span></div>
+        <div class="kpi"><b id="kLoss">–</b><span><span class="nw">ความร้อน</span>ที่สระเสีย</span></div>
+        <div class="kpi"><b id="kDuty">–</b><span><span class="nw">ฮีตปั๊ม</span>เดิน</span></div>
+        <div class="kpi"><b id="kRise">–</b><span>น้ำกลับสระอุ่นขึ้นต่อรอบ (ผสมแล้ว)</span></div>
       </div>
     </div>
   </div>
-  <p class="note">แบบจำลองอย่างง่ายตามแบบ PL r5: ความร้อนที่สระเสีย 23.6 kW ที่น้ำ 33.5 °C อากาศ 27 °C (สัมประสิทธิ์ 3.63 kW/°C) ความจุความร้อนน้ำ 146 ลบ.ม. = 170 kWh/°C ใช้ประกอบการตรวจแนวคิดเท่านั้น ค่าออกแบบจริงอยู่ในรายการคำนวณระบบสระ</p>
+  <p class="note">แบบจำลองอย่างง่ายตามแบบ PL r5: <span class="nw">ความร้อน</span>ที่สระเสีย 23.6 kW ที่น้ำ 33.5 °C อากาศ 27 °C (สัมประสิทธิ์ 3.63 kW/°C) ความจุ<span class="nw">ความร้อน</span>น้ำ 146 ลบ.ม. = 170 kWh/°C ใช้ประกอบการตรวจแนวคิดเท่านั้น ค่าออกแบบจริงอยู่ในรายการคำนวณระบบสระ</p>
 </section>
 </div>
 
@@ -344,7 +343,7 @@ h2{font-size:21px;margin:0 0 4px}
   const hex = h => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)); };
   const mix = (a,b,t) => 'rgb(' + a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',') + ')';
   function tColor(t){
-    const lo=33.2, mid=33.5, hi=33.8; const c=hex(css('--cool')), w=hex(css('--warm')), h=hex(css('--hot'));
+    const lo=33.3, mid=33.5, hi=33.7; const c=hex(css('--cool')), w=hex(css('--warm')), h=hex(css('--hot'));
     if (t<=mid) return mix(c,w,Math.max(0,(t-lo)/(mid-lo)));
     return mix(w,h,Math.min(1,(t-mid)/(hi-mid)));
   }
@@ -353,17 +352,17 @@ h2{font-size:21px;margin:0 0 4px}
 
   const MODES={
     run:{on:['over','md','suc','p1','dis','fout','uv','hp','byp','ret','cd'],heat:true,bt:470,bath:0,speed:1,
-      t:'กรองหมุนเวียน + อุ่นน้ำ',d:'โหมดปกติ น้ำล้นรางและน้ำก้นสระไหลลงถังพัก ปั๊ม P-1 ดูดผ่านตะแกรงดักผม ส่งผ่านถังกรองทราย ยูวี และปั๊มความร้อน แล้วกลับเข้าสระทางพื้น ชุด CD เติมคลอรีนและปรับ pH ตามค่าที่วัดได้'},
+      t:'กรองหมุนเวียน + อุ่นน้ำ',d:'โหมดปกติ น้ำล้นรางและน้ำก้นสระไหลลงถังพัก ปั๊ม P-1 ดูดผ่านตะแกรงดักผม ส่งผ่านถังกรองทราย ยูวี แล้วแยกน้ำ 18 ลบ.ม./ชม. ผ่านฮีตปั๊มอุ่นขึ้น 2 °C ผสมกับน้ำบายพาสแล้วกลับเข้าสระทางพื้น ชุด CD เติมคลอรีนและปรับ pH ตามค่าที่วัดได้'},
     cold:{on:['over','md','suc','p1','dis','fout','uv','byp','ret','cd'],heat:false,cold:true,bt:470,bath:0,speed:1,
-      t:'กรองหมุนเวียน ไม่อุ่นน้ำ',d:'วันที่ไม่เปิดน้ำอุ่น ปิดฮีตปั๊ม HP-1 HP-2 ที่ตู้ MCC-PL ปิดวาล์วเข้าและออกฮีตปั๊ม แล้วเปิดวาล์วบายพาสเต็มที่ น้ำทั้งหมด 98 ลบ.ม./ชม. ข้ามฮีตปั๊มกลับเข้าสระ การกรอง ยูวี และการเติมคลอรีนทำงานเหมือนเดิม น้ำในสระเป็นน้ำธรรมดา อุณหภูมิค่อย ๆ ลดลงจนใกล้อุณหภูมิอากาศห้องสระ (ราว 27 ถึง 30 °C) วันที่จะกลับมาเปิดน้ำอุ่น ให้เปิดวาล์วฮีตปั๊ม ปรับวาล์วบายพาสกลับตำแหน่งเดิม แล้วเปิดเครื่องล่วงหน้า ดูเวลาอุ่นในกราฟด้านล่าง'},
+      t:'กรองหมุนเวียน ไม่อุ่นน้ำ',d:'วันที่ไม่เปิดน้ำอุ่น ปิดฮีตปั๊ม HP-1 HP-2 ที่ตู้ MCC-PL ปิดวาล์วเข้าและออกฮีตปั๊ม แล้วเปิดวาล์วบายพาสเต็มที่ น้ำทั้งหมด 98 ลบ.ม./ชม. ข้ามฮีตปั๊มกลับเข้าสระ การกรอง ยูวี และการเติมคลอรีนทำงานตามปกติ น้ำในสระเป็นน้ำธรรมดา อุณหภูมิค่อย ๆ ลดลงจนใกล้อุณหภูมิอากาศห้องสระ (ราว 27 ถึง 30 °C) วันที่จะกลับมาเปิดน้ำอุ่น ให้เปิดวาล์วฮีตปั๊ม ปรับวาล์วบายพาสกลับตำแหน่งใช้งานน้ำอุ่น แล้วเปิดเครื่องล่วงหน้า ดูเวลาอุ่นในกราฟด้านล่าง'},
     bathers:{on:['over','md','suc','p1','dis','fout','uv','hp','byp','ret','cd'],heat:true,bt:420,bath:1,speed:1.6,
-      t:'มีผู้ใช้ลงสระ',d:'ผู้ใช้แทนที่น้ำ ผิวน้ำยกขึ้นและล้นลงรางมากขึ้น ระดับน้ำในถังพัก BT สูงขึ้นเพื่อเก็บน้ำส่วนนี้ไว้ เมื่อผู้ใช้ขึ้นจากสระ ปั๊มคืนน้ำกลับจนระดับเท่าเดิม ช่วงระดับ LSM -1.40 ถึง HWL -0.70 เก็บน้ำได้ 4.0 ลบ.ม. พอสำหรับผู้ใช้ 20 คนและน้ำกระเพื่อม'},
+      t:'มีผู้ใช้ลงสระ',d:'ผู้ใช้แทนที่น้ำ ผิวน้ำยกขึ้นและล้นลงรางมากขึ้น ระดับน้ำในถังพัก BT สูงขึ้นเพื่อเก็บน้ำส่วนนี้ไว้ เมื่อผู้ใช้ขึ้นจากสระ ปั๊มคืนน้ำกลับจนถึงระดับใช้งาน ช่วงระดับ LSM -1.40 ถึง HWL -0.70 เก็บน้ำได้ 4.0 ลบ.ม. พอสำหรับผู้ใช้ 20 คนและน้ำกระเพื่อม'},
     makeup:{on:['mk','over','md','suc','p1','dis','fout','uv','hp','byp','ret'],heat:true,bt:505,bath:0,speed:1,
-      t:'เติมน้ำ',d:'เมื่อระดับในถังพักต่ำ (น้ำระเหย น้ำติดตัวผู้ใช้ หรือหลังล้างย้อน) ลูกลอยเปิดให้น้ำประปา 1" ไหลลงถังพักผ่านช่องว่างอากาศ กันน้ำสระย้อนเข้าระบบประปา น้ำใหม่เย็นกว่า ปั๊มความร้อนจึงทำงานนานขึ้น'},
+      t:'เติมน้ำ',d:'เมื่อระดับในถังพักต่ำ (น้ำระเหย น้ำติดตัวผู้ใช้ หรือหลังล้างย้อน) สวิตช์ระดับ LSM -1.40 เปิดวาล์วไฟฟ้า น้ำประปา 1" ไหลลงถังพักผ่านช่องว่างอากาศ กันน้ำสระย้อนเข้าระบบประปา น้ำใหม่เย็นกว่า ฮีตปั๊มจึงทำงานนานขึ้น'},
     backwash:{on:['suc','p1','bwin','bwd','bw'],heat:false,bt:490,bath:0,speed:1.3,
-      t:'ล้างย้อนถังกรอง',d:'เมื่อแรงดันตกคร่อมถังกรองสูง ตั้งวาล์วหลายทางเป็นล้างย้อน น้ำไหลกลับทางจากล่างขึ้นบน ยกชั้นทรายพาตะกอนออกทางท่อ 4" ลงบ่อพักน้ำเสียผ่านช่องว่างอากาศ ล้างทีละถัง ช่วงนี้หยุดคืนน้ำเข้าสระและหยุดปั๊มความร้อน'},
+      t:'ล้างย้อนถังกรอง',d:'เมื่อแรงดันตกคร่อมถังกรองสูง ตั้งวาล์วหลายทางเป็นล้างย้อน น้ำไหลกลับทางจากล่างขึ้นบน ยกชั้นทรายพาตะกอนออกทางท่อ 4" ลงบ่อพัก CB4 ผ่านช่องว่างอากาศ ล้างทีละถัง 100 ลบ.ม./ชม. นาน 4 นาที (ภาพแสดงถัง F-1) ช่วงนี้หยุดคืนน้ำเข้าสระและหยุดฮีตปั๊ม'},
     idle:{on:[],heat:false,bt:445,bath:0,speed:1,
-      t:'ปั๊มหยุด',d:'เมื่อปั๊มหยุด น้ำในท่อและรางไหลลงถังพักจนระดับสูงขึ้น ปั๊มความร้อนต้องหยุดตามเพราะไม่มีน้ำไหลผ่าน ระบบควบคุมจึงล็อกให้ฮีตปั๊มเดินได้เฉพาะเมื่อปั๊มหมุนเวียนทำงาน'}
+      t:'ปั๊มหยุด',d:'เมื่อปั๊มหยุด น้ำในท่อและรางไหลลงถังพักจนระดับสูงขึ้น ฮีตปั๊มต้องหยุดตามเพราะไม่มีน้ำไหลผ่าน ระบบควบคุมจึงล็อกให้ฮีตปั๊มเดินได้เฉพาะเมื่อปั๊มหมุนเวียนทำงาน'}
   };
   const lenCache=new Map();
   function setMode(k){
@@ -377,7 +376,7 @@ h2{font-size:21px;margin:0 0 4px}
     svg.classList.toggle('heat', m.heat);
     document.getElementById('hpG').classList.toggle('dim', !m.heat);
     document.getElementById('hpOff').style.opacity = m.cold ? 1 : 0;
-    document.getElementById('chips').style.display = m.cold ? 'none' : '';
+    document.getElementById('chips').style.display = (m.cold || k==='backwash' || k==='idle') ? 'none' : '';
     svg.classList.toggle('cold', !!m.cold); paint();
     document.getElementById('poolT').textContent = m.cold ? 'รางน้ำล้นรอบขอบ · น้ำธรรมดา ไม่อุ่น' : 'รางน้ำล้นรอบขอบ · น้ำอุ่น 33 ถึง 34 °C';
     const bw=document.getElementById('btWater'); bw.setAttribute('y', m.bt); bw.setAttribute('height', 587-m.bt);
@@ -390,7 +389,7 @@ h2{font-size:21px;margin:0 0 4px}
   }
   document.querySelectorAll('.modes button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
 
-  const CHIPS=[[220,350,'สระ',33.5],[432,330,'ราง',33.3],[516,470,'BT',33.3],[820,410,'กรอง',33.32],[1026,440,'ยูวี',33.32],[1132,236,'HP ออก',33.69]];
+  const CHIPS=[[220,350,'สระ',33.5],[432,330,'ราง',33.3],[516,470,'BT',33.3],[820,410,'กรอง',33.32],[1026,440,'ยูวี',33.32],[1132,236,'HP ออก',35.32]];
   function drawChips(){
     const g=document.getElementById('chips'); g.innerHTML='';
     CHIPS.forEach(([x,y,n,t],i)=>{
@@ -402,7 +401,7 @@ h2{font-size:21px;margin:0 0 4px}
   }
   function drawTline(){
     const el=document.getElementById('tline');
-    const pts=[['ในสระ',33.5],['รางน้ำล้น',33.3],['ถังพัก BT',33.3],['หลังกรอง',33.32],['หลังยูวี',33.32],['ออกจาก HP',33.69]];
+    const pts=[['ในสระ',33.5],['รางน้ำล้น',33.3],['ถังพัก BT',33.3],['หลังกรอง',33.32],['หลังยูวี',33.32],['ออกจาก HP',35.32],['กลับสระ',33.69]];
     el.innerHTML=pts.map(([n,t])=>`<div class="tnode"><b style="color:${tColor(t)}">${t.toFixed(2)} °C</b>${n}</div>`).join('');
     const tr=document.getElementById('track'); tr.innerHTML=pts.map((p,i)=>`<i style="left:${(i/(pts.length-1)*100).toFixed(1)}%;border-color:${tColor(p[1])}"></i>`).join('');
   }
@@ -421,12 +420,13 @@ h2{font-size:21px;margin:0 0 4px}
     $('kLoss').textContent = Math.max(0,loss).toFixed(1)+' kW';
     $('kDuty').textContent = isFinite(tReach)? Math.round(duty*100)+'%' : '100%';
     $('kRise').textContent = '+'+(P/(27.2*4.18)).toFixed(2)+' °C';
-    const W=640,Hh=320,ml=46,mr=16,mt=16,mb=40, x=h=>ml+(W-ml-mr)*h/H, ymin=23, ymax=36, y=t=>mt+(Hh-mt-mb)*(1-(t-ymin)/(ymax-ymin));
+    const W=Math.round(Math.max(340,Math.min(640,ch.parentNode.clientWidth||640))),Hh=W<520?300:320,ml=40,mr=10,mt=30,mb=40, x=h=>ml+(W-ml-mr)*h/H, ymin=23, ymax=36, y=t=>mt+(Hh-mt-mb)*(1-(t-ymin)/(ymax-ymin));
+    ch.setAttribute('viewBox',`0 0 ${W} ${Hh}`);
     let s='';
     for(let t=24;t<=36;t+=2){ s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${ml-6}" y="${y(t)+4}" text-anchor="end">${t}</text>`; }
-    for(let h=0;h<=H;h+=24){ s+=`<line x1="${x(h)}" x2="${x(h)}" y1="${mt}" y2="${Hh-mb}" stroke="var(--grid)"/><text x="${x(h)}" y="${Hh-mb+16}" text-anchor="middle">${h} ชม.</text>`; }
-    s+=`<text x="${ml}" y="${Hh-6}" text-anchor="start">เวลาหลังเริ่มอุ่น</text><text x="${ml-6}" y="${mt-4}" text-anchor="end">°C</text>`;
-    s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(SET)}" y2="${y(SET)}" stroke="var(--warm)" stroke-dasharray="5 4"/><text x="${W-mr}" y="${y(SET)-6}" text-anchor="end" style="fill:var(--warm)">ตั้งเทอร์โมสตัท 33.5 °C</text>`;
+    for(let h=0;h<=H;h+=24){ s+=`<line x1="${x(h)}" x2="${x(h)}" y1="${mt}" y2="${Hh-mb}" stroke="var(--grid)"/><text x="${x(h)}" y="${Hh-mb+16}" text-anchor="${h===0?'start':h===H?'end':'middle'}">${h} ชม.</text>`; }
+    s+=`<text x="${ml}" y="${Hh-6}" text-anchor="start">เวลาหลังเริ่มอุ่น</text><text x="${ml-6}" y="${mt-16}" text-anchor="end">°C</text>`;
+    s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(SET)}" y2="${y(SET)}" stroke="var(--warm)" stroke-dasharray="5 4"/><text x="${W-mr}" y="${y(SET)-6}" text-anchor="end" style="fill:var(--warm)">ตั้งเทอร์มอสแตต 33.5 °C</text>`;
     s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(Ta)}" y2="${y(Ta)}" stroke="var(--muted)" stroke-dasharray="2 4"/><text x="${W-mr}" y="${y(Ta)+14}" text-anchor="end">อากาศห้องสระ ${Ta} °C</text>`;
     let d='', area='', pts=[];
     for(let h=0;h<=H;h+=1){
@@ -443,7 +443,7 @@ h2{font-size:21px;margin:0 0 4px}
     if(isFinite(tReach)&&tReach<H-10){ s+=`<text x="${W-mr}" y="${y(SET)-24}" text-anchor="end">ฮีตปั๊มเปิดสลับปิด เดิน ${Math.round(duty*100)}%</text>`; }
     ch.innerHTML=s;
   }
-  ['tFill','tAir','nHp'].forEach(id=>$(id).addEventListener('input',chart));
+  ['tFill','tAir','nHp'].forEach(id=>$(id).addEventListener('input',chart)); let _rw=0; addEventListener('resize',()=>{const w=ch.parentNode.clientWidth; if(Math.abs(w-_rw)>20){_rw=w; chart();}});
 
   paint(); setMode('run'); chart();
   const mq=matchMedia('(prefers-color-scheme: dark)'); mq.addEventListener && mq.addEventListener('change',()=>{paint();chart();});
