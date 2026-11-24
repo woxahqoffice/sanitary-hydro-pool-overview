@@ -1,0 +1,452 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ระบบน้ำสระวารีบำบัด</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"></head><body><style>
+.snav{--nv-bg:#ffffff;--nv-ink:#132a33;--nv-mut:#58707a;--nv-line:#d3dfe3;--nv-acc:#1677a8;--nv-hov:#eef4f6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}}
+:root[data-theme="dark"] .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}
+.snav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nv-bg);border-bottom:1px solid var(--nv-line);
+ padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-family:"IBM Plex Sans Thai",system-ui,sans-serif}
+.snav .in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+.snav .brand{font:600 14px "Chakra Petch","IBM Plex Sans Thai",sans-serif;white-space:nowrap;margin-right:10px;color:var(--nv-ink);text-decoration:none;display:flex;gap:8px;align-items:center}
+.snav .brand i{width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--nv-acc);display:inline-block}
+.snav a.l{white-space:nowrap;font-size:13.5px;line-height:1.4;text-decoration:none;color:var(--nv-mut);padding:5px 11px;border-radius:8px}
+.snav a.l:hover{color:var(--nv-ink);background:var(--nv-hov)}
+.snav a.l.on{color:var(--nv-bg);background:var(--nv-ink)}
+.snav a:focus-visible{outline:2px solid #d9692b;outline-offset:2px}
+</style><nav class="snav" aria-label="หน้าในเว็บไซต์"><div class="in"><a class="brand" href="index.html"><i></i>ระบบน้ำ 2 อาคาร</a><a class="l" href="index.html">หน้าแรก</a><a class="l" href="water.html">น้ำประปา</a><a class="l" href="pumps.html">ปั๊มหอยโข่ง</a><a class="l on" href="ระบบน้ำสระวารีบำบัด_ภาพด้านข้าง.html" aria-current="page">สระวารีบำบัด</a><a class="l" href="sanitary.html">น้ำเสียและน้ำฝน</a><a class="l" href="plan.html">แปลน</a><a class="l" href="equipment.html">อุปกรณ์</a></div></nav>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: แถบหัวเรื่อง → แผนผังเคลื่อนไหวเต็มกว้าง + แผงโหมด → การ์ดขั้นตอน 6 ใบ → กราฟอุณหภูมิแบบปรับค่าได้ */
+:root{
+  --bg:#edf3f4; --surface:#ffffff; --ink:#0f2a33; --muted:#566f78; --line:#c7d7db;
+  --water:#cfe9f2; --water-edge:#2a86a8; --pipe:#a9bcc2; --cool:#2a7fc4; --warm:#e07a2c; --hot:#d2452b;
+  --teal:#0e8a83; --chem:#7a55b5; --waste:#8a6a55; --chip:#f3f8f9; --grid:#e1eaec;
+  --f-text:"IBM Plex Sans Thai",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a171c; --surface:#0f2229; --ink:#e2f0f2; --muted:#8fb0b8; --line:#23404a;
+  --water:#123a4a; --water-edge:#4fb3d6; --pipe:#3b5862; --cool:#58a8ec; --warm:#f29a4e; --hot:#ff6a4d;
+  --teal:#3cc2b8; --chem:#a988e0; --waste:#b08f78; --chip:#14303a; --grid:#17323b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a171c; --surface:#0f2229; --ink:#e2f0f2; --muted:#8fb0b8; --line:#23404a;
+  --water:#123a4a; --water-edge:#4fb3d6; --pipe:#3b5862; --cool:#58a8ec; --warm:#f29a4e; --hot:#ff6a4d;
+  --teal:#3cc2b8; --chem:#a988e0; --waste:#b08f78; --chip:#14303a; --grid:#17323b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-text);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:22px}
+header h1{font-size:clamp(24px,3.4vw,36px);line-height:1.25;margin:0;font-weight:700;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:72ch}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.modes button{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.modes button:focus-visible,.ctl input:focus-visible{outline:2px solid var(--warm);outline-offset:2px}
+.diagram{overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:760px;height:auto}
+.caption{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-top:10px}
+.caption .now{flex:1 1 380px;min-width:0}
+.caption h3{margin:0 0 4px;font-size:17px}
+.caption p{margin:0;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.scale{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.scale span.bar{width:140px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--cool),var(--warm),var(--hot))}
+
+/* svg */
+.lbl{font-family:var(--f-text);font-size:13px;fill:var(--ink);font-weight:600}
+.sub{font-family:var(--f-text);font-size:11px;fill:var(--muted)}
+.num{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.box{fill:var(--surface);stroke:var(--ink);stroke-width:1.4}
+.pipe{fill:none;stroke:var(--pipe);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.pipe.thin{stroke-width:4}
+.flow{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:1 15;opacity:0;transition:opacity .4s}
+.flow.on{opacity:1;animation:run var(--dur,2.4s) linear infinite}
+@keyframes run{to{stroke-dashoffset:-64}}
+.dim{opacity:.35;transition:opacity .4s}
+.hp-glow{opacity:0;transition:opacity .5s}
+.heat .hp-glow{opacity:1}
+.chipT rect{fill:var(--surface);stroke:var(--line)}
+.chipT text{font-family:var(--f-mono);font-size:12px;font-weight:600}
+.waterlevel{transition:y .9s ease,height .9s ease}
+@media (prefers-reduced-motion:reduce){.flow.on{animation:none;stroke-dasharray:6 6}}
+
+/* cards */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start;min-width:0}
+.step .k{font-family:var(--f-mono);font-size:12px;color:var(--teal);letter-spacing:.05em}
+.step h4{margin:0;font-size:16px}
+.step p{margin:0;font-size:14px;color:var(--muted)}
+.step .fig{font-family:var(--f-mono);font-size:13px;color:var(--ink);background:var(--chip);border-radius:8px;padding:6px 8px}
+h2{font-size:21px;margin:0 0 4px}
+.lead{color:var(--muted);margin:0 0 12px;max-width:80ch}
+
+/* chart */
+.chartgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:18px}
+@media (max-width:860px){.chartgrid{grid-template-columns:1fr}}
+.ctl{display:grid;gap:14px;align-content:start}
+.ctl label{display:grid;gap:4px;font-size:14px}
+.ctl output{font-family:var(--f-mono);font-weight:600;color:var(--warm)}
+.ctl input[type=range]{width:100%;accent-color:var(--teal)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--chip);border-radius:10px;padding:10px}
+.kpi b{display:block;font-family:var(--f-mono);font-size:20px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--muted)}
+#chart text{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.tline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-top:6px}
+.track+.tline .tnode{padding-top:2px}
+@media (max-width:700px){.tline{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}.track{display:none}}
+.tnode{text-align:center;font-size:12px;color:var(--muted);min-width:0}
+.tnode b{display:block;font-family:var(--f-mono);font-size:16px}
+
+/* v2: แถบหัวเรื่องลายน้ำ + ตัวเลขหลัก + ขั้นตอนต่อเนื่อง + รางอุณหภูมิ */
+.hero{position:relative;overflow:hidden;border-radius:18px;padding:26px 24px 22px;background:
+  radial-gradient(120% 140% at 100% 0%, color-mix(in srgb,var(--warm) 22%, transparent) 0%, transparent 55%),
+  linear-gradient(135deg, color-mix(in srgb,var(--water-edge) 92%, #000) 0%, var(--water-edge) 55%, color-mix(in srgb,var(--teal) 85%, #000) 100%);color:#fff}
+.hero::after{content:"";position:absolute;inset:auto -10% -40px -10%;height:90px;background:
+  repeating-radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.10) 0 2px, transparent 2px 18px);pointer-events:none}
+.hero .tag{color:#d6f3f1}
+.hero h1{color:#fff}
+.hero p{color:rgba(255,255,255,.86)}
+.stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:18px}
+@media (max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:10px 12px;backdrop-filter:blur(4px);min-width:0}
+.stat b{display:block;font-family:var(--f-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:12px;color:rgba(255,255,255,.8)}
+.steps{counter-reset:st}
+.step{position:relative;padding-top:18px}
+.step .k{display:flex;align-items:center;gap:8px}
+.step .k::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  background:var(--teal);color:#fff;font-weight:600;font-size:13px;flex:none}
+.step:nth-child(6) .k::before{background:var(--warm)}
+.step:nth-child(5) .k::before{background:var(--chem)}
+.track{position:relative;height:10px;border-radius:5px;margin:22px 4% 6px;background:linear-gradient(90deg,var(--cool) 0%,var(--cool) 55%,var(--warm) 88%,var(--hot) 100%)}
+.track i{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--surface);border:3px solid var(--ink)}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="tag">ตามแบบระบบสระ PL r5 (24 พ.ย. 2569) · อาคารวารีบำบัด เทศบาลนครตรัง</div>
+  <h1>ระบบหมุนเวียน กรอง ฆ่าเชื้อ และอุ่นน้ำ สระวารีบำบัด</h1>
+  <p>สระ 7.00 × 13.50 ม. น้ำลึก 1.55 ม. รางน้ำล้นรอบสระ น้ำหมุนเวียนต่อเนื่องผ่านถังกรอง ยูวี และปั๊มความร้อน เลือกโหมดในแผนผังเพื่อดูทิศการไหลของแต่ละสถานการณ์</p>
+  <div class="stats">
+    <div class="stat"><b>146 ลบ.ม.</b><span>ปริมาตรน้ำในสระ</span></div>
+    <div class="stat"><b>1.5 ชม.</b><span>หมุนเวียนครบ 1 รอบ</span></div>
+    <div class="stat"><b>98 ลบ.ม./ชม.</b><span>อัตราหมุนเวียน</span></div>
+    <div class="stat"><b>33.5 °C</b><span>อุณหภูมิน้ำออกแบบ</span></div>
+    <div class="stat"><b>2 × 21 kW</b><span>ปั๊มความร้อน</span></div>
+  </div>
+</header>
+
+<section class="panel" aria-label="แผนผังการไหล">
+  <div class="modes" role="group" aria-label="โหมดการทำงาน">
+    <button data-mode="run" aria-pressed="true">กรองหมุนเวียน + อุ่นน้ำ</button>
+    <button data-mode="cold" aria-pressed="false">กรองหมุนเวียน ไม่อุ่นน้ำ</button>
+    <button data-mode="bathers" aria-pressed="false">มีผู้ใช้ลงสระ</button>
+    <button data-mode="makeup" aria-pressed="false">เติมน้ำ</button>
+    <button data-mode="backwash" aria-pressed="false">ล้างย้อนถังกรอง</button>
+    <button data-mode="idle" aria-pressed="false">ปั๊มหยุด</button>
+  </div>
+  <div class="diagram">
+  <svg id="sys" viewBox="0 0 1200 640" role="img" aria-label="แผนผังระบบน้ำสระวารีบำบัด">
+    <defs>
+      <linearGradient id="tGrad" x1="0" x2="1"><stop offset="0" stop-color="var(--cool)"/><stop offset="1" stop-color="var(--warm)"/></linearGradient>
+      <radialGradient id="glow"><stop offset="0" stop-color="var(--hot)" stop-opacity=".55"/><stop offset="1" stop-color="var(--hot)" stop-opacity="0"/></radialGradient>
+      <marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker>
+    </defs>
+    <!-- ระดับพื้น -->
+    <line x1="10" y1="252" x2="1190" y2="252" stroke="var(--line)" stroke-dasharray="6 6"/>
+    <text class="num" x="440" y="246">±0.00 พื้นโถงสระ</text>
+    <rect x="455" y="300" width="725" height="320" rx="10" fill="none" stroke="var(--line)" stroke-dasharray="4 6"/>
+    <text class="sub" x="590" y="318">ห้องเครื่องสระ</text>
+
+    <!-- สระ -->
+    <g id="pool">
+      <rect x="40" y="252" width="360" height="170" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.6"/>
+      <rect id="poolWater" x="44" y="262" width="352" height="156" fill="var(--water)"/>
+      <rect x="40" y="252" width="14" height="14" fill="var(--pipe)"/><rect x="386" y="252" width="14" height="14" fill="var(--pipe)"/>
+      <text class="lbl" x="220" y="300" text-anchor="middle">สระวารีบำบัด 146 ลบ.ม.</text>
+      <text id="poolT" class="sub" x="220" y="318" text-anchor="middle">รางน้ำล้นรอบขอบ · น้ำอุ่น 33 ถึง 34 °C</text>
+      <g id="bathers" opacity="0">
+        <circle cx="140" cy="276" r="7" fill="var(--muted)"/><circle cx="190" cy="279" r="7" fill="var(--muted)"/><circle cx="265" cy="275" r="7" fill="var(--muted)"/><circle cx="310" cy="280" r="7" fill="var(--muted)"/>
+      </g>
+      <rect x="125" y="414" width="22" height="8" fill="var(--ink)"/><rect x="285" y="414" width="22" height="8" fill="var(--ink)"/>
+      <text class="num" x="136" y="406" text-anchor="middle">MD</text><text class="num" x="296" y="406" text-anchor="middle">MD</text>
+      <g fill="var(--teal)"><path d="M86 418l6-10 6 10z"/><path d="M196 418l6-10 6 10z"/><path d="M236 418l6-10 6 10z"/><path d="M346 418l6-10 6 10z"/></g>
+      <text class="num" x="92" y="402" text-anchor="middle">RI</text><text class="num" x="352" y="402" text-anchor="middle">RI</text>
+    </g>
+
+    <!-- ท่อพื้นหลัง -->
+    <g id="pipes">
+      <path id="p-over" class="pipe" d="M398 260 H432 V430 H470"/>
+      <path id="p-md" class="pipe" d="M136 422 V470 H296 M296 422 V470 H446 V470 H470"/>
+      <path id="p-suc" class="pipe" d="M560 560 H600 V505 H618"/>
+      <path id="p-p1" class="pipe" d="M666 505 H684 V445 H704"/>
+      <path id="p-p2" class="pipe" d="M666 505 H684 V560 H704"/>
+      <path id="p-dis" class="pipe" d="M736 445 H760 V560 H736 M760 445 V200 H912 M820 200 V218 M912 200 V218"/>
+      <path id="p-fout" class="pipe" d="M820 382 V420 H968 M912 382 V420"/>
+      <path id="p-uv" class="pipe" d="M968 420 V372 H990"/>
+      <path id="p-hp" class="pipe" d="M1062 372 H1080 V286 H1095"/>
+      <path id="p-byp" class="pipe" d="M1080 350 H1186 V286"/>
+      <path id="p-ret" class="pipe" d="M1170 286 H1186 V40 H20 V480 H352 M92 480 V420 M202 480 V420 M242 480 V420 M352 480 V420"/>
+      <path id="p-mk" class="pipe thin" d="M520 70 V160 M520 182 V390"/>
+      <path id="p-bw" class="pipe thin" d="M820 382 V600 H1040 M912 382 V600"/>
+      <path id="p-cd" class="pipe thin" d="M1132 150 V118 H1186"/>
+    </g>
+
+    <!-- เส้นการไหล (เคลื่อนไหว) -->
+    <g id="flows">
+      <path class="flow" data-k="over" data-t="33.3" d="M398 260 H432 V430 H470"/>
+      <path class="flow" data-k="md" data-t="33.4" d="M136 422 V470 H470"/>
+      <path class="flow" data-k="md" data-t="33.4" d="M296 422 V470"/>
+      <path class="flow" data-k="suc" data-t="33.3" d="M560 560 H600 V505 H618"/>
+      <path class="flow" data-k="p1" data-t="33.3" d="M666 505 H684 V445 H704"/>
+      <path class="flow" data-k="dis" data-t="33.32" d="M736 445 H760 V200 H912"/>
+      <path class="flow" data-k="dis" data-t="33.32" d="M820 200 V218"/>
+      <path class="flow" data-k="dis" data-t="33.32" d="M912 200 V218"/>
+      <path class="flow" data-k="fout" data-t="33.32" d="M820 382 V420 H968"/>
+      <path class="flow" data-k="fout" data-t="33.32" d="M912 382 V420"/>
+      <path class="flow" data-k="uv" data-t="33.32" d="M968 420 V372 H990"/>
+      <path class="flow" data-k="hp" data-t="33.32" d="M1062 372 H1080 V286 H1095"/>
+      <path class="flow" data-k="byp" data-t="33.32" d="M1062 372 H1080 V350 H1186 V286"/>
+      <path class="flow" data-k="ret" data-t="33.69" d="M1170 286 H1186 V40 H20 V480 H352"/>
+      <path class="flow" data-k="ret" data-t="33.69" d="M92 480 V420"/><path class="flow" data-k="ret" data-t="33.69" d="M202 480 V420"/>
+      <path class="flow" data-k="ret" data-t="33.69" d="M242 480 V420"/><path class="flow" data-k="ret" data-t="33.69" d="M352 480 V420"/>
+      <path class="flow" data-k="mk" data-c="var(--cool)" d="M520 70 V160 M520 182 V390"/>
+      <path class="flow" data-k="bwd" data-c="var(--waste)" d="M820 218 V200 M912 218 V200"/>
+      <path class="flow" data-k="bw" data-c="var(--waste)" d="M820 382 V600 H1040"/>
+      <path class="flow" data-k="bw" data-c="var(--waste)" d="M912 382 V600"/>
+      <path class="flow" data-k="bwin" data-t="33.3" d="M736 445 H760 V200 H820"/>
+      <path class="flow" data-k="cd" data-c="var(--chem)" d="M1132 150 V118 H1186"/>
+    </g>
+
+    <!-- ถังพักน้ำล้น -->
+    <g>
+      <rect x="470" y="390" width="92" height="200" class="box" rx="6"/>
+      <rect id="btWater" class="waterlevel" x="473" y="470" width="86" height="117" fill="var(--water)"/>
+      <text class="lbl" x="516" y="420" text-anchor="middle">BT</text>
+      <text class="sub" x="516" y="436" text-anchor="middle">ถังพักน้ำล้น</text>
+      <text class="num" x="516" y="452" text-anchor="middle">9.2 ลบ.ม.</text>
+      <text class="sub" x="516" y="610" text-anchor="middle">ฝังใต้พื้นห้องเครื่อง</text>
+    </g>
+    <!-- ประปาเติม -->
+    <g>
+      <rect x="480" y="16" width="80" height="54" class="box" rx="6"/>
+      <text class="lbl" x="520" y="40" text-anchor="middle">ถังน้ำประปา</text>
+      <text class="num" x="520" y="58" text-anchor="middle">1" ลูกลอย</text>
+      <line x1="508" y1="171" x2="532" y2="171" stroke="var(--muted)"/><text class="num" x="540" y="175">ช่องว่างอากาศ</text>
+    </g>
+    <!-- ห้องใต้ดินปั๊ม -->
+    <rect x="598" y="398" width="160" height="214" rx="6" fill="none" stroke="var(--ink)" stroke-dasharray="7 4" stroke-width="1.2"/>
+    <text class="num" x="604" y="628">ห้องใต้ดินปั๊ม พื้น -2.30 · น้ำไหลเข้าปั๊มเอง · บันไดเหล็กชันลงซ่อม</text>
+    <!-- HS -->
+    <g><rect x="618" y="480" width="48" height="50" class="box" rx="6"/><text class="lbl" x="642" y="510" text-anchor="middle">HS</text>
+      <text class="sub" x="642" y="548" text-anchor="middle">ตะแกรงดักผม</text></g>
+    <!-- ปั๊ม -->
+    <g id="pump1"><circle cx="720" cy="445" r="16" class="box"/><path id="imp1" d="M720 433 L726 445 L720 457 L714 445z" fill="var(--teal)"/>
+      <text class="sub" x="720" y="478" text-anchor="middle">P-1</text><text class="sub" x="720" y="491" text-anchor="middle">7.5 kW</text></g>
+    <g id="pump2" class="dim"><circle cx="720" cy="560" r="16" class="box"/><text class="lbl" x="720" y="565" text-anchor="middle">P</text>
+      <text class="sub" x="720" y="592" text-anchor="middle">P-2 สำรอง</text></g>
+    <text class="num" x="606" y="416">98 ลบ.ม./ชม.</text><text class="num" x="606" y="430">เฮด 22 ม. · VSD</text>
+    <!-- ถังกรอง -->
+    <g>
+      <rect x="790" y="218" width="60" height="164" rx="26" class="box"/><rect x="882" y="218" width="60" height="164" rx="26" class="box"/>
+      <rect x="796" y="300" width="48" height="70" rx="6" fill="var(--chip)"/><rect x="888" y="300" width="48" height="70" rx="6" fill="var(--chip)"/>
+      <text class="lbl" x="820" y="262" text-anchor="middle">F-1</text><text class="lbl" x="912" y="262" text-anchor="middle">F-2</text>
+      <text class="num" x="820" y="340" text-anchor="middle">ทราย</text><text class="num" x="912" y="340" text-anchor="middle">ทราย</text>
+      <text class="sub" x="866" y="190" text-anchor="middle">ถังกรองทราย Waterco SMD1600 · 24.4 ม./ชม.</text>
+    </g>
+    <!-- UV -->
+    <g><rect x="990" y="350" width="72" height="44" rx="8" class="box"/><text class="lbl" x="1026" y="377" text-anchor="middle">UV</text>
+      <text class="sub" x="1026" y="412" text-anchor="middle">ยูวี ProMinent 2 kW</text></g>
+    <!-- HP -->
+    <g id="hpG">
+      <circle class="hp-glow" cx="1132" cy="286" r="70" fill="url(#glow)"/>
+      <rect x="1095" y="258" width="75" height="56" rx="8" class="box"/>
+      <text class="lbl" x="1132" y="284" text-anchor="middle">HP-1 HP-2</text>
+      <text class="num" x="1132" y="301" text-anchor="middle">2 × 21 kW</text>
+      <text class="sub" x="1132" y="334" text-anchor="middle">ปั๊มความร้อน</text>
+    </g>
+    <text class="sub" x="1133" y="368" text-anchor="middle">บายพาส</text>
+    <text id="hpOff" class="lbl" x="1132" y="246" text-anchor="middle" style="fill:var(--muted);opacity:0;transition:opacity .4s">ปิดเครื่อง</text>
+    <!-- CD -->
+    <g><rect x="1095" y="150" width="75" height="44" rx="8" class="box" style="stroke:var(--chem)"/><text class="lbl" x="1132" y="170" text-anchor="middle">CD</text>
+      <text class="num" x="1132" y="186" text-anchor="middle">Cl + pH</text></g>
+    <!-- ระบายล้างย้อน -->
+    <g><rect x="1040" y="584" width="96" height="32" rx="6" fill="var(--surface)" stroke="var(--waste)"/><text class="sub" x="1088" y="604" text-anchor="middle">บ่อพักน้ำเสีย</text></g>
+    <text class="num" x="600" y="62">ท่อคืนน้ำ ø160 ไปหัวจ่ายพื้นสระ RI 8 จุด</text>
+
+    <!-- อุณหภูมิ -->
+    <g id="chips"></g>
+  </svg>
+  </div>
+  <div class="caption">
+    <div class="now"><h3 id="mTitle"></h3><p id="mText"></p></div>
+    <div style="display:grid;gap:8px">
+      <div class="scale">33.2 °C <span class="bar"></span> 33.8 °C</div>
+      <div class="legend"><span><i style="background:var(--cool)"></i>น้ำออกจากสระ</span><span><i style="background:var(--warm)"></i>น้ำอุ่นกลับสระ</span><span><i style="background:var(--chem)"></i>สารเคมี</span><span><i style="background:var(--waste)"></i>น้ำล้างย้อน</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>น้ำเดินทางอย่างไรใน 1 รอบ</h2>
+  <p class="lead">ทุก 1.5 ชั่วโมง น้ำทั้งสระ 146 ลบ.ม. ผ่านเส้นทางนี้ครบ 1 รอบ ด้วยอัตรา 98 ลบ.ม./ชม. (27 ล./วินาที)</p>
+  <div class="steps">
+    <div class="step"><span class="k">ออกจากสระ</span><h4>รางน้ำล้นและช่องดูดก้นสระ</h4><p>ผิวน้ำที่มีไขมันและฝุ่นไหลข้ามขอบลงรางรอบสระ ส่วนน้ำก้นสระถูกดูดผ่าน MD 2 จุด ทั้งหมดไหลด้วยแรงโน้มถ่วงลงถังพัก</p><span class="fig">ราง 2 × 4" · MD 2 × 4"</span></div>
+    <div class="step"><span class="k">พักน้ำ</span><h4>ถังพักน้ำล้น BT</h4><p>รับน้ำที่ล้นเมื่อมีคนลงสระ และเป็นจุดเติมน้ำประปา ระดับน้ำในถังขึ้นลงตามจำนวนผู้ใช้</p><span class="fig">9.2 ลบ.ม. · รับคนลงสระพร้อมกัน 20 คน</span></div>
+    <div class="step"><span class="k">ดูดและส่ง</span><h4>ห้องใต้ดินปั๊ม ตะแกรงดักผมและปั๊ม 1+1</h4><p>ปั๊มหอยโข่ง LEO XST65-125/75 7.5 kW ตั้งในห้องใต้ดินปั๊ม 4.50 × 2.70 ม. พื้น -2.30 ใต้ห้องเครื่อง ใช้ผนังร่วมกับถังพัก แกนปั๊ม -1.97 ต่ำกว่าระดับน้ำต่ำสุดในถังพัก (-1.65) 0.32 ม. น้ำจึงไหลเข้าปั๊มเองโดยไม่ต้องล่อน้ำ ช่างลงด้วยบันไดเหล็กชัน มีที่ยืนซ่อม 0.78 ถึง 1.30 ม. รอบปั๊ม ยกปั๊มออกด้วยรางรอก ตะแกรงดักผมกันเศษเข้าปั๊ม ปั๊มทำงานสลับ 1 ตัว สำรอง 1 ตัว VSD ABB ACQ580 ปรับรอบและตัดเมื่อทำงานแห้ง</p><span class="fig">ดูด ø200 1.3 ม./วินาที · ส่ง ø160 2.0 ม./วินาที</span></div>
+    <div class="step"><span class="k">กรอง</span><h4>ถังกรองทราย F-1 F-2</h4><p>น้ำไหลจากบนลงล่างผ่านชั้นทราย ตะกอนติดค้างในทราย เมื่อแรงดันตกคร่อมสูงขึ้นให้ล้างย้อน</p><span class="fig">พื้นที่กรอง 4.02 ตร.ม. · 24.4 ม./ชม. (ไม่เกิน 30)</span></div>
+    <div class="step"><span class="k">ฆ่าเชื้อ</span><h4>ยูวีและคลอรีน + ปรับ pH</h4><p>ยูวีฆ่าเชื้อในท่อ ส่วนชุด CD วัดค่าคลอรีนและ pH ในน้ำ แล้วเติมสารอัตโนมัติเพื่อคงคลอรีนคงเหลือในสระ</p><span class="fig">วัด Cl pH ORP · เติมเข้าท่อคืนน้ำ</span></div>
+    <div class="step"><span class="k">อุ่นและคืนน้ำ</span><h4>ปั๊มความร้อนและหัวจ่ายพื้นสระ</h4><p>ปั๊มความร้อนเติมพลังงานชดเชยความร้อนที่สระเสียให้อากาศ น้ำอุ่นกลับเข้าทางพื้นสระ 8 จุด ผสมทั่วสระจากล่างขึ้นบน</p><span class="fig">2 × 21 kW · น้ำออกอุ่นขึ้น 0.37 °C</span></div>
+  </div>
+  <div class="panel" style="margin-top:14px">
+    <strong style="font-size:15px">อุณหภูมิน้ำตามเส้นทาง (ช่วงทำงานปกติ อากาศห้องสระ 28 °C)</strong>
+    <div class="track" id="track"></div>
+    <div class="tline" id="tline"></div>
+    <p class="note">น้ำเย็นลงเล็กน้อยที่รางล้นและถังพักเพราะสัมผัสอากาศ ผ่านปั๊มและถังกรองแทบไม่เปลี่ยน แล้วอุ่นขึ้นที่ปั๊มความร้อน ความต่างอุณหภูมิในท่อมีเพียงไม่ถึง 0.5 °C เพราะน้ำไหลเร็ว 27 ล./วินาที ระบบรักษาอุณหภูมิด้วยการหมุนเวียนต่อเนื่อง ไม่ได้ต้มน้ำให้ร้อนจัด</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>การอุ่นน้ำและการเปลี่ยนแปลงอุณหภูมิ</h2>
+  <p class="lead">หลังเติมน้ำใหม่ น้ำประปาเย็นกว่าที่ต้องการ ปั๊มความร้อนใช้เวลาหลายวันอุ่นทั้งสระ เมื่อถึง 33.5 °C เทอร์โมสตัทตัดและเปิดสลับเพื่อชดเชยความร้อนที่เสียไป ปรับค่าด้านขวาเพื่อดูผล</p>
+  <div class="chartgrid">
+    <div style="min-width:0;overflow-x:auto"><svg id="chart" viewBox="0 0 640 320" style="width:100%;min-width:460px;height:auto" role="img" aria-label="กราฟอุณหภูมิน้ำสระ"></svg></div>
+    <div class="ctl">
+      <label for="tFill">อุณหภูมิน้ำประปาที่เติม <output id="oFill"></output></label>
+      <input id="tFill" type="range" min="24" max="31" step="0.5" value="28">
+      <label for="tAir">อุณหภูมิอากาศห้องสระ <output id="oAir"></output></label>
+      <input id="tAir" type="range" min="24" max="32" step="0.5" value="28">
+      <label for="nHp">ปั๊มความร้อนที่ทำงาน <output id="oHp"></output></label>
+      <input id="nHp" type="range" min="1" max="2" step="1" value="2">
+      <div class="kpis">
+        <div class="kpi"><b id="kTime">–</b><span>เวลาอุ่นถึง 33.5 °C</span></div>
+        <div class="kpi"><b id="kLoss">–</b><span>ความร้อนที่สระเสีย</span></div>
+        <div class="kpi"><b id="kDuty">–</b><span>ปั๊มความร้อนเดิน</span></div>
+        <div class="kpi"><b id="kRise">–</b><span>น้ำอุ่นขึ้นต่อรอบที่ HP</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">แบบจำลองอย่างง่ายตามแบบ PL r5: ความร้อนที่สระเสีย 23.6 kW ที่น้ำ 33.5 °C อากาศ 27 °C (สัมประสิทธิ์ 3.63 kW/°C) ความจุความร้อนน้ำ 146 ลบ.ม. = 170 kWh/°C ใช้ประกอบการตรวจแนวคิดเท่านั้น ค่าออกแบบจริงอยู่ในรายการคำนวณระบบสระ</p>
+</section>
+</div>
+
+<script>
+(() => {
+  const svg = document.getElementById('sys');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const hex = h => { h = h.replace('#',''); return [0,2,4].map(i => parseInt(h.substr(i,2),16)); };
+  const mix = (a,b,t) => 'rgb(' + a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',') + ')';
+  function tColor(t){
+    const lo=33.2, mid=33.5, hi=33.8; const c=hex(css('--cool')), w=hex(css('--warm')), h=hex(css('--hot'));
+    if (t<=mid) return mix(c,w,Math.max(0,(t-lo)/(mid-lo)));
+    return mix(w,h,Math.min(1,(t-mid)/(hi-mid)));
+  }
+  const flows=[...svg.querySelectorAll('.flow')];
+  function paint(){ const cold=svg.classList.contains('cold'); flows.forEach(f=>{ f.style.stroke = cold ? css('--cool') : (f.dataset.c || tColor(parseFloat(f.dataset.t))); }); drawChips(); drawTline(); }
+
+  const MODES={
+    run:{on:['over','md','suc','p1','dis','fout','uv','hp','byp','ret','cd'],heat:true,bt:470,bath:0,speed:1,
+      t:'กรองหมุนเวียน + อุ่นน้ำ',d:'โหมดปกติ น้ำล้นรางและน้ำก้นสระไหลลงถังพัก ปั๊ม P-1 ดูดผ่านตะแกรงดักผม ส่งผ่านถังกรองทราย ยูวี และปั๊มความร้อน แล้วกลับเข้าสระทางพื้น ชุด CD เติมคลอรีนและปรับ pH ตามค่าที่วัดได้'},
+    cold:{on:['over','md','suc','p1','dis','fout','uv','byp','ret','cd'],heat:false,cold:true,bt:470,bath:0,speed:1,
+      t:'กรองหมุนเวียน ไม่อุ่นน้ำ',d:'วันที่ไม่เปิดน้ำอุ่น ปิดฮีตปั๊ม HP-1 HP-2 ที่ตู้ MCC-PL ปิดวาล์วเข้าและออกฮีตปั๊ม แล้วเปิดวาล์วบายพาสเต็มที่ น้ำทั้งหมด 98 ลบ.ม./ชม. ข้ามฮีตปั๊มกลับเข้าสระ การกรอง ยูวี และการเติมคลอรีนทำงานเหมือนเดิม น้ำในสระเป็นน้ำธรรมดา อุณหภูมิค่อย ๆ ลดลงจนใกล้อุณหภูมิอากาศห้องสระ (ราว 27 ถึง 30 °C) วันที่จะกลับมาเปิดน้ำอุ่น ให้เปิดวาล์วฮีตปั๊ม ปรับวาล์วบายพาสกลับตำแหน่งเดิม แล้วเปิดเครื่องล่วงหน้า ดูเวลาอุ่นในกราฟด้านล่าง'},
+    bathers:{on:['over','md','suc','p1','dis','fout','uv','hp','byp','ret','cd'],heat:true,bt:420,bath:1,speed:1.6,
+      t:'มีผู้ใช้ลงสระ',d:'ผู้ใช้แทนที่น้ำ ผิวน้ำยกขึ้นและล้นลงรางมากขึ้น ระดับน้ำในถังพัก BT สูงขึ้นเพื่อเก็บน้ำส่วนนี้ไว้ เมื่อผู้ใช้ขึ้นจากสระ ปั๊มคืนน้ำกลับจนระดับเท่าเดิม ช่วงระดับ LSM -1.40 ถึง HWL -0.70 เก็บน้ำได้ 4.0 ลบ.ม. พอสำหรับผู้ใช้ 20 คนและน้ำกระเพื่อม'},
+    makeup:{on:['mk','over','md','suc','p1','dis','fout','uv','hp','byp','ret'],heat:true,bt:505,bath:0,speed:1,
+      t:'เติมน้ำ',d:'เมื่อระดับในถังพักต่ำ (น้ำระเหย น้ำติดตัวผู้ใช้ หรือหลังล้างย้อน) ลูกลอยเปิดให้น้ำประปา 1" ไหลลงถังพักผ่านช่องว่างอากาศ กันน้ำสระย้อนเข้าระบบประปา น้ำใหม่เย็นกว่า ปั๊มความร้อนจึงทำงานนานขึ้น'},
+    backwash:{on:['suc','p1','bwin','bwd','bw'],heat:false,bt:490,bath:0,speed:1.3,
+      t:'ล้างย้อนถังกรอง',d:'เมื่อแรงดันตกคร่อมถังกรองสูง ตั้งวาล์วหลายทางเป็นล้างย้อน น้ำไหลกลับทางจากล่างขึ้นบน ยกชั้นทรายพาตะกอนออกทางท่อ 4" ลงบ่อพักน้ำเสียผ่านช่องว่างอากาศ ล้างทีละถัง ช่วงนี้หยุดคืนน้ำเข้าสระและหยุดปั๊มความร้อน'},
+    idle:{on:[],heat:false,bt:445,bath:0,speed:1,
+      t:'ปั๊มหยุด',d:'เมื่อปั๊มหยุด น้ำในท่อและรางไหลลงถังพักจนระดับสูงขึ้น ปั๊มความร้อนต้องหยุดตามเพราะไม่มีน้ำไหลผ่าน ระบบควบคุมจึงล็อกให้ฮีตปั๊มเดินได้เฉพาะเมื่อปั๊มหมุนเวียนทำงาน'}
+  };
+  const lenCache=new Map();
+  function setMode(k){
+    const m=MODES[k];
+    document.querySelectorAll('.modes button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.mode===k));
+    flows.forEach(f=>{
+      const on=m.on.includes(f.dataset.k); f.classList.toggle('on',on);
+      if(!lenCache.has(f)) lenCache.set(f,f.getTotalLength());
+      const L=lenCache.get(f); f.style.setProperty('--dur', (Math.max(0.6, L/220)/m.speed).toFixed(2)+'s');
+    });
+    svg.classList.toggle('heat', m.heat);
+    document.getElementById('hpG').classList.toggle('dim', !m.heat);
+    document.getElementById('hpOff').style.opacity = m.cold ? 1 : 0;
+    document.getElementById('chips').style.display = m.cold ? 'none' : '';
+    svg.classList.toggle('cold', !!m.cold); paint();
+    document.getElementById('poolT').textContent = m.cold ? 'รางน้ำล้นรอบขอบ · น้ำธรรมดา ไม่อุ่น' : 'รางน้ำล้นรอบขอบ · น้ำอุ่น 33 ถึง 34 °C';
+    const bw=document.getElementById('btWater'); bw.setAttribute('y', m.bt); bw.setAttribute('height', 587-m.bt);
+    document.getElementById('bathers').setAttribute('opacity', m.bath);
+    document.getElementById('pump1').classList.toggle('dim', m.on.length===0);
+    document.getElementById('mTitle').textContent=m.t; document.getElementById('mText').textContent=m.d;
+    const imp=document.getElementById('imp1');
+    imp.style.transformOrigin='720px 445px'; imp.style.transformBox='view-box';
+    imp.animate ? (imp._a && imp._a.cancel(), m.on.length && !matchMedia('(prefers-reduced-motion: reduce)').matches && (imp._a=imp.animate([{transform:'rotate(0)'},{transform:'rotate(360deg)'}],{duration:900/m.speed,iterations:Infinity}))) : 0;
+  }
+  document.querySelectorAll('.modes button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+
+  const CHIPS=[[220,350,'สระ',33.5],[432,330,'ราง',33.3],[516,470,'BT',33.3],[820,410,'กรอง',33.32],[1026,440,'ยูวี',33.32],[1132,236,'HP ออก',33.69]];
+  function drawChips(){
+    const g=document.getElementById('chips'); g.innerHTML='';
+    CHIPS.forEach(([x,y,n,t],i)=>{
+      if(i===0||i===2) return;
+      const c=document.createElementNS('http://www.w3.org/2000/svg','g'); c.setAttribute('class','chipT');
+      const w=74; c.innerHTML=`<rect x="${x-w/2}" y="${y-12}" width="${w}" height="22" rx="11"/><circle cx="${x-w/2+11}" cy="${y-1}" r="5" fill="${tColor(t)}"/><text x="${x+6}" y="${y+3}" text-anchor="middle" fill="${tColor(t)}">${t.toFixed(2)}°</text>`;
+      g.appendChild(c);
+    });
+  }
+  function drawTline(){
+    const el=document.getElementById('tline');
+    const pts=[['ในสระ',33.5],['รางน้ำล้น',33.3],['ถังพัก BT',33.3],['หลังกรอง',33.32],['หลังยูวี',33.32],['ออกจาก HP',33.69]];
+    el.innerHTML=pts.map(([n,t])=>`<div class="tnode"><b style="color:${tColor(t)}">${t.toFixed(2)} °C</b>${n}</div>`).join('');
+    const tr=document.getElementById('track'); tr.innerHTML=pts.map((p,i)=>`<i style="left:${(i/(pts.length-1)*100).toFixed(1)}%;border-color:${tColor(p[1])}"></i>`).join('');
+  }
+
+  // ---------- กราฟอุ่นน้ำ ----------
+  const C=169.8, K=3.63, SET=33.5, HP1=21;
+  const ch=document.getElementById('chart');
+  const $=id=>document.getElementById(id);
+  function chart(){
+    const T0=+$('tFill').value, Ta=+$('tAir').value, n=+$('nHp').value, P=n*HP1;
+    $('oFill').textContent=T0.toFixed(1)+' °C'; $('oAir').textContent=Ta.toFixed(1)+' °C'; $('oHp').textContent=n+' ชุด ('+P+' kW)';
+    const Tinf=Ta+P/K, tau=C/K, H=120;
+    let tReach = Tinf>SET ? -tau*Math.log((Tinf-SET)/(Tinf-T0)) : Infinity;
+    const loss=K*(SET-Ta), duty=Math.min(1,Math.max(0,loss/P));
+    $('kTime').textContent = isFinite(tReach)? (tReach<48? tReach.toFixed(0)+' ชม.' : (tReach/24).toFixed(1)+' วัน') : 'ไม่ถึง';
+    $('kLoss').textContent = Math.max(0,loss).toFixed(1)+' kW';
+    $('kDuty').textContent = isFinite(tReach)? Math.round(duty*100)+'%' : '100%';
+    $('kRise').textContent = '+'+(P/(27.2*4.18)).toFixed(2)+' °C';
+    const W=640,Hh=320,ml=46,mr=16,mt=16,mb=40, x=h=>ml+(W-ml-mr)*h/H, ymin=23, ymax=36, y=t=>mt+(Hh-mt-mb)*(1-(t-ymin)/(ymax-ymin));
+    let s='';
+    for(let t=24;t<=36;t+=2){ s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${ml-6}" y="${y(t)+4}" text-anchor="end">${t}</text>`; }
+    for(let h=0;h<=H;h+=24){ s+=`<line x1="${x(h)}" x2="${x(h)}" y1="${mt}" y2="${Hh-mb}" stroke="var(--grid)"/><text x="${x(h)}" y="${Hh-mb+16}" text-anchor="middle">${h} ชม.</text>`; }
+    s+=`<text x="${ml}" y="${Hh-6}" text-anchor="start">เวลาหลังเริ่มอุ่น</text><text x="${ml-6}" y="${mt-4}" text-anchor="end">°C</text>`;
+    s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(SET)}" y2="${y(SET)}" stroke="var(--warm)" stroke-dasharray="5 4"/><text x="${W-mr}" y="${y(SET)-6}" text-anchor="end" style="fill:var(--warm)">ตั้งเทอร์โมสตัท 33.5 °C</text>`;
+    s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(Ta)}" y2="${y(Ta)}" stroke="var(--muted)" stroke-dasharray="2 4"/><text x="${W-mr}" y="${y(Ta)+14}" text-anchor="end">อากาศห้องสระ ${Ta} °C</text>`;
+    let d='', area='', pts=[];
+    for(let h=0;h<=H;h+=1){
+      let T = h<tReach ? Tinf-(Tinf-T0)*Math.exp(-h/tau) : SET + (duty<1 ? 0.12*Math.sin((h-tReach)*Math.PI/1.5) : 0);
+      if(!isFinite(tReach)) T=Tinf-(Tinf-T0)*Math.exp(-h/tau);
+      pts.push([x(h),y(T)]);
+    }
+    d='M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
+    area=d+` L${x(H)} ${Hh-mb} L${x(0)} ${Hh-mb} Z`;
+    s+=`<defs><linearGradient id="ag" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="var(--cool)" stop-opacity=".05"/><stop offset="1" stop-color="var(--warm)" stop-opacity=".28"/></linearGradient><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="var(--cool)"/><stop offset="${isFinite(tReach)?Math.min(1,tReach/H):1}" stop-color="var(--warm)"/><stop offset="1" stop-color="var(--warm)"/></linearGradient></defs>`;
+    s+=`<path d="${area}" fill="url(#ag)"/><path d="${d}" fill="none" stroke="url(#lg)" stroke-width="3"/>`;
+    s+=`<circle cx="${x(0)}" cy="${y(T0)}" r="5" fill="var(--cool)"/><text x="${x(0)+8}" y="${y(T0)+16}" style="fill:var(--cool)">เติมน้ำ ${T0} °C</text>`;
+    if(isFinite(tReach)&&tReach<=H){ s+=`<circle cx="${x(tReach)}" cy="${y(SET)}" r="6" fill="var(--warm)" stroke="var(--surface)" stroke-width="2"/><text x="${x(tReach)+10}" y="${y(SET)+40}" text-anchor="start" style="fill:var(--ink)">ถึงอุณหภูมิใน ${tReach.toFixed(0)} ชม.</text>`; }
+    if(isFinite(tReach)&&tReach<H-10){ s+=`<text x="${W-mr}" y="${y(SET)-24}" text-anchor="end">ฮีตปั๊มเปิดสลับปิด เดิน ${Math.round(duty*100)}%</text>`; }
+    ch.innerHTML=s;
+  }
+  ['tFill','tAir','nHp'].forEach(id=>$(id).addEventListener('input',chart));
+
+  paint(); setMode('run'); chart();
+  const mq=matchMedia('(prefers-color-scheme: dark)'); mq.addEventListener && mq.addEventListener('change',()=>{paint();chart();});
+  new MutationObserver(()=>{paint();chart();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+</body></html>
