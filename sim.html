@@ -1,4 +1,13 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>จำลองการทำงาน 3 มิติ</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"><link rel="stylesheet" href="common.css"><script>try{var t=localStorage.getItem('w2b-theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><meta property="og:title" content="ระบบน้ำ 2 อาคาร เทศบาลนครตรัง"><meta property="og:description" content="ระบบประปา สระวารีบำบัด น้ำเสีย พร้อมภาพตัด 3 มิติและการจำลองการทำงาน"><meta property="og:type" content="website"><meta property="og:image" content="https://woxahqoffice.github.io/sanitary-hydro-pool-overview/og-cover.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="ระบบน้ำตรัง"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png" type="image/png"></head><body><style>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>จำลองการทำงาน 3 มิติ</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap"><link rel="stylesheet" href="common.css"><script>try{var t=localStorage.getItem('w2b-theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><meta property="og:title" content="ระบบน้ำ 2 อาคาร เทศบาลนครตรัง"><meta property="og:description" content="ระบบประปา สระวารีบำบัด น้ำเสีย พร้อมภาพตัด 3 มิติและการจำลองการทำงาน"><meta property="og:type" content="website"><meta property="og:image" content="https://woxahqoffice.github.io/sanitary-hydro-pool-overview/og-cover.jpg"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="ระบบน้ำตรัง"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png" type="image/png"></head><body><style>#fsv{position:absolute;top:10px;right:10px;z-index:5;width:36px;height:36px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:color-mix(in srgb,var(--paper) 85%,transparent);color:var(--ink);cursor:pointer}
+#fsv:hover{border-color:var(--water)}
+#stage:fullscreen,#stage.fs{background:var(--paper);padding:12px;display:flex;flex-direction:column;gap:0;box-sizing:border-box;width:100%;height:100%}
+#stage:-webkit-full-screen{background:var(--paper);padding:12px;display:flex;flex-direction:column;box-sizing:border-box;width:100%;height:100%}
+#stage.fs{position:fixed;inset:0;z-index:2000;padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+#stage:fullscreen #view,#stage.fs #view{flex:1;aspect-ratio:auto;min-height:0}
+#stage:-webkit-full-screen #view{flex:1;aspect-ratio:auto;min-height:0}
+body.fslock{overflow:hidden}
+body.rec #fsv{display:none}
+
 .snav{--nv-bg:#ffffff;--nv-ink:#132a33;--nv-mut:#58707a;--nv-line:#d3dfe3;--nv-acc:#1677a8;--nv-hov:#eef4f6}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}}
 :root[data-theme="dark"] .snav{--nv-bg:#122229;--nv-ink:#dcebf0;--nv-mut:#8aa4ad;--nv-line:#24404a;--nv-acc:#47aee0;--nv-hov:#183039}
@@ -71,8 +80,8 @@ body.rec #reccap b{font:600 17px var(--disp)} body.rec #clash{display:none} .vid
 <div class="tabs"><button data-scene="tank">ถังน้ำใต้ดินและปั๊ม</button><button data-scene="pool">ระบบสระวารีบำบัด</button><button data-scene="san">น้ำเสียและ<span class="nw">ถังบำบัด</span></button><button data-scene="over">ภาพรวมทั้งโครงการ</button></div>
 <div class="grid">
 <div>
-<div id="view"><svg id="lab"></svg><div id="clock"></div><div id="clash" class="clash"></div><div id="reccap"></div><button id="rot" type="button">แตะเพื่อหมุนภาพ</button></div>
-<div class="tb"><button id="play">หยุดชั่วคราว</button><button data-speed="1">1×</button><button data-speed="10" class="on">10×</button><button data-speed="60">60×</button><span class="sp"></span><button id="labt" class="on">ป้าย</button><button id="home">มุมเริ่มต้น</button></div>
+<div id="stage"><div id="view"><svg id="lab"></svg><div id="clock"></div><div id="clash" class="clash"></div><div id="reccap"></div><button id="rot" type="button">แตะเพื่อหมุนภาพ</button><button id="fsv" type="button" aria-label="ดูเต็มหน้าจอ" title="ดูเต็มหน้าจอ (F)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+<div class="tb"><button id="play">หยุดชั่วคราว</button><button data-speed="1">1×</button><button data-speed="10" class="on">10×</button><button data-speed="60">60×</button><span class="sp"></span><button id="labt" class="on">ป้าย</button><button id="home">มุมเริ่มต้น</button><button id="fsb" type="button" aria-label="ดูเต็มหน้าจอ">เต็มจอ</button></div></div>
 <div class="leg"><span><i style="background:#2a9fd8"></i>น้ำประปา</span><span><i style="background:#2bb3c9"></i>น้ำสระก่อนกรอง</span><span><i style="background:#3b6fd6"></i>น้ำสระกรองแล้ว คืนสระ</span><span><i style="background:#d9692b"></i><span class="nw">ฮีตปั๊ม</span></span><span><i style="background:#8a6a3c"></i>น้ำเสีย</span><span><i style="background:#5aa58a"></i>น้ำผ่านการบำบัด</span><span><i style="background:#4d7f6b"></i>น้ำฝน</span><span><i style="background:#7d8a90"></i>น้ำล้างย้อน</span><span><i style="background:#b04fc0"></i>คลอรีน</span></div>
 </div>
 <div class="side">
@@ -92,5 +101,25 @@ body.rec #reccap b{font:600 17px var(--disp)} body.rec #clash{display:none} .vid
 </div>
 <p class="note">แบบจำลองนี้ใช้ขนาด ระดับ และอัตราไหลจากแบบก่อสร้าง SN, PL และสเปค<span class="nw">อุปกรณ์</span>ของโครงการ เพื่ออธิบายการทำงาน ความยาวภาพตามแนวลึกของสระและอาคารย่อให้เห็นทั้งระบบในภาพเดียว ไม่ใช่แบบก่อสร้าง</p>
 </main>
-<script src="three.min.js"></script><script src="OrbitControls.js"></script><script src="sim.js"></script>
+<script src="three.min.js"></script><script src="OrbitControls.js"></script><script src="sim.js"></script><script>
+(function(){
+  var st=document.getElementById('stage'),b1=document.getElementById('fsb'),b2=document.getElementById('fsv');
+  var nat=!!(st.requestFullscreen||st.webkitRequestFullscreen);
+  function fsEl(){return document.fullscreenElement||document.webkitFullscreenElement}
+  function isOn(){return fsEl()===st||st.classList.contains('fs')}
+  function upd(){var on=isOn();b1.textContent=on?'ออกจากเต็มจอ':'เต็มจอ';b1.classList.toggle('on',on);b2.setAttribute('aria-label',on?'ออกจากเต็มจอ':'ดูเต็มหน้าจอ');
+    b2.innerHTML=on?'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>':'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+    setTimeout(function(){window.dispatchEvent(new Event('resize'));if(typeof setCam==='function')setCam()},80);}
+  function tog(){
+    if(isOn()){ if(fsEl()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)} else {st.classList.remove('fs');document.body.classList.remove('fslock');upd()} return }
+    var pseudo=function(){if(!fsEl()&&!st.classList.contains('fs')){st.classList.add('fs');document.body.classList.add('fslock');upd()}};var f=st.requestFullscreen||st.webkitRequestFullscreen;if(f){try{var p=f.call(st);if(p&&p.catch)p.catch(pseudo)}catch(e){pseudo()}setTimeout(pseudo,450)}
+    else {st.classList.add('fs');document.body.classList.add('fslock');upd()}
+  }
+  b1.addEventListener('click',tog);b2.addEventListener('click',tog);
+  document.addEventListener('fullscreenchange',upd);document.addEventListener('webkitfullscreenchange',upd);
+  document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if((e.key==='f'||e.key==='F')&&!e.metaKey&&!e.ctrlKey){tog()}
+    if(e.key==='Escape'&&st.classList.contains('fs')){tog()}});
+})();
+</script>
 <link rel="stylesheet" href="mobile.css"><link rel="stylesheet" href="theme.css"><script src="mobile.js" defer></script></body></html>
